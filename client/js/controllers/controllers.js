@@ -52,6 +52,31 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
+app.controller("beerController", function (BeerServices, $state, $scope) {
+    console.log("Beer Controller")
+
+    if($state.current.name === "beerMeRandom") {
+        BeerServices.beerMe()
+            .then(function (response) {
+                $scope.beerData = response.data.data;
+                console.log($scope.beerData)
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+
+    $scope.beerMe = function () {
+        BeerServices.beerMe()
+            .then(function (response) {
+                $scope.beerData = response.data;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+})
+
 //needed for dropdown
 app.controller("dropdownController", function () {
 });

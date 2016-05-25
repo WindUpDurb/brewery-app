@@ -6,7 +6,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state("home", {
-            url : "/"
+            url : "/",
+            views: {
+                "body": {
+                    templateUrl: "/html/home.html"
+                }
+            }
         })
         .state("login", {
             url: "/login",
@@ -27,7 +32,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state("profile", {
 
         })
-
+        .state("beerMeRandom", {
+            url: "/beerMe",
+            views: {
+                "body": {
+                    templateUrl: "/html/randomBeer.html",
+                    controller: "beerController"
+                }
+            }
+        })
 
     $urlRouterProvider.otherwise("/");
 });
@@ -85,6 +98,31 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
+app.controller("beerController", function (BeerServices, $state, $scope) {
+    console.log("Beer Controller")
+
+    if($state.current.name === "beerMeRandom") {
+        BeerServices.beerMe()
+            .then(function (response) {
+                $scope.beerData = response.data.data;
+                console.log($scope.beerData)
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+
+    $scope.beerMe = function () {
+        BeerServices.beerMe()
+            .then(function (response) {
+                $scope.beerData = response.data;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+})
+
 //needed for dropdown
 app.controller("dropdownController", function () {
 });
@@ -111,3 +149,14 @@ app.service("AuthServices", function ($http) {
     };
 
 });
+
+app.service("BeerServices", function ($http) {
+    
+    this.beerMe = function () {
+       return $http.get("/api/breweryAPI/beerMe");
+    }
+    
+})
+
+
+

@@ -21,3 +21,14 @@ app.service("AuthServices", function ($http) {
     };
 
 });
+
+app.service("BeerServices", function ($http) {
+    
+    this.beerMe = function () {
+       return $http.get("/api/breweryAPI/beerMe");
+    }
+    
+})
+
+
+

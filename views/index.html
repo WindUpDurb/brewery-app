@@ -60,10 +60,10 @@
                         <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                        <li ui-sref="activeAuctions"><a>Stuff</a></li>
-                        <li role="menuitem"><a href="#">Something else here</a></li>
+                        <li ui-sref="beerMeRandom"><a>Drink </a></li>
+                        <li ui-sref="personalRatings"><a href="#">Drank</a></li>
+                        <li ui-sref="personalReviews"><a href="#">Drunk</a></li>
                         <li class="divider"></li>
-                        <li ng-if="admin" ui-sref="stockManagement"><a>Stock Management</a></li>
                         <li ui-sref="accountManagement"><a>Account Management</a></li>
                         <li ng-click="logout()"  role="menuitem"><a>Logout</a></li>
                     </ul>
@@ -73,7 +73,7 @@
 
 
             <div class="col-sm-1 col-sm-offset-2" style="margin-top: 15px">
-                <i id="beerIcon" class="fa fa-beer fa-3x" aria-hidden="true"></i>
+                <i ui-sref="beerMeRandom" id="beerIcon" class="fa fa-beer fa-3x" aria-hidden="true"></i>
             </div>
         </div>
     </div>

@@ -6,7 +6,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state("home", {
-            url : "/"
+            url : "/",
+            views: {
+                "body": {
+                    templateUrl: "/html/home.html"
+                }
+            }
         })
         .state("login", {
             url: "/login",
@@ -27,7 +32,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state("profile", {
 
         })
-
+        .state("beerMeRandom", {
+            url: "/beerMe",
+            views: {
+                "body": {
+                    templateUrl: "/html/randomBeer.html",
+                    controller: "beerController"
+                }
+            }
+        })
 
     $urlRouterProvider.otherwise("/");
 });
