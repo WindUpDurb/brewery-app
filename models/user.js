@@ -21,7 +21,7 @@ let userSchema = new mongoose.Schema({
 
     }],
     //will contain a collection of beer IDs
-    beerSeen: [{ type: String }]
+    beerSeen: [{ beerName: { type: String}, beerId: { type: String}, image: {tyep: String} }]
 
 });
 
@@ -32,6 +32,27 @@ userSchema.statics.addToSampledBeers = function (userId, beerToAdd, callback) {
         databaseUser.save(function (error, savedUser) {
             callback(error, savedUser);
         })
+    })
+};
+
+userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
+    User.findById(userId, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user." });
+        console.log("beerData: ", beerData)
+        let beerId = beerData.data.id;
+        if (databaseUser.beerSeen.indexOf(beerId) === -1 ) {
+            let beerToAdd = {
+                beerName: beerData.data.name,
+                beerId: beerData.data.id,
+                image: beerData.labels || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+            };
+            databaseUser.beerSeen.push(beerToAdd);
+            databaseUser.save(function (error) {
+                return callback(error, true);
+            })
+        } else {
+            return callback(null, false);
+        }
     })
 };
 

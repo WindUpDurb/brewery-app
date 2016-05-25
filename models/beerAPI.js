@@ -9,27 +9,29 @@ let BeerAPI = {
             if (error) return callback(error);
             callback(null, body);
         })
-    },
+    }
 
-    beerMeUser: function (userId, callback) {
+    /*beerMeUser: function (userId, callback) {
+        console.log("beer me user")
         User.findById(userId, function (error, databaseUser) {
             if (error || !databaseUser) return callback(error || { error: "There is no such user." });
             requestNPM("http://api.brewerydb.com/v2/beer/random?key=852f05c67350a731492d69cf272223e2", function (error, response, body) {
                 if (error) return callback(error);
-                let randomBeer = body.data.id;
-                if (databaseUser.beerSeen.indexOf(randomBeer) !== -1) {
+                let randomBeer = JSON.parse(body).data.id;
+                console.log("random beer: ", randomBeer)
+                while (databaseUser.beerSeen.indexOf(randomBeer) !== -1) {
                     requestNPM("http://api.brewerydb.com/v2/beer/random?key=852f05c67350a731492d69cf272223e2", function (error, response, body) {
-                       randomBeer = body.data.id;
+                        randomBeer = JSON.parse(body).data.id;
+                        console.log("randomBeer: ", randomBeer)
                     });
-                } else {
-                    databaseUser.beerSeen.push(randomBeer);
-                    databaseUser.save(function (error) {
-                        callback(error, body);
-                    })
                 }
-            })
-        })
-    }
+                databaseUser.beerSeen.push(randomBeer);
+                databaseUser.save(function (error) {
+                    callback(error, randomBeer);
+                });
+            });
+        });
+    }*/
 };
 
 

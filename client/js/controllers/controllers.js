@@ -89,7 +89,11 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
                 console.log("Error: ", error);
             });
     }
-})
+});
+
+app.controller("beerLogController", function () {
+
+});
 
 //needed for dropdown
 app.controller("dropdownController", function () {

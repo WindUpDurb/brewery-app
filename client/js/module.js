@@ -29,8 +29,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state("profile", {
-
+        .state("beerLog", {
+            url: "/beerLog",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerlog.html",
+                    controller: "beerLogController"
+                }
+            }
         })
         .state("beerMeRandom", {
             url: "/beerMe",

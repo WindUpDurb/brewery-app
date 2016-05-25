@@ -4,6 +4,8 @@ let express = require("express");
 let router = express.Router();
 
 let BeerAPI = require("../models/beerAPI");
+let User = require("../models/user");
+
 
 router.get("/beerMe", function (request, response) {
     BeerAPI.beerMe(function (error, body) {
@@ -14,10 +16,19 @@ router.get("/beerMe", function (request, response) {
 
 router.put("/beerMeUser", function (request, response) {
     let userId = request.body._id;
-    console.log("id: ", userId)
-    BeerAPI.beerMeUser(userId, function (error, body) {
+    BeerAPI.beerMe(function (error, data) {
         if (error) response.status(400).send(error);
-        response.send(body);
+        let beerData = JSON.parse(data);
+        User.checkIfSeenBeer(userId, beerData, function (error, hasSeen) {
+            if (!hasSeen) {
+                BeerAPI.beerMe(function (error, data) {
+                    if (error) response.status(400).send(error);
+                    beerData = JSON.parse(data);
+                })
+            } else {
+                response.send(beerData);
+            }
+        })
     })
 });
 

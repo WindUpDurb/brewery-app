@@ -1,0 +1,21 @@
+<h1 class="text-center">Dah Beer Log</h1>
+
+<div class="row" ng-repeat="beer in  beerLog">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div style="margin-top: 75px" class="list-group">
+            <div class="list-group-item">
+                <div class="row-picture">
+                    <img class="rounded" ng-src="{{item.image || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
+                </div>
+                <div class="row-content">
+                    <h4 class="list-group-item-heading"><a ng-href="/#/item/{{item._id}}">{{item.item}}</a></h4>
+
+                    <p class="list-group-item-text">{{item.price | currency}}</p>
+                </div>
+            </div>
+            <div class="list-group-separator"></div>
+        </div>
+
+
+    </div>
+</div>

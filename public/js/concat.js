@@ -29,8 +29,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state("profile", {
-
+        .state("beerLog", {
+            url: "/beerLog",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerlog.html",
+                    controller: "beerLogController"
+                }
+            }
         })
         .state("beerMeRandom", {
             url: "/beerMe",
@@ -135,7 +141,11 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
                 console.log("Error: ", error);
             });
     }
-})
+});
+
+app.controller("beerLogController", function () {
+
+});
 
 //needed for dropdown
 app.controller("dropdownController", function () {
