@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router"]);
+var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -23,6 +23,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     templateUrl: "/html/register.html"
                 }
             }
+        })
+        .state("profile", {
+
         })
 
 

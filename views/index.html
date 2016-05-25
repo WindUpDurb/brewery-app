@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/ripples.min.css">
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
 
+    <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+
+
     <!--Personal CSS-->
     <link rel="stylesheet" href="/css/style.css">
 
@@ -27,7 +31,7 @@
 
 
 <!--Header-->
-<div class="navbar navbar-fixed-top" style="background-color : #E0E0E0; margin-bottom : 0px">
+<div class="navbar navbar-fixed-top" style="background-color : #FAFAFA; margin-bottom : 0px">
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-header">
@@ -35,30 +39,47 @@
             </div>
         </div>
 
+        <div class="row" style="color: black">
+            <div class="col-sm-3 col-sm-offset-4">Beer</div>
+            <div class="col-sm-3">Other Directory</div>
+        </div>
+
+
         <div class="row">
-            <div ng-if="!activeUser"  class="col-sm-1 col-sm-offset-8">
+            <div ng-if="!activeUser"  class="col-sm-2 col-sm-offset-5">
                 <button type="button" ui-sref="login" class="btn">Login</button>
             </div>
 
-            <div ng-if="activeUser"  class="col-sm-1 col-sm-offset-8">
-                <button type="button" type="button" ng-click="logout()" class="btn">Login</button>
-            </div>
-
-            <div ng-if="!activeUser"  class="col-sm-1">
+            <div ng-if="!activeUser"  class="col-sm-2">
                 <button type="button" ui-sref="register" class="btn">Register</button>
             </div>
 
+            <div ng-if="activeUser" ng-controller="dropdownController" class="col-sm-2 col-sm-offset-7">
+                <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
+                    <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
+                        <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li ui-sref="activeAuctions"><a>Stuff</a></li>
+                        <li role="menuitem"><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li ng-if="admin" ui-sref="stockManagement"><a>Stock Management</a></li>
+                        <li ui-sref="accountManagement"><a>Account Management</a></li>
+                        <li ng-click="logout()"  role="menuitem"><a>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
 
-            <div class="col-sm-2" style="margin-top: 15px">
+
+
+            <div class="col-sm-1 col-sm-offset-2" style="margin-top: 15px">
                 <i id="beerIcon" class="fa fa-beer fa-3x" aria-hidden="true"></i>
             </div>
         </div>
     </div>
 </div>
 <!--End of Header-->
-
-
-
+<hr id="divider">
 
     <div class="container" ui-view="body"></div>
 

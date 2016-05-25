@@ -85,6 +85,8 @@ userSchema.methods.generateToken = function () {
         exp: moment().add(7, "day").unix()
     };
     return jwt.encode(JWT_SECRET, payload, function (error, token) {
+        console.log("Error: ", error);
+        console.log("Token: ", token)
         return error || token;
     });
 };
@@ -105,6 +107,7 @@ userSchema.statics.authenticate = function (loginData, callback) {
 userSchema.statics.authorization = function () {
     return function (request, response, next) {
         let token = request.cookies.accessToken;
+        console.log("token: ", token)
         jwt.decode(JWT_SECRET, token, function (error, payload) {
             if (error) return response.status(401).send({ error: "Authentication failed." });
             User.findById(payload._id, function (error, user) {

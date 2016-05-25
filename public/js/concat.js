@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router"]);
+var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -24,6 +24,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("profile", {
+
+        })
 
 
     $urlRouterProvider.otherwise("/");
@@ -37,7 +40,9 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
 
     AuthServices.isLoggedIn()
         .then(function (response) {
+            console.log("respones: ", response)
             $scope.activeUser = response.data;
+            console.log("activeUser: ", $scope.activeUser)
         })
         .catch(function (error) {
             console.log("Error: ", error);
@@ -78,6 +83,10 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
             });
     };
     
+});
+
+//needed for dropdown
+app.controller("dropdownController", function () {
 });
 "use strict";
 

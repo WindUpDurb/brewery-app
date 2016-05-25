@@ -1,5 +1,7 @@
 "use strict";
 
+require("dotenv").load();
+
 const PORT = process.env.PORT || 3000;
 
 var express = require("express");
