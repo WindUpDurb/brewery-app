@@ -1,0 +1,9 @@
+body {
+    background-color: white;
+    padding-top : 80px;
+}
+
+#beerIcon {
+    margin-left: 15px;
+    color: black;
+}

@@ -5,6 +5,8 @@ let bcrypt = require("bcrypt");
 let jwt = require("json-web-token");
 let moment = require("moment");
 
+let JWT_SECRET = process.env.JWT_SECRET;
+
 let userSchema = new mongoose.Schema({
 
     email: { type: String, required: true },
@@ -22,6 +24,16 @@ let userSchema = new mongoose.Schema({
     beerSeen: [{ type: String }]
 
 });
+
+userSchema.statics.addToSampledBeers = function (userId, beerToAdd, callback) {
+    User.findById(userId, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user." });
+        databaseUser.sampledBeers.push(beerToAdd);
+        databaseUser.save(function (error, savedUser) {
+            callback(error, savedUser);
+        })
+    })
+};
 
 userSchema.statics.obtainUsers = function (callback) {
     User.find({}, function (error, userList) {

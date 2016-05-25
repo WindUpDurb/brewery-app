@@ -7,6 +7,9 @@
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
+    <link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css">
+
+
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/ripples.min.css">
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
@@ -20,7 +23,45 @@
 
 
 </head>
-<body ng-app="nameOfApp" ng-controller="mainController">
+<body ng-app="beerApp" ng-controller="mainController">
+
+
+<!--Header-->
+<div class="navbar navbar-fixed-top" style="background-color : #E0E0E0; margin-bottom : 0px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-header">
+                <a class="pull-left" style="color : black" ng-href="/">WindUpDurb</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div ng-if="!activeUser"  class="col-sm-1 col-sm-offset-8">
+                <button type="button" ui-sref="login" class="btn">Login</button>
+            </div>
+
+            <div ng-if="activeUser"  class="col-sm-1 col-sm-offset-8">
+                <button type="button" type="button" ng-click="logout()" class="btn">Login</button>
+            </div>
+
+            <div ng-if="!activeUser"  class="col-sm-1">
+                <button type="button" ui-sref="register" class="btn">Register</button>
+            </div>
+
+
+            <div class="col-sm-2" style="margin-top: 15px">
+                <i id="beerIcon" class="fa fa-beer fa-3x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Header-->
+
+
+
+
+    <div class="container" ui-view="body"></div>
+
 
 </body>
 </html>

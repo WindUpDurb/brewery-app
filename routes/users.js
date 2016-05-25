@@ -27,6 +27,15 @@ router.route("/")
         });
     });
 
+router.post("/addToSampled", function (request, response) {
+    let userId = request.body._id;
+    let beerToAdd = request.body.beerToAdd;
+    User.addToSampledBeers(userId, beerToAdd, function (error, savedUser) {
+        if (error) response.status(400).send(error);
+        response.send(savedUser);
+    });
+});
+
 router.delete("/deleteUser/:userId", function (request, response) {
     User.deleteUserAccount(request.params.userId, function (error) {
         if (error) response.status(400).send(error);
