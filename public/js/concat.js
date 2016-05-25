@@ -175,6 +175,11 @@ app.controller("beerViewController", function ($stateParams, $scope, BeerService
             console.log("Error: ",error);
         });
 
+
+    $scope.addToConsumed = function () {
+
+    };
+
 })
 
 //needed for dropdown
