@@ -4,6 +4,8 @@ var app = angular.module("beerApp");
 
 app.service("AuthServices", function ($http) {
 
+    this.activeUser;
+
     this.registerNewUser = function (newUserData) {
         return $http.post("/api/users", newUserData);
     };
@@ -26,7 +28,11 @@ app.service("BeerServices", function ($http) {
     
     this.beerMe = function () {
        return $http.get("/api/breweryAPI/beerMe");
-    }
+    };
+
+    this.beerMeUser = function (userId) {
+        return $http.put("/api/breweryAPI/beerMeUser", userId);
+    };
     
 })
 

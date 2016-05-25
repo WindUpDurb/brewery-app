@@ -9,6 +9,7 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
         .then(function (response) {
             console.log("respones: ", response)
             $scope.activeUser = response.data;
+            AuthServices.activeUser = $scope.activeUser;
             console.log("activeUser: ", $scope.activeUser)
         })
         .catch(function (error) {
@@ -52,18 +53,31 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
-app.controller("beerController", function (BeerServices, $state, $scope) {
-    console.log("Beer Controller")
+app.controller("beerController", function (BeerServices, AuthServices, $state, $scope) {
+    console.log("Beer Controller");
+
+    let activeUser = AuthServices.activeUser;
 
     if($state.current.name === "beerMeRandom") {
-        BeerServices.beerMe()
-            .then(function (response) {
-                $scope.beerData = response.data.data;
-                console.log($scope.beerData)
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
+        if ($scope.activeUser) {
+            BeerServices.beerMeUser({ _id: activeUser._id})
+                .then(function (response) {
+                    $scope.beerData = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                });
+
+        } else {
+            BeerServices.beerMe()
+                .then(function (response) {
+                    $scope.beerData = response.data.data;
+                    console.log($scope.beerData)
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                });
+        }
     }
 
     $scope.beerMe = function () {
