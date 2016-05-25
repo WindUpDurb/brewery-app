@@ -33,7 +33,11 @@ app.service("BeerServices", function ($http) {
     this.beerMeUser = function (userId) {
         return $http.put("/api/breweryAPI/beerMeUser", userId);
     };
-    
+
+    this.getSingleBeer = function (beerId) {
+        return $http.put("/api/breweryAPI/beerMeSingle", beerId)
+    }
+
 })
 
 

@@ -32,7 +32,13 @@ router.put("/beerMeUser", function (request, response) {
     })
 });
 
-
+router.put("/beerMeSingle", function (request, response) {
+    let beerId = request.body.beerId;
+    BeerAPI.singleBeer(beerId, function (error, beerData) {
+        if (error) response.status(400).send(error);
+        response.send(beerData);
+    });
+});
 
 
 module.exports = router;

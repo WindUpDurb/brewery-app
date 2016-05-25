@@ -38,6 +38,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("beerView", {
+            url: "/beer/:beerId",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerView.html",
+                    controller: "beerViewController"
+                }
+            }
+        })
         .state("beerMeRandom", {
             url: "/beerMe",
             views: {

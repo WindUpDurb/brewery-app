@@ -38,6 +38,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("beerView", {
+            url: "/beer/:beerId",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerView.html",
+                    controller: "beerViewController"
+                }
+            }
+        })
         .state("beerMeRandom", {
             url: "/beerMe",
             views: {
@@ -143,9 +152,30 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
     }
 });
 
-app.controller("beerLogController", function () {
+app.controller("beerLogController", function ($scope, AuthServices) {
+    console.log("Beer Log Controller");
+
+    $scope.activeUser = AuthServices.activeUser;
+    $scope.beerLog = $scope.activeUser.beerSeen;
+    console.log("Beer Log: ", $scope.beerLog)
 
 });
+
+app.controller("beerViewController", function ($stateParams, $scope, BeerServices) {
+    console.log("Beer View");
+    
+    let beerId = $stateParams.beerId;
+
+    BeerServices.getSingleBeer({beerId: beerId})
+        .then(function (response) {
+            $scope.beerData = response.data.data;
+            console.log("current: ", $scope.beerData)
+        })
+        .catch(function (error) {
+            console.log("Error: ",error);
+        });
+
+})
 
 //needed for dropdown
 app.controller("dropdownController", function () {
@@ -185,7 +215,11 @@ app.service("BeerServices", function ($http) {
     this.beerMeUser = function (userId) {
         return $http.put("/api/breweryAPI/beerMeUser", userId);
     };
-    
+
+    this.getSingleBeer = function (beerId) {
+        return $http.put("/api/breweryAPI/beerMeSingle", beerId)
+    }
+
 })
 
 
