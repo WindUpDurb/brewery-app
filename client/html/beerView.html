@@ -23,7 +23,8 @@
 
     <div class="container">
         <div class="row">
-            <button class="btn btn-primary">I've had this beer</button>
+            <button type="button" ng-click="changeIfConsumed(true)" ng-if="activeUser && !hasConsumed" class="btn btn-primary">I've had this beer</button>
+            <button type="button" ng-click="changeIfConsumed(false)" ng-if="activeUser && hasConsumed" class="btn btn-primary">Just kidding. I've never had this beer.</button>
         </div>
     </div>
 

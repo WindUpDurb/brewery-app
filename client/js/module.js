@@ -34,8 +34,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 "body": {
                     templateUrl: "/html/beerlog.html",
-                    controller: "beerLogController"
+                    controller: "profileController"
                 }
+            },
+            resolve: {
+               activeUserProfile: function (AuthServices, $state) {
+                   return AuthServices.isLoggedIn()
+                       .catch(function () {
+                           $state.go("home");
+                       })
+               }
             }
         })
         .state("beerView", {
@@ -44,6 +52,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 "body": {
                     templateUrl: "/html/beerView.html",
                     controller: "beerViewController"
+                }
+            },
+            resolve: {
+                singleBeerData: function (BeerServices, $stateParams) {
+                    let beerId = $stateParams.beerId;
+                    return BeerServices.getSingleBeer({beerId: beerId})
+                        .catch(function (error) {
+                            console.log("Error: ",error);
+                        });
                 }
             }
         })

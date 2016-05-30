@@ -21,7 +21,12 @@ let userSchema = new mongoose.Schema({
 
     }],
     //will contain a collection of beer IDs
-    beerSeen: [{ beerName: { type: String}, beerId: { type: String}, image: {tyep: String} }]
+    beerSeen: [{
+        beerName: { type: String},
+        beerId: { type: String},
+        image: {type: String},
+        consumed: {type: Boolean, default: false }
+    }]
 
 });
 
@@ -85,6 +90,16 @@ userSchema.statics.deleteUserAccount = function (userId, callback) {
     });
 };
 
+userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
+    User.findById(toUpdateWith._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no such user." });
+        databaseUser.beerSeen = toUpdateWith.beerSeen;
+        databaseUser.save(function (error, savedUser) {
+            savedUser.password = null;
+            callback(error, savedUser);
+        });
+    });
+};
 
 userSchema.statics.updateUserAccount = function (updatedUserData, callback) {
     User.findById(updatedUserData._id, function (error, databaseUser) {

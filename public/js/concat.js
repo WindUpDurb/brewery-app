@@ -34,8 +34,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 "body": {
                     templateUrl: "/html/beerlog.html",
-                    controller: "beerLogController"
+                    controller: "profileController"
                 }
+            },
+            resolve: {
+               activeUserProfile: function (AuthServices, $state) {
+                   return AuthServices.isLoggedIn()
+                       .catch(function () {
+                           $state.go("home");
+                       })
+               }
             }
         })
         .state("beerView", {
@@ -44,6 +52,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 "body": {
                     templateUrl: "/html/beerView.html",
                     controller: "beerViewController"
+                }
+            },
+            resolve: {
+                singleBeerData: function (BeerServices, $stateParams) {
+                    let beerId = $stateParams.beerId;
+                    return BeerServices.getSingleBeer({beerId: beerId})
+                        .catch(function (error) {
+                            console.log("Error: ",error);
+                        });
                 }
             }
         })
@@ -68,7 +85,6 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
 
     AuthServices.isLoggedIn()
         .then(function (response) {
-            console.log("respones: ", response)
             $scope.activeUser = response.data;
             AuthServices.activeUser = $scope.activeUser;
             console.log("activeUser: ", $scope.activeUser)
@@ -114,12 +130,38 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
+app.controller("beerViewController", function ($scope, $stateParams, singleBeerData, BeerServices) {
+    console.log("Beer View");
+
+    $scope.beerData = singleBeerData.data.data;
+
+    let beerId = $stateParams.beerId;
+
+    $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+    
+    $scope.changeIfConsumed = function (consumed) {
+        BeerServices.changeIfConsumed(consumed, beerId, $scope.activeUser)
+            .then(function (response) {
+                $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    };
+
+    console.log("In beerView: ", $scope.hasConsumed);
+
+    console.log("ActiveUser in Beerview: ", $scope.activeUser)
+
+
+});
+
 app.controller("beerController", function (BeerServices, AuthServices, $state, $scope) {
     console.log("Beer Controller");
 
     let activeUser = AuthServices.activeUser;
 
-    if($state.current.name === "beerMeRandom") {
+    if ($state.current.name === "beerMeRandom") {
         if ($scope.activeUser) {
             BeerServices.beerMeUser({ _id: activeUser._id})
                 .then(function (response) {
@@ -152,35 +194,16 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
     }
 });
 
-app.controller("beerLogController", function ($scope, AuthServices) {
-    console.log("Beer Log Controller");
+app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
+    console.log("Profile Controller");
 
-    $scope.activeUser = AuthServices.activeUser;
+
+
+    $scope.activeUser = activeUserProfile.data;
     $scope.beerLog = $scope.activeUser.beerSeen;
     console.log("Beer Log: ", $scope.beerLog)
 
 });
-
-app.controller("beerViewController", function ($stateParams, $scope, BeerServices) {
-    console.log("Beer View");
-    
-    let beerId = $stateParams.beerId;
-
-    BeerServices.getSingleBeer({beerId: beerId})
-        .then(function (response) {
-            $scope.beerData = response.data.data;
-            console.log("current: ", $scope.beerData)
-        })
-        .catch(function (error) {
-            console.log("Error: ",error);
-        });
-
-
-    $scope.addToConsumed = function () {
-
-    };
-
-})
 
 //needed for dropdown
 app.controller("dropdownController", function () {
@@ -190,8 +213,7 @@ app.controller("dropdownController", function () {
 var app = angular.module("beerApp");
 
 app.service("AuthServices", function ($http) {
-
-    this.activeUser;
+    //var activeUser;
 
     this.registerNewUser = function (newUserData) {
         return $http.post("/api/users", newUserData);
@@ -204,10 +226,25 @@ app.service("AuthServices", function ($http) {
     this.logout = function () {
         return $http.delete("/api/users/logout");
     };
+
+    this.retrieveActiveUser = function () {
+        return activeUser;
+    };
     
     this.isLoggedIn = function () {
         return $http.get("/api/users/activeUser");
     };
+
+/*    this.isLoggedIn = function () {
+        $http.get("/api/users/activeUser")
+            .then(function (response) {
+                console.log("response: ", response);
+                activeUser = response.data;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }();*/
 
 });
 
@@ -223,9 +260,32 @@ app.service("BeerServices", function ($http) {
 
     this.getSingleBeer = function (beerId) {
         return $http.put("/api/breweryAPI/beerMeSingle", beerId)
-    }
+    };
 
-})
+    this.checkIfConsumed = function (beerId, activeUser) {
+        for (var i = 0; i < activeUser.beerSeen.length; i++) {
+            if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.changeIfConsumed = function (consumed, beerId, activeUser) {
+        let beerSeen = activeUser.beerSeen;
+        let index;
+        (function () {
+            for (let i = 0; i < beerSeen.length; i++) {
+                if (beerSeen[i].beerId === beerId) {
+                    index = i;
+                }
+            }
+        }());
+        activeUser.beerSeen[index].consumed = consumed;
+        return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
+    };
+
+});
 
 
 

@@ -7,7 +7,6 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
 
     AuthServices.isLoggedIn()
         .then(function (response) {
-            console.log("respones: ", response)
             $scope.activeUser = response.data;
             AuthServices.activeUser = $scope.activeUser;
             console.log("activeUser: ", $scope.activeUser)
@@ -53,12 +52,38 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
+app.controller("beerViewController", function ($scope, $stateParams, singleBeerData, BeerServices) {
+    console.log("Beer View");
+
+    $scope.beerData = singleBeerData.data.data;
+
+    let beerId = $stateParams.beerId;
+
+    $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+    
+    $scope.changeIfConsumed = function (consumed) {
+        BeerServices.changeIfConsumed(consumed, beerId, $scope.activeUser)
+            .then(function (response) {
+                $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    };
+
+    console.log("In beerView: ", $scope.hasConsumed);
+
+    console.log("ActiveUser in Beerview: ", $scope.activeUser)
+
+
+});
+
 app.controller("beerController", function (BeerServices, AuthServices, $state, $scope) {
     console.log("Beer Controller");
 
     let activeUser = AuthServices.activeUser;
 
-    if($state.current.name === "beerMeRandom") {
+    if ($state.current.name === "beerMeRandom") {
         if ($scope.activeUser) {
             BeerServices.beerMeUser({ _id: activeUser._id})
                 .then(function (response) {
@@ -91,35 +116,16 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
     }
 });
 
-app.controller("beerLogController", function ($scope, AuthServices) {
-    console.log("Beer Log Controller");
+app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
+    console.log("Profile Controller");
 
-    $scope.activeUser = AuthServices.activeUser;
+
+
+    $scope.activeUser = activeUserProfile.data;
     $scope.beerLog = $scope.activeUser.beerSeen;
     console.log("Beer Log: ", $scope.beerLog)
 
 });
-
-app.controller("beerViewController", function ($stateParams, $scope, BeerServices) {
-    console.log("Beer View");
-    
-    let beerId = $stateParams.beerId;
-
-    BeerServices.getSingleBeer({beerId: beerId})
-        .then(function (response) {
-            $scope.beerData = response.data.data;
-            console.log("current: ", $scope.beerData)
-        })
-        .catch(function (error) {
-            console.log("Error: ",error);
-        });
-
-
-    $scope.addToConsumed = function () {
-
-    };
-
-})
 
 //needed for dropdown
 app.controller("dropdownController", function () {

@@ -3,8 +3,7 @@
 var app = angular.module("beerApp");
 
 app.service("AuthServices", function ($http) {
-
-    this.activeUser;
+    //var activeUser;
 
     this.registerNewUser = function (newUserData) {
         return $http.post("/api/users", newUserData);
@@ -17,10 +16,25 @@ app.service("AuthServices", function ($http) {
     this.logout = function () {
         return $http.delete("/api/users/logout");
     };
+
+    this.retrieveActiveUser = function () {
+        return activeUser;
+    };
     
     this.isLoggedIn = function () {
         return $http.get("/api/users/activeUser");
     };
+
+/*    this.isLoggedIn = function () {
+        $http.get("/api/users/activeUser")
+            .then(function (response) {
+                console.log("response: ", response);
+                activeUser = response.data;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }();*/
 
 });
 
@@ -36,9 +50,32 @@ app.service("BeerServices", function ($http) {
 
     this.getSingleBeer = function (beerId) {
         return $http.put("/api/breweryAPI/beerMeSingle", beerId)
-    }
+    };
 
-})
+    this.checkIfConsumed = function (beerId, activeUser) {
+        for (var i = 0; i < activeUser.beerSeen.length; i++) {
+            if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.changeIfConsumed = function (consumed, beerId, activeUser) {
+        let beerSeen = activeUser.beerSeen;
+        let index;
+        (function () {
+            for (let i = 0; i < beerSeen.length; i++) {
+                if (beerSeen[i].beerId === beerId) {
+                    index = i;
+                }
+            }
+        }());
+        activeUser.beerSeen[index].consumed = consumed;
+        return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
+    };
+
+});
 
 
 

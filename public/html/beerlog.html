@@ -1,5 +1,14 @@
 <h1 class="text-center">Dah Beer Log</h1>
 
+<div class="container well col-sm-4 col-sm-offset-4">
+    <p>Dear Beer Log:</p>
+    <p>Please find enclosed the beers that I have come across.</p>
+    <p>Beers that I have consumed will be marked with a <i style="color: green" class="fa fa-beer" aria-hidden="true"></i>.</p>
+    <p>And beers that I have not consumed will be marked with a <i style="color: red" class="fa fa-beer" aria-hidden="true"></i>.</p>
+    <p>Love,</p>
+    <p>{{activeUser.firstName}}</p>
+</div>
+
 <div class="row" ng-repeat="beer in  beerLog">
     <div class="col-sm-6 col-sm-offset-3">
         <div style="margin-top: 75px" class="list-group">
@@ -9,6 +18,10 @@
                 </div>
                 <div class="row-content">
                     <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.beerId}}">{{beer.beerName}}</a></h4>
+
+                    <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
+                    <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+
                 </div>
             </div>
             <div class="list-group-separator"></div>

@@ -40,5 +40,12 @@ router.put("/beerMeSingle", function (request, response) {
     });
 });
 
+router.put("/updateHasConsumed", function (request, response) {
+    User.updateConsumedBeer(request.body, function (error, databaseUser) {
+        if (error) response.status(400).send(error);
+        response.send(databaseUser);
+    });
+});
+
 
 module.exports = router;
