@@ -29,6 +29,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("beerBrowse", {
+            url: "/beerBrowser",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerBrowse.html",
+                    controller: "beerBrowserController"
+                }
+            }
+        })
         .state("beerLog", {
             url: "/beerLog",
             views: {

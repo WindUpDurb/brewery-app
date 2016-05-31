@@ -116,15 +116,39 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
     }
 });
 
+app.controller("beerBrowserController", function ($scope, BeerServices) {
+    console.log("Beer Browser Controller")
+
+    BeerServices.getBeerBrowseMenu()
+        .then(function (response) {
+            $scope.beerBrowseMenu = response.data.data;
+            console.log($scope.beerBrowseMenu);
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+
+    $scope.getCategoryContents = function (category, pageNumber) {
+        let searchParameters = {};
+        searchParameters.categoryName = category;
+        searchParameters.pageNumber = pageNumber;
+        BeerServices.getCategoryContents(searchParameters)
+            .then(function (response) {
+                $scope.categoryContents = response.data.data;
+                console.log("Response: ", response.data.data)
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+
+});
+
 app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
     console.log("Profile Controller");
 
-
-
     $scope.activeUser = activeUserProfile.data;
     $scope.beerLog = $scope.activeUser.beerSeen;
-    console.log("Beer Log: ", $scope.beerLog)
-
 });
 
 //needed for dropdown

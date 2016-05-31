@@ -29,6 +29,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("beerBrowse", {
+            url: "/beerBrowser",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerBrowse.html",
+                    controller: "beerBrowserController"
+                }
+            }
+        })
         .state("beerLog", {
             url: "/beerLog",
             views: {
@@ -194,15 +203,39 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
     }
 });
 
+app.controller("beerBrowserController", function ($scope, BeerServices) {
+    console.log("Beer Browser Controller")
+
+    BeerServices.getBeerBrowseMenu()
+        .then(function (response) {
+            $scope.beerBrowseMenu = response.data.data;
+            console.log($scope.beerBrowseMenu);
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+
+    $scope.getCategoryContents = function (category, pageNumber) {
+        let searchParameters = {};
+        searchParameters.categoryName = category;
+        searchParameters.pageNumber = pageNumber;
+        BeerServices.getCategoryContents(searchParameters)
+            .then(function (response) {
+                $scope.categoryContents = response.data.data;
+                console.log("Response: ", response.data.data)
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+
+});
+
 app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
     console.log("Profile Controller");
 
-
-
     $scope.activeUser = activeUserProfile.data;
     $scope.beerLog = $scope.activeUser.beerSeen;
-    console.log("Beer Log: ", $scope.beerLog)
-
 });
 
 //needed for dropdown
@@ -259,7 +292,11 @@ app.service("BeerServices", function ($http) {
     };
 
     this.getSingleBeer = function (beerId) {
-        return $http.put("/api/breweryAPI/beerMeSingle", beerId)
+        return $http.put("/api/breweryAPI/beerMeSingle", beerId);
+    };
+
+    this.getBeerBrowseMenu = function () {
+        return $http.get("/api/breweryAPI/beerBrowseMenu");
     };
 
     this.checkIfConsumed = function (beerId, activeUser) {
@@ -285,6 +322,10 @@ app.service("BeerServices", function ($http) {
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
 
+    this.getCategoryContents = function (searchParameters) {
+        return $http.put("/api/breweryAPI/beerCategoryContents", searchParameters)
+    };
+    
 });
 
 

@@ -4,3 +4,10 @@ body {
 
 #beerIcon {
   color: black; }
+
+#beerBrowseMenuHeader {
+  position: fixed;
+  padding-bottom: 10px; }
+
+#beerBrowseMenu {
+  margin-top: 25px; }

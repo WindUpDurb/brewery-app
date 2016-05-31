@@ -6,15 +6,25 @@ let User = require("./user");
 let BeerAPI = {
     beerMe: function (callback) {
         requestNPM("http://api.brewerydb.com/v2/beer/random?key=852f05c67350a731492d69cf272223e2", function (error, response, body) {
-            if (error) return callback(error);
-            callback(null, body);
+            callback(error, body);
         })
     },
 
     singleBeer: function (beerId, callback) {
         requestNPM(`http://api.brewerydb.com/v2/beer/${beerId}/?key=852f05c67350a731492d69cf272223e2`, function (error, response, body) {
-            if (error) return callback(error);
-            callback(null, body);
+            callback(error, body);
+        });
+    },
+
+    beerBrowseMenu: function (callback) {
+        requestNPM("http://api.brewerydb.com/v2/menu/categories/?key=852f05c67350a731492d69cf272223e2", function (error, response, body) {
+            callback(error, body);
+        });
+    },
+
+    getCategoryContents: function (categoryName, pageNumber, callback) {
+        requestNPM(`http://api.brewerydb.com/v2/search?q=${categoryName}&p=${pageNumber}&key=852f05c67350a731492d69cf272223e2`, function (error, response, body) {
+            callback(error, body);
         });
     }
     /*beerMeUser: function (userId, callback) {
