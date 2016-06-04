@@ -1,0 +1,14 @@
+<div class="container text-center">
+    <h1>Drank</h1>
+
+
+   <table class="table table-striped" ng-if="activeUser.sampledBeers">
+       <tr ng-repeat="beer in activeUser.sampledBeers">
+           <td>
+               <a ng-href="/#/beer/{{beer.beerId}}">{{beer.beerName}}</a>
+           </td>
+       </tr>
+   </table>
+
+
+</div>

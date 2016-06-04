@@ -62,7 +62,7 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
     $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
     
     $scope.changeIfConsumed = function (consumed) {
-        BeerServices.changeIfConsumed(consumed, beerId, $scope.activeUser)
+        BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
             .then(function (response) {
                 $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
             })
@@ -72,9 +72,6 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
     };
 
     console.log("In beerView: ", $scope.hasConsumed);
-
-    console.log("ActiveUser in Beerview: ", $scope.activeUser)
-
 
 });
 
@@ -146,7 +143,6 @@ app.controller("beerBrowserController", function ($scope, BeerServices) {
 
 app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
     console.log("Profile Controller");
-
     $scope.activeUser = activeUserProfile.data;
     $scope.beerLog = $scope.activeUser.beerSeen;
 });

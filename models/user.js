@@ -89,14 +89,28 @@ userSchema.statics.deleteUserAccount = function (userId, callback) {
 userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
     User.findById(toUpdateWith._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no such user." });
-        databaseUser.beerSeen = toUpdateWith.beerSeen;
-        //adding to beersConsumed
-        if (toUpdateWith.beerModifying.consumed) {
-            databaseUser.sampledBeers.push(toUpdateWith.beerModifying);
+        //If the beer to modify is not in the BeerLogs
+        if (toUpdateWith.nonBeerMeBeer) {
+            if (toUpdateWith.nonBeerMeBeer.consumed) {
+                databaseUser.sampledBeers.push(toUpdateWith.nonBeerMeBeer);
+            } else {
+                for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+                    if (databaseUser.sampledBeers[i].beerId === toUpdateWith.nonBeerMeBeer.beerId) {
+                        databaseUser.sampledBeers.splice(i, 1);
+                    }
+                }
+            }
         } else {
-            for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
-                if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerModifying.beerId) {
-                    databaseUser.sampledBeers.splice(i, 1);
+        //If the beer to modify is from the BeerLogs
+            databaseUser.beerSeen = toUpdateWith.beerSeen;
+            //adding to beersConsumed
+            if (toUpdateWith.beerModifying.consumed) {
+                databaseUser.sampledBeers.push(toUpdateWith.beerModifying);
+            } else {
+                for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+                    if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerModifying.beerId) {
+                        databaseUser.sampledBeers.splice(i, 1);
+                    }
                 }
             }
         }

@@ -86,10 +86,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/drank",
             views: {
                 "body": {
-                    templateUrl: "/html/drank.html"
+                    templateUrl: "/html/drank.html",
+                    controller: "profileController"
+                }
+            },
+            resolve: {
+                activeUserProfile: function (AuthServices, $state) {
+                    return AuthServices.isLoggedIn()
+                        .catch(function () {
+                            $state.go("home");
+                        })
                 }
             }
         })
+
+
 
     $urlRouterProvider.otherwise("/");
 });

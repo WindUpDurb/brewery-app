@@ -57,26 +57,42 @@ app.service("BeerServices", function ($http) {
     };
 
     this.checkIfConsumed = function (beerId, activeUser) {
-        for (var i = 0; i < activeUser.beerSeen.length; i++) {
+        for (let i = 0; i < activeUser.beerSeen.length; i++) {
             if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {
+                return true;
+            }
+        }
+        for (let i = 0; i < activeUser.sampledBeers.length; i++) {
+            if (activeUser.sampledBeers[i].beerId === beerId) {
                 return true;
             }
         }
         return false;
     };
 
-    this.changeIfConsumed = function (consumed, beerId, activeUser) {
+    this.changeIfConsumed = function (consumed, beerId, beerName, activeUser) {
         let beerSeen = activeUser.beerSeen;
         let index;
         (function () {
             for (let i = 0; i < beerSeen.length; i++) {
                 if (beerSeen[i].beerId === beerId) {
-                    index = i;
+                    return index = i;
                 }
             }
+            index = -1;
         }());
-        activeUser.beerSeen[index].consumed = consumed;
-        activeUser.beerModifying = activeUser.beerSeen[index];
+
+        if (index === -1) {
+            activeUser.nonBeerMeBeer = {
+                beerId: beerId,
+                beerName: beerName,
+                consumed: consumed
+            }
+        } else {
+            activeUser.beerSeen[index].consumed = consumed;
+            activeUser.beerModifying = activeUser.beerSeen[index];
+        }
+        console.log("modifying: ", activeUser)
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
 
