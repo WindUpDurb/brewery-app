@@ -76,6 +76,7 @@ app.service("BeerServices", function ($http) {
             }
         }());
         activeUser.beerSeen[index].consumed = consumed;
+        activeUser.beerModifying = activeUser.beerSeen[index];
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
 

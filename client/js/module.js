@@ -82,6 +82,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("drank-beersConsumed", {
+            url: "/drank",
+            views: {
+                "body": {
+                    templateUrl: "/html/drank.html"
+                }
+            }
+        })
 
     $urlRouterProvider.otherwise("/");
 });

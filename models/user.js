@@ -17,8 +17,13 @@ let userSchema = new mongoose.Schema({
         beerName: String,
         beerId: String,
         comments: [{ type: String }],
-        personalRating: Number
-
+        //personal rating can be:
+        //1) Would Buy
+        //2) Would Consider if available
+        //3) Would Drink Only if Someone Bought if for Me
+        //4) Would Drink if Drunk
+        //5) Fuck this beer
+        personalRatings: [{ type: String }]
     }],
     //will contain a collection of beer IDs
     beerSeen: [{
@@ -30,15 +35,6 @@ let userSchema = new mongoose.Schema({
 
 });
 
-userSchema.statics.addToSampledBeers = function (userId, beerToAdd, callback) {
-    User.findById(userId, function (error, databaseUser) {
-        if (error || !databaseUser) return callback(error || { error: "There is no user." });
-        databaseUser.sampledBeers.push(beerToAdd);
-        databaseUser.save(function (error, savedUser) {
-            callback(error, savedUser);
-        })
-    })
-};
 
 userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
     User.findById(userId, function (error, databaseUser) {
@@ -94,6 +90,16 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
     User.findById(toUpdateWith._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no such user." });
         databaseUser.beerSeen = toUpdateWith.beerSeen;
+        //adding to beersConsumed
+        if (toUpdateWith.beerModifying.consumed) {
+            databaseUser.sampledBeers.push(toUpdateWith.beerModifying);
+        } else {
+            for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+                if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerModifying.beerId) {
+                    databaseUser.sampledBeers.splice(i, 1);
+                }
+            }
+        }
         databaseUser.save(function (error, savedUser) {
             savedUser.password = null;
             callback(error, savedUser);

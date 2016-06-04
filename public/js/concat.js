@@ -82,6 +82,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state("drank-beersConsumed", {
+            url: "/drank",
+            views: {
+                "body": {
+                    templateUrl: "/html/drank.html"
+                }
+            }
+        })
 
     $urlRouterProvider.otherwise("/");
 });
@@ -319,6 +327,7 @@ app.service("BeerServices", function ($http) {
             }
         }());
         activeUser.beerSeen[index].consumed = consumed;
+        activeUser.beerModifying = activeUser.beerSeen[index];
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
 
