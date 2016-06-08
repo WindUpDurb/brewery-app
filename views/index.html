@@ -7,6 +7,9 @@
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
+    <script src="/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+
     <link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.min.css">
 
 
@@ -64,7 +67,7 @@
                         <li ui-sref="beerLog"><a>My Beer Log <3</a></li>
                         <li ui-sref="beerMeRandom"><a>Drink </a></li>
                         <li ui-sref="drank-beersConsumed"><a href="#">Drank</a></li>
-                        <li ui-sref="personalReviews"><a href="#">Drunk</a></li>
+                        <li ui-sref="drunk-personalGallery"><a href="#">Drunk</a></li>
                         <li class="divider"></li>
                         <li ui-sref="accountManagement"><a>Account Management</a></li>
                         <li ng-click="logout()"  role="menuitem"><a>Logout</a></li>

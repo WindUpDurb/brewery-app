@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap"]);
+var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -96,6 +96,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                         .catch(function () {
                             $state.go("home");
                         })
+                }
+            }
+        })
+        .state("drunk-personalGallery", {
+            url: "/drunk",
+            views: {
+                "body": {
+                    templateUrl: "/html/drunk-gallery.html",
+                    controller: "drankGalleryController"
                 }
             }
         })
