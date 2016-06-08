@@ -23,7 +23,11 @@ let userSchema = new mongoose.Schema({
         //3) Would Drink Only if Someone Bought if for Me
         //4) Would Drink if Drunk
         //5) Fuck this beer
-        personalRatings: [{ type: String }]
+        personalRatings: [{ type: String }],
+        beerMemories: [{
+            beerPhotoCaption: { type: String },
+            beerPhotoUrl: { type: String }
+        }]
     }],
     //will contain a collection of beer IDs
     beerSeen: [{

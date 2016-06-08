@@ -64,7 +64,7 @@ router.post("/uploadPhoto", upload.single("newBeerPhoto"), function (request, re
     S3.upload(request.file, function (error, returnData) {
         if (error) response.status(400).send(error);
         console.log("Return Data: ", returnData);
-        response.send(returnData)
+        response.send()
     });
 });
 

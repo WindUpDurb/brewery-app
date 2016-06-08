@@ -27,4 +27,39 @@
         </div>
     </div>
 
+    <div ng-if="activeUser && hasConsumed">
+
+
+        <div id="beerMemoryUpload">
+            <h2>Remember these times?</h2>
+
+            <h3 ng-if="!beerMemories.length">Oh, wait. You don't. Your drunk self didn't record them.</h3>
+            <div ng-if="beerMemories.length">
+
+
+            </div>
+
+
+            <div style="margin-top: 50px">
+                <div ng-if="newBeerPhoto">
+                    <img ngf-thumbnail="newBeerPhoto">
+                </div>
+                <div class="row">
+                    <h3>Why not upload a beer memory?</h3>
+                </div>
+
+               <form ng-submit="submitBeerMemory(newBeerPhoto)">
+                    <button class="button btn btn-primary" ngf-select ng-model="newBeerPhoto" name="newBeerPhoto" ngf-pattern="'image/*'"
+                            ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                            ngf-resize="{width: 350, height: 350}"><i class="fa fa-binoculars" aria-hidden="true"> for the photo</i></button>
+                    <button class="btn btn-primary">Upload the <i class="fa fa-picture-o" aria-hidden="true"></i></button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>

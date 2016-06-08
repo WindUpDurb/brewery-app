@@ -49,11 +49,20 @@ app.service("BeerServices", function ($http) {
     };
 
     this.getSingleBeer = function (beerId) {
-        return $http.put("/api/breweryAPI/beerMeSingle", beerId);
+        return $http({
+            url: "/api/breweryAPI/beerMeSingle",
+            method: "PUT",
+            cache: true,
+            data: beerId
+        });
     };
 
     this.getBeerBrowseMenu = function () {
-        return $http.get("/api/breweryAPI/beerBrowseMenu");
+        return $http({
+            url: "/api/breweryAPI/beerBrowseMenu",
+            method: "GET",
+            cache: true
+        });
     };
 
     this.checkIfConsumed = function (beerId, activeUser) {
@@ -97,7 +106,12 @@ app.service("BeerServices", function ($http) {
     };
 
     this.getCategoryContents = function (searchParameters) {
-        return $http.put("/api/breweryAPI/beerCategoryContents", searchParameters)
+        return $http({
+            url: "/api/breweryAPI/beerCategoryContents",
+            method: "PUT",
+            data: searchParameters,
+            cache: true
+        });
     };
     
 });

@@ -52,12 +52,18 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
-app.controller("beerViewController", function ($scope, $stateParams, singleBeerData, BeerServices) {
+app.controller("beerViewController", function ($scope, $stateParams, singleBeerData, BeerServices, Upload) {
     console.log("Beer View");
-
+    let beerId = $stateParams.beerId;
     $scope.beerData = singleBeerData.data.data;
 
-    let beerId = $stateParams.beerId;
+    for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
+        if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
+            $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
+            console.log("Memories: ", $scope.beerMemories)
+        }
+    }
+
 
     $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
     
@@ -72,6 +78,21 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
     };
 
     console.log("In beerView: ", $scope.hasConsumed);
+
+
+    $scope.submitBeerMemory = function (newBeerPhoto) {
+        Upload.upload({
+                url: "/api/users/uploadPhoto",
+                data: { newBeerPhoto: newBeerPhoto }
+            })
+            .then(function (response) {
+                console.log("Response: ", response);
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    };
+
 
 });
 
@@ -110,11 +131,14 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
             .catch(function (error) {
                 console.log("Error: ", error);
             });
-    }
+    };
+
 });
 
 app.controller("beerBrowserController", function ($scope, BeerServices) {
-    console.log("Beer Browser Controller")
+    console.log("Beer Browser Controller");
+
+
 
     BeerServices.getBeerBrowseMenu()
         .then(function (response) {
@@ -137,26 +161,30 @@ app.controller("beerBrowserController", function ($scope, BeerServices) {
             .catch(function (error) {
                 console.log("Error: ", error);
             });
-    }
+    };
+
+    
+    
 });
 
 app.controller("drankGalleryController", function ($scope, Upload) {
 
     $scope.submit = function () {
         console.log("Submit");
-        console.log("$scope.beerPhoto: ", $scope.beerPhoto);
+
+        console.log("$scope.file: ", $scope.beerPhoto);
+/*
         Upload.upload({
-                url: "/api/users/uploadPhoto",
-                data: { newBeerPhoto: $scope.beerPhoto }
+                url: "/api/images/upload",
+                data: { newFile: $scope.file }
             })
             .then(function (response) {
                 console.log("Response: ", response);
             })
             .catch(function (error) {
                 console.log("Error: ", error);
-            })
+            })*/
     };
-
 
 });
 
