@@ -23,7 +23,7 @@ const S3Tasks = {
 
         s3.putObject(params, function (error, result) {
             if (error) return callback(error);
-            let imageUrl = `${urlBase}${bucketName}/${key}`;
+            let imageUrl = `${urlBase}/${bucketName}/${key}`;
             let toReturn = result;
             toReturn.imageUrl = imageUrl;
             callback(error, toReturn)

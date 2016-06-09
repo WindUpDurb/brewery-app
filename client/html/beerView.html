@@ -34,9 +34,24 @@
             <h2>Remember these times?</h2>
 
             <h3 ng-if="!beerMemories.length">Oh, wait. You don't. Your drunk self didn't record them.</h3>
-            <div ng-if="beerMemories.length">
+            <!--Image container-->
+            <div id="beerMemoriesContainer" class="container slider" ng-if="beerMemories.length">
+                <img ng-repeat="image in beerMemories" class="slide center-block img-responsive img-thumbnail"
+                     ng-hide="!isCurrentSlideIndex($index)" ng-src="{{image.beerPhotoUrl}}">
 
+                <a class="arrow prev" href="" ng-click="nextSlide()"></a>
+                <a class="arrow next" href="" ng-click="previousSlide()"></a>
 
+                <nav class="nav">
+                    <div class="wrapper">
+                        <ul class="dots">
+                            <li class="dot" ng-repeat="image in beerMemories">
+                                <a href="" ng-class="{'active': isCurrentSlideIndex($index)}"
+                                ng-click="setCurrentSlideIndex($index)">{{beerMemories.beerPhotoCaption || "Too drunk for a caption."}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
 
 

@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload", "slickCarousel"]);
+var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -109,10 +109,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-
-
     $urlRouterProvider.otherwise("/");
 });
+
+
 "use strict";
 
 var app = angular.module("beerApp");
@@ -191,9 +191,6 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
             });
     };
 
-    console.log("In beerView: ", $scope.hasConsumed);
-
-
     $scope.submitBeerMemory = function (newBeerPhoto) {
         Upload.upload({
                 url: `/api/users/uploadPhoto/${$scope.activeUser._id}/${beerId}/`,
@@ -206,6 +203,25 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
                 console.log("Error: ", error);
             })
     };
+
+    $scope.currentIndex = 0;
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.currentIndex = index;
+    };
+
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.currentIndex === index;
+    };
+
+    $scope.previousSlide = function () {
+        $scope.currentIndex = ($scope.currentIndex < $scope.beerMemories.length - 1) ? ++$scope.currentIndex : 0;
+    };
+
+    $scope.nextSlide  = function () {
+        $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.beerMemories.length - 1;
+    };
+    //Check out http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/ for animation effects on the gallery
 
 
 });
@@ -251,8 +267,6 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
 
 app.controller("beerBrowserController", function ($scope, BeerServices) {
     console.log("Beer Browser Controller");
-
-
 
     BeerServices.getBeerBrowseMenu()
         .then(function (response) {

@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload", "slickCarousel"]);
+var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload"]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -109,7 +109,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-
-
     $urlRouterProvider.otherwise("/");
 });
+
