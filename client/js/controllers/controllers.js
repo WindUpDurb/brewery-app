@@ -56,7 +56,6 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
     console.log("Beer View");
     let beerId = $stateParams.beerId;
     $scope.beerData = singleBeerData.data.data;
-
     for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
         if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
             $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
@@ -82,7 +81,7 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
 
     $scope.submitBeerMemory = function (newBeerPhoto) {
         Upload.upload({
-                url: "/api/users/uploadPhoto",
+                url: `/api/users/uploadPhoto/${$scope.activeUser._id}/${beerId}/`,
                 data: { newBeerPhoto: newBeerPhoto }
             })
             .then(function (response) {

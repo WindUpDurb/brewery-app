@@ -59,12 +59,21 @@ router.post("/login", function (request, response) {
     });
 });
 
-router.post("/uploadPhoto", upload.single("newBeerPhoto"), function (request, response, next) {
-    console.log("Request.file: ", request.file);
+router.post("/uploadPhoto/:userId/:beerId", upload.single("newBeerPhoto"), function (request, response, next) {
+    console.log("userId: ", request.params.userId);
+    console.log("beerId: ", request.params.beerId);
     S3.upload(request.file, function (error, returnData) {
         if (error) response.status(400).send(error);
-        console.log("Return Data: ", returnData);
-        response.send()
+        let beerMemory = {
+            _id: request.params.userId,
+            beerId: request.params.beerId,
+            imageUrl: returnData.imageUrl
+        };
+        User.addBeerMemory(beerMemory, function (error, updatedUser) {
+            if (error) response.status(400).send(error);
+            console.log("the update :", updatedUser);
+            response.send()
+        });
     });
 });
 

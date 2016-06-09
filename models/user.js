@@ -40,6 +40,29 @@ let userSchema = new mongoose.Schema({
 });
 
 
+userSchema.statics.addBeerMemory = function (beerMemory, callback) {
+    User.findById(beerMemory._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user." });
+        console.log("Before Push: ", databaseUser);
+        console.log("Image url: ", typeof beerMemory.imageUrl)
+        let beerMemoryObject = {
+            beerPhotoUrl: beerMemory.imageUrl
+        };
+        for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+            if (databaseUser.sampledBeers[i].beerId === beerMemory.beerId) {
+                databaseUser.sampledBeers[i].beerMemories.push(beerMemoryObject);
+                console.log("after push: ", databaseUser)
+                databaseUser.save(function (error, savedUser) {
+
+                    console.log("SavedUser: ", savedUser)
+                    return callback(error, savedUser);
+                });
+            }
+        }
+    });
+};
+
+
 userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
     User.findById(userId, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no user." });

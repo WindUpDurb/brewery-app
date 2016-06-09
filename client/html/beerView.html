@@ -44,11 +44,18 @@
                 <div ng-if="newBeerPhoto">
                     <img ngf-thumbnail="newBeerPhoto">
                 </div>
-                <div class="row">
+
+                <div ng-if="!beerMemories.length" class="row">
                     <h3>Why not upload a beer memory?</h3>
+                </div>
+                <div ng-if="beerMemories.length" class="row">
+                    <h3>Why not upload s'more beer memories?</h3>
                 </div>
 
                <form ng-submit="submitBeerMemory(newBeerPhoto)">
+               <!--    <div class="row">
+                       <input ng-model="beerMemoryCaption" type="text" placeholder="Give the beer memory some context">
+                   </div>-->
                     <button class="button btn btn-primary" ngf-select ng-model="newBeerPhoto" name="newBeerPhoto" ngf-pattern="'image/*'"
                             ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
                             ngf-resize="{width: 350, height: 350}"><i class="fa fa-binoculars" aria-hidden="true"> for the photo</i></button>
