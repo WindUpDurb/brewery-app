@@ -1,8 +1,11 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload"]);
+var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+
+    localStorageServiceProvider
+        .setPrefix("drink-drink");
 
     $stateProvider
         .state("home", {
@@ -61,15 +64,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 "body": {
                     templateUrl: "/html/beerView.html",
                     controller: "beerViewController"
-                }
-            },
-            resolve: {
-                singleBeerData: function (BeerServices, $stateParams) {
-                    let beerId = $stateParams.beerId;
-                    return BeerServices.getSingleBeer({beerId: beerId})
-                        .catch(function (error) {
-                            console.log("Error: ",error);
-                        });
                 }
             }
         })

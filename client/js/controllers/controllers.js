@@ -52,10 +52,26 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
     
 });
 
-app.controller("beerViewController", function ($scope, $stateParams, singleBeerData, BeerServices, Upload) {
+app.controller("beerViewController", function ($scope, $stateParams, BeerServices, Upload) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
-    $scope.beerData = singleBeerData.data.data;
+    $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+
+    (function () {
+        let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
+        $scope.beerData = BeerServices.getFromLocalStorage(key);
+        if (!$scope.beerData) {
+            BeerServices.getSingleBeer(beerId)
+                .then(function (response) {
+                    $scope.beerData = response.data.data;
+                    BeerServices.submitToLocalStorage(key, response.data.data);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        }
+    }());
+
     for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
         if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
             $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
@@ -63,9 +79,6 @@ app.controller("beerViewController", function ($scope, $stateParams, singleBeerD
         }
     }
 
-
-    $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
-    
     $scope.changeIfConsumed = function (consumed) {
         BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
             .then(function (response) {
@@ -152,28 +165,39 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
 
 app.controller("beerBrowserController", function ($scope, BeerServices) {
     console.log("Beer Browser Controller");
+    
+    $scope.beerBrowseMenu = BeerServices.getFromLocalStorage("/api/breweryAPI/beerBrowseMenu");
 
-    BeerServices.getBeerBrowseMenu()
-        .then(function (response) {
-            $scope.beerBrowseMenu = response.data.data;
-            console.log($scope.beerBrowseMenu);
-        })
-        .catch(function (error) {
-            console.log("Error: ", error);
-        });
-
-    $scope.getCategoryContents = function (category, pageNumber) {
-        let searchParameters = {};
-        searchParameters.categoryName = category;
-        searchParameters.pageNumber = pageNumber;
-        BeerServices.getCategoryContents(searchParameters)
+    if (!$scope.beerBrowseMenu) {
+        BeerServices.getBeerBrowseMenu()
             .then(function (response) {
-                $scope.categoryContents = response.data.data;
-                console.log("Response: ", response.data.data)
+                $scope.beerBrowseMenu = response.data.data;
+                BeerServices.submitToLocalStorage("/api/breweryAPI/beerBrowseMenu", response.data.data);
+                console.log($scope.beerBrowseMenu);
             })
             .catch(function (error) {
                 console.log("Error: ", error);
             });
+    }
+
+
+    $scope.getCategoryContents = function (category, pageNumber) {
+        let key = `/api/breweryAPI/beerCategoryContents/${category}/${pageNumber}`;
+
+        $scope.categoryContents = BeerServices.getFromLocalStorage(key);
+
+        if (!$scope.categoryContents) {
+            BeerServices.getCategoryContents(category, pageNumber)
+                .then(function (response) {
+                    $scope.categoryContents = response.data.data;
+                    BeerServices.submitToLocalStorage(key, response.data.data);
+                    console.log("Response: ", response.data.data)
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                });
+        }
+
     };
 
     

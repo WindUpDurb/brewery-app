@@ -38,7 +38,16 @@ app.service("AuthServices", function ($http) {
 
 });
 
-app.service("BeerServices", function ($http) {
+app.service("BeerServices", function ($http, localStorageService) {
+
+
+    this.getFromLocalStorage = function (key) {
+        return localStorageService.get(key);
+    };
+
+    this.submitToLocalStorage = function (key, value) {
+        return localStorageService.set(key, value);
+    };
     
     this.beerMe = function () {
        return $http.get("/api/breweryAPI/beerMe");
@@ -50,18 +59,16 @@ app.service("BeerServices", function ($http) {
 
     this.getSingleBeer = function (beerId) {
         return $http({
-            url: "/api/breweryAPI/beerMeSingle",
-            method: "PUT",
-            cache: true,
-            data: beerId
+            url: `/api/breweryAPI/beerMeSingle/${beerId}`,
+            method: "GET"
         });
     };
 
     this.getBeerBrowseMenu = function () {
         return $http({
             url: "/api/breweryAPI/beerBrowseMenu",
-            method: "GET",
-            cache: true
+            method: "GET"
+           // cache: true
         });
     };
 
@@ -105,11 +112,10 @@ app.service("BeerServices", function ($http) {
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
 
-    this.getCategoryContents = function (searchParameters) {
+    this.getCategoryContents = function (categoryName, pageNumber) {
         return $http({
-            url: "/api/breweryAPI/beerCategoryContents",
-            method: "PUT",
-            data: searchParameters,
+            url: `/api/breweryAPI/beerCategoryContents/${categoryName}/${pageNumber}`,
+            method: "GET",
             cache: true
         });
     };

@@ -55,9 +55,9 @@ router.put("/updateHasConsumed", function (request, response) {
     });
 });
 
-router.put("/beerCategoryContents", function (request, response) {
-    let categoryName = request.body.categoryName;
-    let pageNumber = request.body.pageNumber;
+router.get("/beerCategoryContents/:category/:pageNumber", function (request, response) {
+    let categoryName = request.params.category;
+    let pageNumber = request.params.pageNumber;
     BeerAPI.getCategoryContents(categoryName, pageNumber, function (error, contents) {
         if (error) response.status(400).send(error);
         response.send(contents);

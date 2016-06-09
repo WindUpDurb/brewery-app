@@ -56,15 +56,16 @@
 
 
             <div style="margin-top: 50px">
-                <div ng-if="newBeerPhoto">
-                    <img ngf-thumbnail="newBeerPhoto">
-                </div>
 
                 <div ng-if="!beerMemories.length" class="row">
                     <h3>Why not upload a beer memory?</h3>
                 </div>
                 <div ng-if="beerMemories.length" class="row">
                     <h3>Why not upload s'more beer memories?</h3>
+                </div>
+
+                <div ng-if="newBeerPhoto">
+                    <img ngf-thumbnail="newBeerPhoto">
                 </div>
 
                <form ng-submit="submitBeerMemory(newBeerPhoto)">
