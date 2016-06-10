@@ -32,6 +32,14 @@ router.put("/beerMeUser", function (request, response) {
     })
 });
 
+router.get("/beerSearch/:query", function (request, response) {
+   BeerAPI.beerSearch(request.params.query, function (error, data) {
+       if (error) response.status(400).send(error);
+       response.send(data);
+   });
+});
+
+
 router.get("/beerBrowseMenu", function (request, response) {
    BeerAPI.beerBrowseMenu(function (error, browseMenuData) {
        if (error) response.status(400).send(error);
@@ -39,8 +47,8 @@ router.get("/beerBrowseMenu", function (request, response) {
    });
 });
 
-router.put("/beerMeSingle", function (request, response) {
-    let beerId = request.body.beerId;
+router.get("/beerMeSingle/:beerId", function (request, response) {
+    let beerId = request.params.beerId;
     BeerAPI.singleBeer(beerId, function (error, beerData) {
         if (error) response.status(400).send(error);
         response.send(beerData);

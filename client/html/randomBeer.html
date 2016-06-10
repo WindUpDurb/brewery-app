@@ -9,11 +9,11 @@
 
 
     <div class="row">
-        <p>{{beerData.name || "Try reloading. The robots working might be tipsy."}}</p>
+        <p>{{beerData.name || "Let the robots fetch your beer. They might be tipsy"}}</p>
         <p>ABV: {{beerData.abv}}%</p>
     </div>
 
-    <div class="row">
+    <div ng-if="activeUser" class="row">
         <button ui-sref="beerLog" class="btn btn-primary">Head over to your Beer Log Now</button>
     </div>
 

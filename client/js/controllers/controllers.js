@@ -2,7 +2,7 @@
 
 var app = angular.module("beerApp");
 
-app.controller("mainController", function ($scope, $state, AuthServices) {
+app.controller("mainController", function ($scope, $state, AuthServices, BeerServices) {
     console.log("Main Controller");
 
     AuthServices.isLoggedIn()
@@ -49,13 +49,23 @@ app.controller("mainController", function ($scope, $state, AuthServices) {
                 console.log("Error: ", error);
             });
     };
+
+    $scope.beerSearch = function (query) {
+        let queryString = query.replace(/\s/gi, "%20");
+        BeerServices.beerSearch(queryString)
+            .then(function (response) {
+                console.log(response.data.data)
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    };
     
 });
 
 app.controller("beerViewController", function ($scope, $stateParams, BeerServices, Upload) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
-    $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
 
     (function () {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
@@ -72,54 +82,60 @@ app.controller("beerViewController", function ($scope, $stateParams, BeerService
         }
     }());
 
-    for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
-        if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
-            $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
-            console.log("Memories: ", $scope.beerMemories)
+    if ($scope.activeUser) {
+
+        $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+
+        for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
+            if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
+                $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
+                console.log("Memories: ", $scope.beerMemories)
+            }
         }
+
+        $scope.changeIfConsumed = function (consumed) {
+            BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
+                .then(function (response) {
+                    $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                });
+        };
+
+        $scope.submitBeerMemory = function (newBeerPhoto) {
+            Upload.upload({
+                    url: `/api/users/uploadPhoto/${$scope.activeUser._id}/${beerId}/`,
+                    data: { newBeerPhoto: newBeerPhoto }
+                })
+                .then(function (response) {
+                    console.log("Response: ", response);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        };
+
+        $scope.currentIndex = 0;
+
+        $scope.setCurrentSlideIndex = function (index) {
+            $scope.currentIndex = index;
+        };
+
+        $scope.isCurrentSlideIndex = function (index) {
+            return $scope.currentIndex === index;
+        };
+
+        $scope.previousSlide = function () {
+            $scope.currentIndex = ($scope.currentIndex < $scope.beerMemories.length - 1) ? ++$scope.currentIndex : 0;
+        };
+
+        $scope.nextSlide  = function () {
+            $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.beerMemories.length - 1;
+        };
+        //Check out http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/ for animation effects on the gallery
+
     }
-
-    $scope.changeIfConsumed = function (consumed) {
-        BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
-            .then(function (response) {
-                $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    };
-
-    $scope.submitBeerMemory = function (newBeerPhoto) {
-        Upload.upload({
-                url: `/api/users/uploadPhoto/${$scope.activeUser._id}/${beerId}/`,
-                data: { newBeerPhoto: newBeerPhoto }
-            })
-            .then(function (response) {
-                console.log("Response: ", response);
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            })
-    };
-
-    $scope.currentIndex = 0;
-
-    $scope.setCurrentSlideIndex = function (index) {
-        $scope.currentIndex = index;
-    };
-
-    $scope.isCurrentSlideIndex = function (index) {
-        return $scope.currentIndex === index;
-    };
-
-    $scope.previousSlide = function () {
-        $scope.currentIndex = ($scope.currentIndex < $scope.beerMemories.length - 1) ? ++$scope.currentIndex : 0;
-    };
-
-    $scope.nextSlide  = function () {
-        $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.beerMemories.length - 1;
-    };
-    //Check out http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/ for animation effects on the gallery
 
 
 });

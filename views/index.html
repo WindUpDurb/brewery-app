@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>Drink, Drank, Drunk</title>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="/bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script src="/bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
 
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -50,7 +53,15 @@
 
         <div class="row" style="color: black">
             <div class="col-sm-3 col-sm-offset-4"><a style="color: black" ui-sref="beerBrowse">Beer Browser</a></div>
-            <div class="col-sm-3">Other Directory</div>
+            <div class="col-sm-3">
+                <div class="form-group label-floating">
+                    <form ng-submit="beerSearch(beerSearchInput)">
+                        <label class="control-label" for="beerSearchInput">C'mon. Search for a beer here.</label>
+                        <input class="form-control" ng-model="beerSearchInput" id="beerSearchInput" type="text">
+                        <p class="help-block">Let us help you find that sought-after buzz.</p>
+                    </form>
+                </div>
+            </div>
         </div>
 
 
@@ -95,4 +106,9 @@
 
 
 </body>
+    <script>
+        $(document).ready(function () {
+            $.material.init()
+        });
+    </script>
 </html>

@@ -53,6 +53,10 @@ app.service("BeerServices", function ($http, localStorageService) {
        return $http.get("/api/breweryAPI/beerMe");
     };
 
+    this.beerSearch = function (queryString) {
+        return $http.get(`/api/breweryAPI/beerSearch/${queryString}`);
+    };
+
     this.beerMeUser = function (userId) {
         return $http.put("/api/breweryAPI/beerMeUser", userId);
     };
