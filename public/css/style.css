@@ -2,6 +2,9 @@ body {
   background-color: #FAFAFA;
   padding-top: 90px; }
 
+#content {
+  padding-top: 50px; }
+
 #beerIcon {
   color: black; }
 

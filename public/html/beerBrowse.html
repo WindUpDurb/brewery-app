@@ -18,6 +18,11 @@
             <h1 ng-if="!categoryContents" class="text-center">Let's find you some beer pronto</h1>
 
             <div ng-if="categoryContents">
+                <div class="row">
+                    <i class="fa fa-chevron-left pull-left" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-right pull-right" aria-hidden="true"></i>
+
+                </div>
                 <div class="row" ng-repeat="beer in  categoryContents">
                     <div class="col-sm-6 col-sm-offset-3">
                         <div style="margin-top: 75px" class="list-group">

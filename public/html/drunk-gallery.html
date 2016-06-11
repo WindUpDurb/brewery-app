@@ -2,13 +2,3 @@
 <h3>Consider using Microsoft Oxford to analyze the images and verify beer has been consumed</h3>
 
 
-
-<form ng-submit="submit()">
-    <button class="button" ngf-select ng-model="beerPhoto" name="beerPhoto" ngf-pattern="'image/*'"
-            ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-            ngf-resize="{width: 100, height: 100}">Select</button>
-    <button>Upload</button>
-
-</form>
-<img ngf-thumbnail="beerPhoto || '/thumb.jpg'">
-
