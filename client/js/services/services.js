@@ -123,7 +123,17 @@ app.service("BeerServices", function ($http, localStorageService) {
             cache: true
         });
     };
-    
+
+    this.craftNextPageURL = function (category, currentPage) {
+        let pageNumber = (parseInt(currentPage) + 1).toString();
+        return `/#/beerBrowser/${category}/${pageNumber}`
+    };
+
+    this.craftPreviousPageURL = function (category, currentPage) {
+        let pageNumber = (parseInt(currentPage) - 1).toString();
+        return `/#/beerBrowser/${category}/${pageNumber}`
+    };
+
 });
 
 
