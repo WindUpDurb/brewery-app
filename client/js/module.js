@@ -57,7 +57,7 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             views: {
                 "contents": {
                     templateUrl: "/html/beerSearchResults.html",
-                    controller: "beerBrowserController"
+                    controller: "beerSearchController"
                 }
             }
         })

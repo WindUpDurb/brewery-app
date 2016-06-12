@@ -18,7 +18,7 @@ let BeerAPI = {
     },
 
     singleBeer: function (beerId, callback) {
-        requestNPM(`http://api.brewerydb.com/v2/beer/${beerId}/?key=852f05c67350a731492d69cf272223e2`, function (error, response, body) {
+        requestNPM(`http://api.brewerydb.com/v2/beer/${beerId}/?key=852f05c67350a731492d69cf272223e2&withBreweries=Y`, function (error, response, body) {
             callback(error, body);
         });
     },
@@ -30,7 +30,7 @@ let BeerAPI = {
     },
 
     getCategoryContents: function (categoryName, pageNumber, callback) {
-        requestNPM(`http://api.brewerydb.com/v2/search?q=${categoryName}&p=${pageNumber}&key=852f05c67350a731492d69cf272223e2`, function (error, response, body) {
+        requestNPM(`http://api.brewerydb.com/v2/search?q=${categoryName}&p=${pageNumber}&key=852f05c67350a731492d69cf272223e2&withBreweries=Y`, function (error, response, body) {
             callback(error, body);
         });
     }

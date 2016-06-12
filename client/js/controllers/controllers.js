@@ -52,16 +52,7 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
 
     $scope.beerSearch = function (query) {
         let queryString = query.replace(/\s/gi, "%20");
-        BeerServices.beerSearch(queryString)
-            .then(function (response) {
-                $state.go("beerSearchResults", { query: queryString });
-                $scope.categoryContents = response.data.data;
-                console.log("search: ", $scope.categoryContents);
-                $scope.beerSearchInput = "";
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            })
+        $state.go("beerSearchResults", { query: queryString });
     };
     
 });
@@ -72,10 +63,16 @@ app.controller("beerViewController", function ($scope, $stateParams, BeerService
     (function () {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
         $scope.beerData = BeerServices.getFromLocalStorage(key);
+        if ($scope.beerData) {
+            $scope.breweryData = $scope.beerData.breweries[0];
+        }
+        console.log("Beer Data: ", $scope.beerData);
+        console.log("Brewery Data: ", $scope.breweryData);
         if (!$scope.beerData) {
             BeerServices.getSingleBeer(beerId)
                 .then(function (response) {
                     $scope.beerData = response.data.data;
+                    $scope.breweryData = response.data.data.breweries[0];
                     BeerServices.submitToLocalStorage(key, response.data.data);
                 })
                 .catch(function (error) {
@@ -181,6 +178,20 @@ app.controller("beerController", function (BeerServices, AuthServices, $state, $
 
 });
 
+app.controller("beerSearchController", function ($scope, $state, BeerServices) {
+    let query = $state.params.query;
+    let queryString = query.replace(/\s/gi, "%20");
+    BeerServices.beerSearch(queryString)
+        .then(function (response) {
+            $scope.categoryContents = response.data.data;
+            console.log("search: ", $scope.categoryContents);
+            $scope.beerSearchInput = "";
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+});
+
 app.controller("beerBrowserController", function ($scope, $state, BeerServices) {
     console.log("Beer Browser Controller");
     
@@ -197,7 +208,7 @@ app.controller("beerBrowserController", function ($scope, $state, BeerServices) 
                 console.log("Error: ", error);
             });
     }
-    
+
     if ($state.params.category && $state.params.pageNumber) {
         let category = $state.params.category;
         let pageNumber = $state.params.pageNumber;
@@ -206,7 +217,7 @@ app.controller("beerBrowserController", function ($scope, $state, BeerServices) 
             $scope.nextPage = BeerServices.craftNextPageURL(category, pageNumber);
             $scope.previousPage = BeerServices.craftPreviousPageURL(category, pageNumber);
             $scope.categoryContents = BeerServices.getFromLocalStorage(key);
-
+            console.log("category contents: ", $scope.categoryContents)
             BeerServices.craftNextPageURL(category, pageNumber)
 
             if (!$scope.categoryContents) {

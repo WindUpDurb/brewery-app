@@ -8,6 +8,12 @@ body {
 #beerIcon {
   color: black; }
 
+#beerImageWell {
+  max-width: 550px; }
+
+#beerStyleDescription {
+  max-width: 550px; }
+
 #beerBrowseMenuHeader {
   position: fixed;
   padding-bottom: 10px; }
