@@ -43,10 +43,20 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
         })
         .state("beerBrowseContents", {
             parent: "beerBrowse",
-            url: "/:category/:pageNumber",
+            url: "/contents/:category/:pageNumber",
             views: {
                 "contents": {
                     templateUrl: "/html/beerBrowseContents.html",
+                    controller: "beerBrowserController"
+                }
+            }
+        })
+        .state("beerSearchResults", {
+            parent: "beerBrowse",
+            url: "/search/:query",
+            views: {
+                "contents": {
+                    templateUrl: "/html/beerSearchResults.html",
                     controller: "beerBrowserController"
                 }
             }

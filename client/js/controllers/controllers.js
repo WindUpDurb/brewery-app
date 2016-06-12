@@ -54,8 +54,9 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
         let queryString = query.replace(/\s/gi, "%20");
         BeerServices.beerSearch(queryString)
             .then(function (response) {
-                $state.go("beerBrowse");
+                $state.go("beerSearchResults", { query: queryString });
                 $scope.categoryContents = response.data.data;
+                console.log("search: ", $scope.categoryContents);
                 $scope.beerSearchInput = "";
             })
             .catch(function (error) {
@@ -68,7 +69,6 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
 app.controller("beerViewController", function ($scope, $stateParams, BeerServices, Upload) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
-
     (function () {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
         $scope.beerData = BeerServices.getFromLocalStorage(key);
@@ -197,8 +197,8 @@ app.controller("beerBrowserController", function ($scope, $state, BeerServices) 
                 console.log("Error: ", error);
             });
     }
-
-    if ($state.params) {
+    
+    if ($state.params.category && $state.params.pageNumber) {
         let category = $state.params.category;
         let pageNumber = $state.params.pageNumber;
         (function () {

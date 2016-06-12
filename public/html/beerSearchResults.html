@@ -1,0 +1,24 @@
+<!--<div ng-if="categoryContents">
+    <div class="row">
+        <a ng-href="{{previousPage}}"><i class="fa fa-chevron-left pull-left" aria-hidden="true"></i></a>
+        <a ng-href="{{nextPage}}"><i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></a>
+
+    </div>-->
+    <div class="row" ng-repeat="beer in  categoryContents">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div style="margin-top: 75px" class="list-group">
+                <div class="list-group-item">
+                    <div class="row-picture">
+                        <img class="rounded" ng-src="{{beer.images.medium || beer.images.large || beer.images.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
+                    </div>
+                    <div class="row-content">
+                        <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
+                        <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
+                        <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="list-group-separator"></div>
+            </div>
+        </div>
+    </div>
+</div>

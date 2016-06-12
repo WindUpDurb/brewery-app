@@ -126,12 +126,12 @@ app.service("BeerServices", function ($http, localStorageService) {
 
     this.craftNextPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) + 1).toString();
-        return `/#/beerBrowser/${category}/${pageNumber}`
+        return `/#/beerBrowser/contents/${category}/${pageNumber}`
     };
 
     this.craftPreviousPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) - 1).toString();
-        return `/#/beerBrowser/${category}/${pageNumber}`
+        return `/#/beerBrowser/contents/${category}/${pageNumber}`
     };
 
 });
