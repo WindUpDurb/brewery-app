@@ -3,23 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bd4f79f2-4531-4800-af85-c9cb8d6de34c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gulpfile.js" afterPath="$PROJECT_DIR$/Gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerBrowseContents.html" afterPath="$PROJECT_DIR$/client/html/beerBrowseContents.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerSearchResults.html" afterPath="$PROJECT_DIR$/client/html/beerSearchResults.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerView.html" afterPath="$PROJECT_DIR$/client/html/beerView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerlog.html" afterPath="$PROJECT_DIR$/client/html/beerlog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/home.html" afterPath="$PROJECT_DIR$/client/html/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/randomBeer.html" afterPath="$PROJECT_DIR$/client/html/randomBeer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/scss/style.scss" afterPath="$PROJECT_DIR$/client/scss/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerBrowseContents.html" afterPath="$PROJECT_DIR$/public/html/beerBrowseContents.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerSearchResults.html" afterPath="$PROJECT_DIR$/public/html/beerSearchResults.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerView.html" afterPath="$PROJECT_DIR$/public/html/beerView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerlog.html" afterPath="$PROJECT_DIR$/public/html/beerlog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/home.html" afterPath="$PROJECT_DIR$/public/html/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/randomBeer.html" afterPath="$PROJECT_DIR$/public/html/randomBeer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
     </list>
     <ignored path="brewery-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,17 +55,17 @@
             <entry file="file://$PROJECT_DIR$/client/scss/style.scss">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="108">
-                  <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+                  <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/html/home.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+                <state relative-caret-position="54">
+                  <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -128,16 +115,17 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
+                <state relative-caret-position="327">
+                  <caret line="110" column="63" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#1;n#button#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
@@ -225,8 +213,8 @@
           <file leaf-file-name="randomBeer.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/html/randomBeer.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="90">
+                  <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
                   <folding />
                 </state>
               </provider>
@@ -290,9 +278,9 @@
         <option value="$PROJECT_DIR$/Gulpfile.js" />
         <option value="$PROJECT_DIR$/client/html/randomBeer.html" />
         <option value="$PROJECT_DIR$/client/html/beerView.html" />
-        <option value="$PROJECT_DIR$/client/html/home.html" />
-        <option value="$PROJECT_DIR$/client/scss/style.scss" />
         <option value="$PROJECT_DIR$/views/index.html" />
+        <option value="$PROJECT_DIR$/client/scss/style.scss" />
+        <option value="$PROJECT_DIR$/client/html/home.html" />
       </list>
     </option>
   </component>
@@ -641,12 +629,12 @@
       <workItem from="1465704832457" duration="15440000" />
       <workItem from="1465764777404" duration="622000" />
       <workItem from="1466140634021" duration="2044000" />
-      <workItem from="1466218821567" duration="4852000" />
+      <workItem from="1466218821567" duration="5258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118586000" />
+    <option name="totallyTimeSpent" value="118992000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2485" y="73" width="1355" height="987" extended-state="0" />
@@ -763,6 +751,7 @@
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#1;n#button#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -1040,22 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/scss/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1066,23 +1039,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/html/randomBeer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
+        <state relative-caret-position="327">
+          <caret line="110" column="63" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#1;n#button#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/scss/style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
