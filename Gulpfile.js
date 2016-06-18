@@ -5,8 +5,10 @@ var concat = require("gulp-concat");
 var sass = require("gulp-sass");
 var sourcemaps = require("gulp-sourcemaps");
 var plumber = require("gulp-plumber");
+var nodemon = require("gulp-nodemon");
 
-gulp.task("default", ["build", "watch"]);
+
+gulp.task("default", ["build", "watch", "serve"]);
 
 gulp.task("watch", ["watch.js", "watch.css", "watch.html"]);
 
@@ -14,6 +16,12 @@ gulp.task("build", ["js", "css", "html"]);
 
 gulp.task("watch.js", function () {
     return gulp.watch("./client/js/**/*.js", ["js"])
+});
+
+gulp.task("serve", function () {
+    nodemon({
+        ignore : ["client", "public", "Gulpfile.js"]
+    });
 });
 
 gulp.task("js", function () {
@@ -39,6 +47,6 @@ gulp.task("watch.html", function () {
 });
 
 gulp.task("html", function () {
-    return gulp.src("./client/html/**")
-        .pipe(gulp.dest("./public/html"))
+    return gulp.src("./client/html/**/")
+        .pipe(gulp.dest("./public/html"));
 });

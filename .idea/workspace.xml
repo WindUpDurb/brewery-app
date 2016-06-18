@@ -3,16 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="bd4f79f2-4531-4800-af85-c9cb8d6de34c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gulpfile.js" afterPath="$PROJECT_DIR$/Gulpfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerBrowseContents.html" afterPath="$PROJECT_DIR$/client/html/beerBrowseContents.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerSearchResults.html" afterPath="$PROJECT_DIR$/client/html/beerSearchResults.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerView.html" afterPath="$PROJECT_DIR$/client/html/beerView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/controllers/controllers.js" afterPath="$PROJECT_DIR$/client/js/controllers/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/module.js" afterPath="$PROJECT_DIR$/client/js/module.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerlog.html" afterPath="$PROJECT_DIR$/client/html/beerlog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/home.html" afterPath="$PROJECT_DIR$/client/html/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/randomBeer.html" afterPath="$PROJECT_DIR$/client/html/randomBeer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/scss/style.scss" afterPath="$PROJECT_DIR$/client/scss/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/beerAPI.js" afterPath="$PROJECT_DIR$/models/beerAPI.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerBrowseContents.html" afterPath="$PROJECT_DIR$/public/html/beerBrowseContents.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerSearchResults.html" afterPath="$PROJECT_DIR$/public/html/beerSearchResults.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerView.html" afterPath="$PROJECT_DIR$/public/html/beerView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/concat.js" afterPath="$PROJECT_DIR$/public/js/concat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerlog.html" afterPath="$PROJECT_DIR$/public/html/beerlog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/home.html" afterPath="$PROJECT_DIR$/public/html/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/randomBeer.html" afterPath="$PROJECT_DIR$/public/html/randomBeer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
     </list>
     <ignored path="brewery-app.iws" />
@@ -33,7 +39,7 @@
     <favorites_list name="brewery-app" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.47705442">
+    <splitter split-orientation="vertical" split-proportion="0.460733">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="model.js" pinned="false" current-in-tab="false">
@@ -49,10 +55,10 @@
           <file leaf-file-name="beerView.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/html/beerView.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="191">
-                  <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+                <state relative-caret-position="130">
+                  <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
                   <folding>
-                    <element signature="n#style#0;n#div#1;n#div#0;n#div#5;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -62,7 +68,17 @@
             <entry file="file://$PROJECT_DIR$/client/scss/style.scss">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="108">
-                  <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+                  <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/html/home.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -71,7 +87,7 @@
           <file leaf-file-name="module.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/js/module.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
+                <state relative-caret-position="1062">
                   <caret line="59" column="43" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
                   <folding />
                 </state>
@@ -81,8 +97,22 @@
           <file leaf-file-name="beerBrowseContents.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/html/beerBrowseContents.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+                <state relative-caret-position="360">
+                  <caret line="20" column="75" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
+                  <folding>
+                    <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="beerlog.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/html/beerlog.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="72">
+                  <caret line="4" column="67" selection-start-line="4" selection-start-column="67" selection-end-line="4" selection-end-column="67" />
                   <folding />
                 </state>
               </provider>
@@ -91,18 +121,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/js/controllers/controllers.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="219" column="70" selection-start-line="219" selection-start-column="70" selection-end-line="219" selection-end-column="70" />
+                <state relative-caret-position="126">
+                  <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
                   <folding />
                 </state>
               </provider>
@@ -111,14 +131,14 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="299">
-                  <caret line="49" column="90" selection-start-line="49" selection-start-column="90" selection-end-line="49" selection-end-column="90" />
+                <state relative-caret-position="183">
+                  <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -128,42 +148,26 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="drunk-gallery.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/html/drunk-gallery.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="54">
-                  <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="beerBrowse.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/html/beerBrowse.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="126">
-                  <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="bower.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bower.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name=".bowerrc" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.bowerrc">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="36">
                   <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="beerSearchResults.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/html/beerSearchResults.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#i#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -198,11 +202,31 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="beerAPI.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="beerAPI.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/models/beerAPI.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="234">
-                  <caret line="32" column="141" selection-start-line="32" selection-start-column="141" selection-end-line="32" selection-end-column="141" />
+                <state relative-caret-position="167">
+                  <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Gulpfile.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Gulpfile.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="355">
+                  <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="randomBeer.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/html/randomBeer.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -221,7 +245,7 @@
           <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/js/services/services.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="160">
+                <state relative-caret-position="2250">
                   <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
                   <folding />
                 </state>
@@ -239,7 +263,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/Gulpfile.js" />
         <option value="$PROJECT_DIR$/.bowerrc" />
         <option value="$PROJECT_DIR$/client/html/register.html" />
         <option value="$PROJECT_DIR$/.env" />
@@ -248,26 +271,27 @@
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/client/scss/style.css" />
         <option value="$PROJECT_DIR$/routes/api.js" />
-        <option value="$PROJECT_DIR$/client/html/home.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/client/scss/simple-sidebar.css" />
-        <option value="$PROJECT_DIR$/client/html/beerlog.html" />
         <option value="$PROJECT_DIR$/client/html/drank.html" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/models/s3-storage.js" />
-        <option value="$PROJECT_DIR$/client/html/randomBeer.html" />
         <option value="$PROJECT_DIR$/routes/breweryAPI.js" />
         <option value="$PROJECT_DIR$/client/html/drunk-gallery.html" />
-        <option value="$PROJECT_DIR$/client/html/beerSearchResults.html" />
         <option value="$PROJECT_DIR$/client/html/beerBrowse.html" />
         <option value="$PROJECT_DIR$/client/js/services/services.js" />
         <option value="$PROJECT_DIR$/client/js/module.js" />
-        <option value="$PROJECT_DIR$/client/scss/style.scss" />
-        <option value="$PROJECT_DIR$/client/html/beerView.html" />
         <option value="$PROJECT_DIR$/client/js/controllers/controllers.js" />
         <option value="$PROJECT_DIR$/models/beerAPI.js" />
+        <option value="$PROJECT_DIR$/client/html/beerSearchResults.html" />
         <option value="$PROJECT_DIR$/client/html/beerBrowseContents.html" />
+        <option value="$PROJECT_DIR$/client/html/beerlog.html" />
+        <option value="$PROJECT_DIR$/Gulpfile.js" />
+        <option value="$PROJECT_DIR$/client/html/randomBeer.html" />
+        <option value="$PROJECT_DIR$/client/html/beerView.html" />
+        <option value="$PROJECT_DIR$/client/html/home.html" />
+        <option value="$PROJECT_DIR$/client/scss/style.scss" />
         <option value="$PROJECT_DIR$/views/index.html" />
       </list>
     </option>
@@ -285,10 +309,10 @@
     </gulpfiles>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="574" />
-    <option name="y" value="52" />
-    <option name="width" value="1201" />
-    <option name="height" value="1010" />
+    <option name="x" value="2485" />
+    <option name="y" value="73" />
+    <option name="width" value="1355" />
+    <option name="height" value="987" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -315,6 +339,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -358,6 +384,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brewery-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brewery-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brewery-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brewery-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -475,8 +533,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -488,7 +544,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Temporary_Code/react-workshop/react-demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/david/Code/brewery-app/routes/users.js" />
@@ -582,35 +638,38 @@
       <workItem from="1465577773623" duration="333000" />
       <workItem from="1465607904936" duration="158000" />
       <workItem from="1465626885282" duration="5251000" />
-      <workItem from="1465704832457" duration="15387000" />
+      <workItem from="1465704832457" duration="15440000" />
+      <workItem from="1465764777404" duration="622000" />
+      <workItem from="1466140634021" duration="2044000" />
+      <workItem from="1466218821567" duration="4852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111015000" />
+    <option name="totallyTimeSpent" value="118586000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="574" y="52" width="1201" height="1010" extended-state="0" />
+    <frame x="2485" y="73" width="1355" height="987" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23980017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2110701" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -651,7 +710,7 @@
         <state relative-caret-position="450">
           <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#5;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -704,7 +763,7 @@
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -762,13 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/html/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -813,13 +865,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Documents/Writing/01-var-and-let/01-var-and-let.js" />
-    <entry file="file://$PROJECT_DIR$/client/html/beerlog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="27" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/html/drank.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -834,14 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -850,6 +887,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/king-cobra-2.jpg" />
+    <entry file="file://$PROJECT_DIR$/client/js/module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="59" column="43" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/drunk-gallery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/beerBrowse.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -898,46 +958,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/drunk-gallery.html">
+    <entry file="file://$PROJECT_DIR$/client/js/services/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="2250">
+          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/html/beerSearchResults.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        <state relative-caret-position="306">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#a#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/beerBrowse.html">
+    <entry file="file://$PROJECT_DIR$/client/html/beerBrowseContents.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        <state relative-caret-position="360">
+          <caret line="20" column="75" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/beerAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/randomBeer.html">
+    <entry file="file://$PROJECT_DIR$/Gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="355">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/beerlog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="67" selection-start-line="4" selection-start-column="67" selection-end-line="4" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/controllers/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/beerView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#4;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/html/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -945,62 +1051,20 @@
     <entry file="file://$PROJECT_DIR$/client/scss/style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="59" column="43" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/services/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/beerView.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#5;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/controllers/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="219" column="70" selection-start-line="219" selection-start-column="70" selection-end-line="219" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/beerAPI.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="32" column="141" selection-start-line="32" selection-start-column="141" selection-end-line="32" selection-end-column="141" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/html/beerBrowseContents.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/html/randomBeer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1010,14 +1074,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="49" column="90" selection-start-line="49" selection-start-column="90" selection-end-line="49" selection-end-column="90" />
+        <state relative-caret-position="183">
+          <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -14,8 +14,12 @@
                         <div class="row-content">
                             <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
                             <h5>{{beer.breweries[0].name}}</h5>
-                            <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
-                            <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                            <div class="row">
+                                <a class="pull-right" ng-if="beer.status === 'update_pending'"><i style="color: yellow" class="fa fa-cog" aria-hidden="true"></i></a>
+                                <a class="pull-right" ng-if="beer.status === 'verified'"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                <a class="pull-right" ng-if="activeUser && beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
+                                <a class="pull-right" ng-if="activeUser && !beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
                     <div class="list-group-separator"></div>

@@ -1,20 +1,25 @@
-<!--<div ng-if="categoryContents">
+<div ng-if="categoryContents">
     <div class="row">
         <a ng-href="{{previousPage}}"><i class="fa fa-chevron-left pull-left" aria-hidden="true"></i></a>
         <a ng-href="{{nextPage}}"><i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></a>
 
-    </div>-->
+    </div>
     <div class="row" ng-repeat="beer in  categoryContents">
-        <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-sm-8 col-sm-offset-3">
             <div style="margin-top: 75px" class="list-group">
                 <div class="list-group-item">
                     <div class="row-picture">
-                        <img class="rounded" ng-src="{{beer.images.medium || beer.images.large || beer.images.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
+                        <img class="rounded" ng-src="{{beer.labels.medium || beer.labels.large || beer.labels.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
                     </div>
                     <div class="row-content">
                         <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
-                        <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
-                        <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                        <h5>{{beer.breweries[0].name}}</h5>
+                        <div class="row">
+                            <a class="pull-right" ng-if="beer.status === 'update_pending'"><i style="color: yellow" class="fa fa-cog" aria-hidden="true"></i></a>
+                            <a class="pull-right" ng-if="beer.status === 'verified'"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                            <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
+                            <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-separator"></div>
