@@ -21,6 +21,10 @@
             </div>
         </div>
 
+        <div ng-if="activeUser" class="row">
+            <button ui-sref="beerLog" class="btn btn-primary btn-raised">Head over to your Beer Log Now</button>
+        </div>
+
         <div class="subjectBreak container-fluid"></div>
 
         <div>
@@ -101,8 +105,6 @@
         </div>
 
 
-        <div ng-if="activeUser" class="row">
-        <button ui-sref="beerLog" class="btn btn-primary">Head over to your Beer Log Now</button>
     </div>
 
 </div>

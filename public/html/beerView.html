@@ -1,6 +1,12 @@
 <div class="row">
-    <span class="pull-right" ng-if="beerData.status === 'update_pending'"><img src="/images/updatePending64.png"></span>
-    <span class="pull-right" ng-if="beerData.status === 'verified'"><img src="/images/thumbUp64.png"></span>
+    <span class="pull-right" ng-if="beerData.status === 'update_pending'">
+        <img src="/images/updatePending64.png">
+        <span><p>Update Pending</p></span>
+    </span>
+    <span class="pull-right" ng-if="beerData.status === 'verified'">
+        <img src="/images/thumbUp64.png">
+        <span><p>Beer Data Verified</p></span>
+    </span>
     <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed64.png"></span>
     <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed64.png" ></span>
 </div>
@@ -129,7 +135,7 @@
         <div id="beerMemoryUpload">
             <h2>Remember these times?</h2>
 
-            <h3 ng-if="!beerMemories.length">Oh, wait. You don't. Your drunk self didn't record them.</h3>
+            <h3 ng-if="!beerMemories.length">Oh, wait. You don't. Your drunk self didn't capture any beer memories.</h3>
             <!--Image container-->
             <div id="beerMemoriesContainer" class="container slider" ng-if="beerMemories.length">
                 <img ng-repeat="image in beerMemories" class="slide center-block img-responsive img-thumbnail"
