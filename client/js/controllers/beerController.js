@@ -12,6 +12,10 @@ function beerController(BeerServices, AuthServices, $state, $scope) {
             BeerServices.beerMeUser({ _id: activeUser._id})
                 .then(function (response) {
                     $scope.beerData = response.data.data;
+                    if ($scope.beerData && $scope.beerData.breweries) {
+                        $scope.breweryData = $scope.beerData.breweries[0];
+                    }
+                    console.log("Responese: ", response.data.data)
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);

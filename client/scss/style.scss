@@ -1,6 +1,6 @@
 body {
     background-color: white;
-    padding-top : 125px;
+    padding-top : 135px;
 }
 
 .subjectBreak {
@@ -8,10 +8,17 @@ body {
     margin-bottom: 70px;
     width: 60%;
     height: 1px;
-    font-family: 'Lora', serif;
     background-color: #757575;
     border-radius: 2px;
-    color: white;
+}
+
+.subjectBreakUser {
+    margin-top: 100px;
+    margin-bottom: 70px;
+    width: 85%;
+    height: 1px;
+    background-color: #757575;
+    border-radius: 2px;
 }
 
 .paragarphFormat {

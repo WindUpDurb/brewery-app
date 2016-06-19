@@ -52,8 +52,7 @@
         </div>
 
         <div class="row" style="color: black">
-            <div class="col-sm-3 col-sm-offset-4"><a style="color: black" ui-sref="beerBrowse">Beer Browser</a></div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-sm-offset-7">
                 <div class="form-group label-floating">
                     <form ng-submit="beerSearch(beerSearchInput)">
                         <label class="control-label" for="beerSearchInput">C'mon. Search for a beer here.</label>
@@ -66,15 +65,17 @@
 
 
         <div class="row">
-
-            <div class="col-sm-1 col-sm-offset-1" style="margin-top: 15px">
-                <button type="button" class="btn"><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
+            <div class="col-sm-1" style="margin-top: 15px">
+                <button type="button" class="btn btn-raised"><a ui-sref="beerBrowse"><img src="/images/reading.png"></a></button>
+            </div>
+            <div class="col-sm-1" style="margin-top: 15px">
+                <button type="button" class="btn btn-raised btn-primary"><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
             </div>
             <div class="col-sm-1">
                 <p id="cheersText">Cheers for a random beer</p>
             </div>
 
-            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-6">
+            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-6" style="margin-top: 35px">
                 <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
                     <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
                         <i ng-if="!activeUser" class="fa fa-bars fa-2x" aria-hidden="true"></i>

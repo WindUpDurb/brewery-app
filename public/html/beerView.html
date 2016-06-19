@@ -17,6 +17,14 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row center">
+            <button type="button" ng-click="changeIfConsumed(true)" ng-if="activeUser && !hasConsumed" class="btn btn-raised btn-primary">I've had this beer</button>
+            <button type="button" ng-click="changeIfConsumed(false)" ng-if="activeUser && hasConsumed" class="btn btn-raised btn-primary">Actually, I've never had this beer.</button>
+        </div>
+    </div>
+
+
     <div class="subjectBreak container-fluid"></div>
 
     <div>
@@ -67,33 +75,33 @@
             <table class="table table-striped table-hover">
                 <tr>
                     <td>ABV: </td>
-                    <td>{{beerData.abv}}%</td>
+                    <td>{{beerData.abv || "N/A"}}%</td>
                     <td></td>
                     <td>ABV stands for Alcohol by Volume, and it refers to the percentage of alcohol in a given volume.</td>
                 </tr>
                 <tr>
                     <td>IBU: </td>
-                    <td>Minimum: {{beerData.style.ibuMin}}</td>
-                    <td>Maximum: {{beerData.style.ibuMax}}</td>
+                    <td>Minimum: {{beerData.style.ibuMin || "N/A"}}</td>
+                    <td>Maximum: {{beerData.style.ibuMax || "N/A"}}</td>
                     <td>IBU stands for International Biterness Units, and meausres the bitterness derived from hops on a scale of 0 to 100. </td>
                 </tr>
                 <tr>
                     <td>SRM: </td>
-                    <td>Minimum: {{beerData.style.srmMin}}</td>
-                    <td>Maximum: {{beerData.style.srmMax}}</td>
+                    <td>Minimum: {{beerData.style.srmMin || "N/A"}}</td>
+                    <td>Maximum: {{beerData.style.srmMax || "N/A"}}</td>
                     <!--Open http://cdn.shopify.com/s/files/1/0238/0729/files/srm.PNG?2456 in a modal -->
                     <td>SRM stands for Standard Reference Method, and it refers to a system that classifies beer by the intensity of its color.</td>
                 </tr>
                 <tr>
                     <td>OG: </td>
-                    <td>Minimum: {{beerData.style.ogMin}}</td>
+                    <td>Minimum: {{beerData.style.ogMin || "N/A"}}</td>
                     <td></td>
                     <td>OG stands for Original Gravity, and it refers to the specific gravity of wort that has not been fermented.</td>
                 </tr>
                 <tr>
                     <td>FG: </td>
-                    <td>Minimum: {{beerData.style.fgMin}}</td>
-                    <td>Maximum: {{beerData.style.fgMax}}</td>
+                    <td>Minimum: {{beerData.style.fgMin || "N/A"}}</td>
+                    <td>Maximum: {{beerData.style.fgMax || "N/A"}}</td>
                     <td>FG stands for Final Gravity, and it refers to the specific gravity of the beer after it has fermented.</td>
                 </tr>
             </table>
@@ -112,14 +120,10 @@
 
 
     <!--ActiveUser Below-->
-    <div class="container">
-        <div class="row">
-            <button type="button" ng-click="changeIfConsumed(true)" ng-if="activeUser && !hasConsumed" class="btn btn-primary">I've had this beer</button>
-            <button type="button" ng-click="changeIfConsumed(false)" ng-if="activeUser && hasConsumed" class="btn btn-primary">Just kidding. I've never had this beer.</button>
-        </div>
-    </div>
 
     <div ng-if="activeUser && hasConsumed">
+
+        <div class="subjectBreakUser container-fluid"></div>
 
 
         <div id="beerMemoryUpload">
@@ -164,10 +168,10 @@
                <!--    <div class="row">
                        <input ng-model="beerMemoryCaption" type="text" placeholder="Give the beer memory some context">
                    </div>-->
-                    <button class="button btn btn-primary" ngf-select ng-model="newBeerPhoto" name="newBeerPhoto" ngf-pattern="'image/*'"
+                    <button class="button btn btn-raised btn-default" ngf-select ng-model="newBeerPhoto" name="newBeerPhoto" ngf-pattern="'image/*'"
                             ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
                             ngf-resize="{width: 350, height: 350}"><i class="fa fa-binoculars" aria-hidden="true"> for the photo</i></button>
-                    <button class="btn btn-primary">Upload the <i class="fa fa-picture-o" aria-hidden="true"></i></button>
+                    <button class="btn btn-raised btn-default">Upload the <i class="fa fa-picture-o" aria-hidden="true"></i></button>
 
                 </form>
 
