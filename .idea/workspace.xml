@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bd4f79f2-4531-4800-af85-c9cb8d6de34c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/beerView.html" afterPath="$PROJECT_DIR$/client/html/beerView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/html/randomBeer.html" afterPath="$PROJECT_DIR$/client/html/randomBeer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/controllers/beerController.js" afterPath="$PROJECT_DIR$/client/js/controllers/beerController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/scss/style.scss" afterPath="$PROJECT_DIR$/client/scss/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/beerAPI.js" afterPath="$PROJECT_DIR$/models/beerAPI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/beerView.html" afterPath="$PROJECT_DIR$/public/html/beerView.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/html/randomBeer.html" afterPath="$PROJECT_DIR$/public/html/randomBeer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/concat.js" afterPath="$PROJECT_DIR$/public/js/concat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
     </list>
     <ignored path="brewery-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -606,12 +597,12 @@
       <workItem from="1466140634021" duration="2044000" />
       <workItem from="1466218821567" duration="5258000" />
       <workItem from="1466294828466" duration="3144000" />
-      <workItem from="1466304082091" duration="9510000" />
+      <workItem from="1466304082091" duration="9814000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131646000" />
+    <option name="totallyTimeSpent" value="131950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="314" y="241" width="1393" height="874" extended-state="0" />
