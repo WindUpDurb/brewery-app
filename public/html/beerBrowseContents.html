@@ -15,10 +15,10 @@
                             <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
                             <h5>{{beer.breweries[0].name}}</h5>
                             <div class="row">
-                                <a class="pull-right" ng-if="beer.status === 'update_pending'"><i style="color: yellow" class="fa fa-cog" aria-hidden="true"></i></a>
-                                <a class="pull-right" ng-if="beer.status === 'verified'"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                                <a class="pull-right" ng-if="activeUser && beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
-                                <a class="pull-right" ng-if="activeUser && !beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                                <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
+                                <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
+                                <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed32.png"></span>
+                                <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed32.png" ></span>
                             </div>
                         </div>
                     </div>

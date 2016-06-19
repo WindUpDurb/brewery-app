@@ -129,64 +129,116 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
 
 "use strict";
 
-var app = angular.module("beerApp");
+angular
+    .module("beerApp")
+    .controller("beerBrowserController", beerBrowserController);
 
-app.controller("mainController", function ($scope, $state, AuthServices, BeerServices) {
-    console.log("Main Controller");
+function beerBrowserController($scope, $state, BeerServices) {
+    console.log("Beer Browser Controller");
+    $scope.beerBrowseMenu = BeerServices.getFromLocalStorage("/api/breweryAPI/beerBrowseMenu");
+    if (!$scope.beerBrowseMenu) {
+        BeerServices.getBeerBrowseMenu()
+            .then(function (response) {
+                $scope.beerBrowseMenu = response.data.data;
+                BeerServices.submitToLocalStorage("/api/breweryAPI/beerBrowseMenu", response.data.data);
+                console.log($scope.beerBrowseMenu);
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    }
+    if ($state.params.category && $state.params.pageNumber) {
+        let category = $state.params.category;
+        let pageNumber = $state.params.pageNumber;
+        (function () {
+            let key = `/api/breweryAPI/beerCategoryContents/${category}/${pageNumber}`;
+            $scope.nextPage = BeerServices.craftNextPageURL(category, pageNumber);
+            $scope.previousPage = BeerServices.craftPreviousPageURL(category, pageNumber);
+            $scope.categoryContents = BeerServices.getFromLocalStorage(key);
+            console.log("category contents: ", $scope.categoryContents)
+            BeerServices.craftNextPageURL(category, pageNumber)
+            if (!$scope.categoryContents) {
+                BeerServices.getCategoryContents(category, pageNumber)
+                    .then(function (response) {
+                        $scope.categoryContents = response.data.data;
+                        BeerServices.submitToLocalStorage(key, response.data.data);
+                        console.log("Response: ", response.data.data)
+                    })
+                    .catch(function (error) {
+                        console.log("Error: ", error);
+                    });
+            }
 
-    AuthServices.isLoggedIn()
-        .then(function (response) {
-            $scope.activeUser = response.data;
-            AuthServices.activeUser = $scope.activeUser;
-            console.log("activeUser: ", $scope.activeUser)
-        })
-        .catch(function (error) {
-            console.log("Error: ", error);
-        });
-    
-    $scope.submitRegistration = function (newUserData) {
-        if (newUserData.password === newUserData.passwordConfirm) {
-            AuthServices.registerNewUser(newUserData)
+        }());
+    }
+}
+"use strict";
+
+angular
+    .module("beerApp")
+    .controller("beerController", beerController);
+
+function beerController(BeerServices, AuthServices, $state, $scope) {
+    console.log("Beer Controller");
+    let activeUser = AuthServices.activeUser;
+    if ($state.current.name === "beerMeRandom") {
+        if ($scope.activeUser) {
+            BeerServices.beerMeUser({ _id: activeUser._id})
                 .then(function (response) {
-                    $state.go("home");
+                    $scope.beerData = response.data.data;
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
                 });
+
         } else {
-            alert("Passwords must match.");
+            BeerServices.beerMe()
+                .then(function (response) {
+                    $scope.beerData = response.data.data;
+                    console.log($scope.beerData)
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                });
         }
-    };
+    }
 
-    $scope.login = function (loginData) {
-        AuthServices.login(loginData)
+    $scope.beerMe = function () {
+        BeerServices.beerMe()
             .then(function (response) {
-                $scope.activeUser = response.data;
-                $state.go("home");
+                $scope.beerData = response.data;
             })
             .catch(function (error) {
                 console.log("Error: ", error);
             });
     };
-    
-    $scope.logout = function () {
-        AuthServices.logout()
-            .then(function (response) {
-                $scope.activeUser = null;
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    };
+}
+"use strict";
 
-    $scope.beerSearch = function (query) {
-        let queryString = query.replace(/\s/gi, "%20");
-        $state.go("beerSearchResults", { query: queryString });
-    };
-    
-});
+angular
+    .module("beerApp")
+    .controller("beerSearchController", beerSearchController);
 
-app.controller("beerViewController", function ($scope, $stateParams, BeerServices, Upload) {
+function beerSearchController($scope, $state, BeerServices) {
+    let query = $state.params.query;
+    let queryString = query.replace(/\s/gi, "%20");
+    BeerServices.beerSearch(queryString)
+        .then(function (response) {
+            $scope.categoryContents = response.data.data;
+            console.log("search: ", $scope.categoryContents);
+            $scope.beerSearchInput = "";
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+}
+"use strict";
+
+angular
+    .module("beerApp")
+    .controller("beerViewController", beerViewController);
+
+function beerViewController($scope, $stateParams, BeerServices, Upload) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
     (function () {
@@ -264,109 +316,63 @@ app.controller("beerViewController", function ($scope, $stateParams, BeerService
         //Check out http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/ for animation effects on the gallery
 
     }
+}
+"use strict";
 
+var app = angular.module("beerApp");
 
-});
+app.controller("mainController", function ($scope, $state, AuthServices, BeerServices) {
+    console.log("Main Controller");
 
-app.controller("beerController", function (BeerServices, AuthServices, $state, $scope) {
-    console.log("Beer Controller");
-
-    let activeUser = AuthServices.activeUser;
-
-    if ($state.current.name === "beerMeRandom") {
-        if ($scope.activeUser) {
-            BeerServices.beerMeUser({ _id: activeUser._id})
+    AuthServices.isLoggedIn()
+        .then(function (response) {
+            $scope.activeUser = response.data;
+            AuthServices.activeUser = $scope.activeUser;
+            console.log("activeUser: ", $scope.activeUser)
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+    
+    $scope.submitRegistration = function (newUserData) {
+        if (newUserData.password === newUserData.passwordConfirm) {
+            AuthServices.registerNewUser(newUserData)
                 .then(function (response) {
-                    $scope.beerData = response.data.data;
+                    $state.go("home");
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
                 });
-
         } else {
-            BeerServices.beerMe()
-                .then(function (response) {
-                    $scope.beerData = response.data.data;
-                    console.log($scope.beerData)
-                })
-                .catch(function (error) {
-                    console.log("Error: ", error);
-                });
+            alert("Passwords must match.");
         }
-    }
+    };
 
-    $scope.beerMe = function () {
-        BeerServices.beerMe()
+    $scope.login = function (loginData) {
+        AuthServices.login(loginData)
             .then(function (response) {
-                $scope.beerData = response.data;
+                $scope.activeUser = response.data;
+                $state.go("home");
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    };
+    
+    $scope.logout = function () {
+        AuthServices.logout()
+            .then(function (response) {
+                $scope.activeUser = null;
             })
             .catch(function (error) {
                 console.log("Error: ", error);
             });
     };
 
-});
-
-app.controller("beerSearchController", function ($scope, $state, BeerServices) {
-    let query = $state.params.query;
-    let queryString = query.replace(/\s/gi, "%20");
-    BeerServices.beerSearch(queryString)
-        .then(function (response) {
-            $scope.categoryContents = response.data.data;
-            console.log("search: ", $scope.categoryContents);
-            $scope.beerSearchInput = "";
-        })
-        .catch(function (error) {
-            console.log("Error: ", error);
-        });
-});
-
-app.controller("beerBrowserController", function ($scope, $state, BeerServices) {
-    console.log("Beer Browser Controller");
-    
-    $scope.beerBrowseMenu = BeerServices.getFromLocalStorage("/api/breweryAPI/beerBrowseMenu");
-
-    if (!$scope.beerBrowseMenu) {
-        BeerServices.getBeerBrowseMenu()
-            .then(function (response) {
-                $scope.beerBrowseMenu = response.data.data;
-                BeerServices.submitToLocalStorage("/api/breweryAPI/beerBrowseMenu", response.data.data);
-                console.log($scope.beerBrowseMenu);
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    }
-
-    if ($state.params.category && $state.params.pageNumber) {
-        let category = $state.params.category;
-        let pageNumber = $state.params.pageNumber;
-        (function () {
-            let key = `/api/breweryAPI/beerCategoryContents/${category}/${pageNumber}`;
-            $scope.nextPage = BeerServices.craftNextPageURL(category, pageNumber);
-            $scope.previousPage = BeerServices.craftPreviousPageURL(category, pageNumber);
-            $scope.categoryContents = BeerServices.getFromLocalStorage(key);
-            console.log("category contents: ", $scope.categoryContents)
-            BeerServices.craftNextPageURL(category, pageNumber)
-
-            if (!$scope.categoryContents) {
-                BeerServices.getCategoryContents(category, pageNumber)
-                    .then(function (response) {
-                        $scope.categoryContents = response.data.data;
-                        BeerServices.submitToLocalStorage(key, response.data.data);
-                        console.log("Response: ", response.data.data)
-                    })
-                    .catch(function (error) {
-                        console.log("Error: ", error);
-                    });
-            }
-
-        }());
-    }
-
-
-
-    
+    $scope.beerSearch = function (query) {
+        let queryString = query.replace(/\s/gi, "%20");
+        $state.go("beerSearchResults", { query: queryString });
+    };
     
 });
 

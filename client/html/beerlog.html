@@ -1,8 +1,8 @@
-<h1 class="text-center">Dah Beer Log</h1>
+<h1 class="text-center">My Beer Log <3</h1>
 
 <div class="container well col-sm-4 col-sm-offset-4">
     <p>Dear Beer Log:</p>
-    <p>Please find enclosed the beers that I have come across in my BeerMe searches.</p>
+    <p>Please find enclosed the beers that I've discovered in the random BeerMe searches.</p>
     <p>Beers that I have consumed will be marked with a <i style="color: green" class="fa fa-beer" aria-hidden="true"></i>.</p>
     <p>And beers that I have not consumed will be marked with a <i style="color: red" class="fa fa-beer" aria-hidden="true"></i>.</p>
     <p>Love,</p>
@@ -18,8 +18,12 @@
                 </div>
                 <div class="row-content">
                     <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.beerId}}">{{beer.beerName}}</a></h4>
-                    <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
-                    <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                    <div class="row">
+                        <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
+                        <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
+                        <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed32.png"></span>
+                        <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed32.png" ></span>
+                    </div>
                 </div>
             </div>
             <div class="list-group-separator"></div>

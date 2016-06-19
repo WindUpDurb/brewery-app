@@ -1,9 +1,10 @@
+<div ng-if="!categoryContents"><h1>There were no search results.</h1></div>
 <div ng-if="categoryContents">
-    <div class="row">
+   <!-- <div class="row">
         <a ng-href="{{previousPage}}"><i class="fa fa-chevron-left pull-left" aria-hidden="true"></i></a>
         <a ng-href="{{nextPage}}"><i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></a>
 
-    </div>
+    </div>-->
     <div class="row" ng-repeat="beer in  categoryContents">
         <div class="col-sm-8 col-sm-offset-3">
             <div style="margin-top: 75px" class="list-group">
@@ -15,10 +16,10 @@
                         <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
                         <h5>{{beer.breweries[0].name}}</h5>
                         <div class="row">
-                            <a class="pull-right" ng-if="beer.status === 'update_pending'"><i style="color: yellow" class="fa fa-cog" aria-hidden="true"></i></a>
-                            <a class="pull-right" ng-if="beer.status === 'verified'"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                            <a class="pull-right" ng-if="beer.consumed"><i style="color: green" class="fa fa-beer" aria-hidden="true"></i></a>
-                            <a class="pull-right" ng-if="!beer.consumed"><i style="color: red" class="fa fa-beer" aria-hidden="true"></i></a>
+                            <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
+                            <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
+                            <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed32.png"></span>
+                            <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed32.png" ></span>
                         </div>
                     </div>
                 </div>

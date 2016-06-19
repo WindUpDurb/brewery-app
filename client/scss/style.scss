@@ -1,6 +1,33 @@
 body {
-    background-color: #FAFAFA;
-    padding-top : 90px;
+    background-color: white;
+    padding-top : 125px;
+}
+
+.subjectBreak {
+    margin-top: 100px;
+    margin-bottom: 70px;
+    width: 60%;
+    height: 1px;
+    font-family: 'Lora', serif;
+    background-color: #757575;
+    border-radius: 2px;
+    color: white;
+}
+
+.paragarphFormat {
+    text-indent: 50px;
+    text-align: justify;
+}
+
+#header {
+    background-color : white;
+    margin-bottom : 0px;
+    border-bottom: black 1px solid;
+}
+
+#cheersText {
+    color: black;
+    margin-top: 50px;
 }
 
 #youThinkBeerText {
