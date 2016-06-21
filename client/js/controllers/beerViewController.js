@@ -29,15 +29,26 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
     }());
 
     if ($scope.activeUser) {
-
         $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
 
         for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
             if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
+                $scope.currentBeer = $scope.activeUser.sampledBeers[i];
                 $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
                 console.log("Memories: ", $scope.beerMemories)
             }
         }
+
+        if ($scope.hasConsumed) {
+            //change personalRatings variable name in Model
+            $scope.currentRating = $scope.currentBeer.personalRatings;
+
+        }
+
+        $scope.beerRating = function (rating) {
+            $scope.currentRating = rating;
+            console.log("Rating: ", $scope.currentRating);
+        };
 
         $scope.changeIfConsumed = function (consumed) {
             BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
@@ -61,6 +72,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
                     console.log("Error: ", error);
                 })
         };
+
 
         $scope.currentIndex = 0;
 

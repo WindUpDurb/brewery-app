@@ -17,13 +17,7 @@ let userSchema = new mongoose.Schema({
         beerName: String,
         beerId: String,
         comments: [{ type: String }],
-        //personal rating can be:
-        //1) Would Buy
-        //2) Would Consider if available
-        //3) Would Drink Only if Someone Bought if for Me
-        //4) Would Drink if Drunk
-        //5) Fuck this beer
-        personalRatings: [{ type: String }],
+        personalRatings: { type: Number, default: 0 },
         beerMemories: [{
             beerPhotoCaption: { type: String },
             beerPhotoUrl: { type: String }

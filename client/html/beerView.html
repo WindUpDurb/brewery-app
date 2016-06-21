@@ -1,8 +1,27 @@
-<div class="row">
+<div style="margin-top: 15px; margin-bottom: 50px;" class="row">
+    <!--Gold if the star is active; white if it is inactive-->
+    <div ng-if="activeUser && hasConsumed" style="display: inline-block">
+        <button ng-click="beerRating(1)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(2)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(3)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(4)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(5)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(6)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(7)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(8)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(9)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-click="beerRating(10)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+    </div>
+
     <span class="pull-right" ng-if="beerData.status === 'update_pending'"><img src="/images/updatePending64.png"></span>
     <span class="pull-right" ng-if="beerData.status === 'verified'"><img src="/images/thumbUp64.png"></span>
-    <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed64.png"></span>
-    <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed64.png" ></span>
+    <span class="pull-right" ng-if="activeUser && hasConsumed"><img src="/images/beerIconConsumed64.png"></span>
+    <span class="pull-right" ng-if="activeUser && !hasConsumed"><img src="/images/beerIconNoConsumed64.png" ></span>
+    <div class="row">
+        <div class="col-sm-1 col-sm-offset-2">
+            <button  style="background-color: #272100; box-shadow: 10px 10px 5px #888888;" class="btn btn-default btn-fab">Submit</button>
+        </div>
+    </div>
 </div>
 
 <h1 class="text-center">{{beerData.name}}</h1>
@@ -164,14 +183,21 @@
                     <img ngf-thumbnail="newBeerPhoto">
                 </div>
 
-               <form ng-submit="submitBeerMemory(newBeerPhoto)">
-               <!--    <div class="row">
-                       <input ng-model="beerMemoryCaption" type="text" placeholder="Give the beer memory some context">
-                   </div>-->
-                    <button class="button btn btn-raised btn-default" ngf-select ng-model="newBeerPhoto" name="newBeerPhoto" ngf-pattern="'image/*'"
+
+                <form ng-submit="submitBeerMemory(newBeerPhoto)">
+                    <div class="row">
+                        <div class="col-sm-1 col-sm-offset-5">
+                             <span class="input-group-btn input-group-sm">
+                            <button class="button btn btn-fab btn-fab-mini" ngf-select ng-model="newBeerPhoto" name="newBeerPhoto" ngf-pattern="'image/*'"
                             ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                            ngf-resize="{width: 350, height: 350}"><i class="fa fa-binoculars" aria-hidden="true"> for the photo</i></button>
-                    <button class="btn btn-raised btn-default">Upload the <i class="fa fa-picture-o" aria-hidden="true"></i></button>
+                            ngf-resize="{width: 350, height: 350}"><img src="/images/fileUpload.png"></button>
+                            </span>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-fab btn-fab-mini"><img src="images/findAttachment.png"></button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>

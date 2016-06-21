@@ -53,6 +53,7 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
     $scope.beerSearch = function (query) {
         let queryString = query.replace(/\s/gi, "%20");
         $state.go("beerSearchResults", { query: queryString });
+        $scope.beerSearchInput = null;
     };
     
 });
