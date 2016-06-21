@@ -28,6 +28,17 @@
     <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 
+    <!--Webflow stuff-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Webflow">
+    <link rel="stylesheet" type="text/css" href="Webflow/normalize.css">
+    <link rel="stylesheet" type="text/css" href="Webflow/webflow.css">
+    <link rel="stylesheet" type="text/css" href="Webflow/drink-drank-drunk.webflow.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+    <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+    <script type="text/javascript" src="/Webflow/modernizr.js"></script>
+
+
     <!--Personal CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/simple-sidebar.css">
@@ -41,9 +52,122 @@
 </head>
 <body ng-app="beerApp" ng-controller="mainController">
 
+<div class=" w-section headersection navbar navbar-fixed-top" id="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-header">
+                <a class="pull-left" style="color : #daa520" ng-href="/"><b>Drink, Drank, Drunk</b></a>
+            </div>
+        </div>
+
+        <div class="row" style="color: black">
+            <div class="col-sm-1" style="margin-top: 15px">
+                <button type="button" class="btn"><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
+            </div>
+            <div style="margin-top: 45px" class="col-sm-1">
+                <span>Cheers! For a random beer.</span>
+            </div>
+            <div class="col-sm-3 col-sm-offset-3">
+                <div class="form-group label-floating">
+                    <form ng-submit="beerSearch(beerSearchInput)">
+                        <label class="control-label" for="beerSearchInput">C'mon. Search for a beer here.</label>
+                        <input class="form-control" ng-model="beerSearchInput" id="beerSearchInput" type="text">
+                        <p class="help-block">Let us help you find that sought-after buzz.</p>
+                    </form>
+                </div>
+            </div>
+
+            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-1" style="margin-top: 35px">
+                <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
+                    <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
+                        <i ng-if="!activeUser" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        <i ng-if="activeUser" style="color: #daa520" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                    </button>
+                    <ul ng-if="activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li ui-sref="beerLog"><a>My Beer Log <3</a></li>
+                        <li ui-sref="beerMeRandom"><a>Drink </a></li>
+                        <li ui-sref="drank-beersConsumed"><a href="#">Drank</a></li>
+                        <li ui-sref="drunk-personalGallery"><a href="#">Drunk</a></li>
+                        <li class="divider"></li>
+                        <li ui-sref="accountManagement"><a>Account Management</a></li>
+                        <li ng-click="logout()"  role="menuitem"><a>Logout</a></li>
+                    </ul>
+                    <ul ng-if="!activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li ui-sref="login"><a>Login</a></li>
+                        <li ui-sref="register"><a>Register</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--<div class="navbar navbar-fixed-top" id="header">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-header">
+                <a class="pull-left" style="color : #daa520" ng-href="/"><b>Drink, Drank, Drunk</b></a>
+            </div>
+        </div>
+
+        <div class="row" style="color: black">
+            <div class="col-sm-3 col-sm-offset-7">
+                <div class="form-group label-floating">
+                    <form ng-submit="beerSearch(beerSearchInput)">
+                        <label class="control-label" for="beerSearchInput">C'mon. Search for a beer here.</label>
+                        <input class="form-control" ng-model="beerSearchInput" id="beerSearchInput" type="text">
+                        <p class="help-block">Let us help you find that sought-after buzz.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-1" style="margin-top: 15px">
+                <button type="button" class="btn "><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
+            </div>
+            <div class="col-sm-1">
+                <p id="cheersText">Cheers for a random beer</p>
+            </div>
+
+            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-6" style="margin-top: 35px">
+                <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
+                    <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
+                        <i ng-if="!activeUser" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        <i ng-if="activeUser" style="color: #daa520" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                    </button>
+                    <ul ng-if="activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li ui-sref="beerLog"><a>My Beer Log <3</a></li>
+                        <li ui-sref="beerMeRandom"><a>Drink </a></li>
+                        <li ui-sref="drank-beersConsumed"><a href="#">Drank</a></li>
+                        <li ui-sref="drunk-personalGallery"><a href="#">Drunk</a></li>
+                        <li class="divider"></li>
+                        <li ui-sref="accountManagement"><a>Account Management</a></li>
+                        <li ng-click="logout()"  role="menuitem"><a>Logout</a></li>
+                    </ul>
+                    <ul ng-if="!activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li ui-sref="login"><a>Login</a></li>
+                        <li ui-sref="register"><a>Register</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>-->
+
+</div>
+<div id="content" class="container" ui-view="body"></div>
+<!--<div class="w-section footersection"></div>-->
+
+
 
 <!--Header-->
-<div class="navbar navbar-fixed-top" id="header">
+<!--<div class="navbar navbar-fixed-top" id="header">
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-header">
@@ -99,18 +223,15 @@
 
         </div>
     </div>
-</div>
-<!--End of Header-->
-<hr id="divider">
+</div>-->
+<!--
+End of Header
+-->
 
-    <div id="content" class="container" ui-view="body"></div>
 
-<!--Footer-->
-   <!-- <footer style="background-color: white" class="footer">
-        <div class="container text-center">
-            <p>Footer</p>
-        </div>
-    </footer>-->
+<footer class="footer footerStyle">
+    <div class="container"></div>
+</footer>
 </body>
     <script>
         $(document).ready(function () {
