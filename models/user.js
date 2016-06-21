@@ -17,7 +17,7 @@ let userSchema = new mongoose.Schema({
         beerName: String,
         beerId: String,
         comments: [{ type: String }],
-        personalRatings: { type: Number, default: 0 },
+        beerRating: { type: Number, default: 0 },
         beerMemories: [{
             beerPhotoCaption: { type: String },
             beerPhotoUrl: { type: String }
@@ -33,6 +33,20 @@ let userSchema = new mongoose.Schema({
 
 });
 
+
+userSchema.statics.saveBeerRating = function (dataToSave, callback) {
+    User.findById(dataToSave._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user" }); 
+        for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+            if (dataToSave.beerId === databaseUser.sampledBeers[i].beerId) {
+                databaseUser.sampledBeers[i].beerRating = dataToSave.newBeerRating;
+            }
+        }
+        databaseUser.save(function (error, savedUser) {
+            callback(error, savedUser);
+        });
+    });  
+};
 
 userSchema.statics.addBeerMemory = function (beerMemory, callback) {
     User.findById(beerMemory._id, function (error, databaseUser) {

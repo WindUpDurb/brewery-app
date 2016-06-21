@@ -255,16 +255,25 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             }
         }
 
-        if ($scope.hasConsumed) {
-            //change personalRatings variable name in Model
-            $scope.currentRating = $scope.currentBeer.personalRatings;
-
-        }
-
         $scope.beerRating = function (rating) {
             $scope.currentRating = rating;
-            console.log("Rating: ", $scope.currentRating);
+            $scope.ratingArray = [];
+            for (let i = 1; i <= rating; i++) {
+                $scope.ratingArray.push(i);
+            }
+            BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
         };
+
+        if ($scope.hasConsumed) {
+            $scope.beerRating($scope.currentBeer.beerRating);
+        }
+
 
         $scope.changeIfConsumed = function (consumed) {
             BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
@@ -443,7 +452,15 @@ app.service("AuthServices", function ($http) {
 
 app.service("BeerServices", function ($http, localStorageService) {
 
-
+    this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
+        let toSend = {
+            beerId: beerId,
+            newBeerRating: newBeerRating,
+            _id: activeUser._id
+        };
+        return $http.post("/api/users/saveBeerRating", toSend);
+    };
+    
     this.getFromLocalStorage = function (key) {
         return localStorageService.get(key);
     };
@@ -470,15 +487,7 @@ app.service("BeerServices", function ($http, localStorageService) {
             method: "GET"
         });
     };
-
-    this.getBeerBrowseMenu = function () {
-        return $http({
-            url: "/api/breweryAPI/beerBrowseMenu",
-            method: "GET"
-           // cache: true
-        });
-    };
-
+    
     this.checkIfConsumed = function (beerId, activeUser) {
         for (let i = 0; i < activeUser.beerSeen.length; i++) {
             if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {

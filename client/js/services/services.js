@@ -40,7 +40,15 @@ app.service("AuthServices", function ($http) {
 
 app.service("BeerServices", function ($http, localStorageService) {
 
-
+    this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
+        let toSend = {
+            beerId: beerId,
+            newBeerRating: newBeerRating,
+            _id: activeUser._id
+        };
+        return $http.post("/api/users/saveBeerRating", toSend);
+    };
+    
     this.getFromLocalStorage = function (key) {
         return localStorageService.get(key);
     };
@@ -67,15 +75,7 @@ app.service("BeerServices", function ($http, localStorageService) {
             method: "GET"
         });
     };
-
-    this.getBeerBrowseMenu = function () {
-        return $http({
-            url: "/api/breweryAPI/beerBrowseMenu",
-            method: "GET"
-           // cache: true
-        });
-    };
-
+    
     this.checkIfConsumed = function (beerId, activeUser) {
         for (let i = 0; i < activeUser.beerSeen.length; i++) {
             if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {

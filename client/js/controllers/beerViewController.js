@@ -39,16 +39,25 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             }
         }
 
-        if ($scope.hasConsumed) {
-            //change personalRatings variable name in Model
-            $scope.currentRating = $scope.currentBeer.personalRatings;
-
-        }
-
         $scope.beerRating = function (rating) {
             $scope.currentRating = rating;
-            console.log("Rating: ", $scope.currentRating);
+            $scope.ratingArray = [];
+            for (let i = 1; i <= rating; i++) {
+                $scope.ratingArray.push(i);
+            }
+            BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
         };
+
+        if ($scope.hasConsumed) {
+            $scope.beerRating($scope.currentBeer.beerRating);
+        }
+
 
         $scope.changeIfConsumed = function (consumed) {
             BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)

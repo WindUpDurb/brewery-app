@@ -59,6 +59,13 @@ router.post("/login", function (request, response) {
     });
 });
 
+router.post("/saveBeerRating", function (request, response) {
+    User.saveBeerRating(request.body, function (error, updatedUser) {
+        if (error) return response.status(400).send(error);
+        response.send("Beer Rating has been updated");
+    })
+});
+
 router.post("/uploadPhoto/:userId/:beerId", upload.single("newBeerPhoto"), function (request, response, next) {
     console.log("userId: ", request.params.userId);
     console.log("beerId: ", request.params.beerId);

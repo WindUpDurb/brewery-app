@@ -1,26 +1,31 @@
 <div style="margin-top: 15px; margin-bottom: 50px;" class="row">
     <!--Gold if the star is active; white if it is inactive-->
     <div ng-if="activeUser && hasConsumed" style="display: inline-block">
-        <button ng-click="beerRating(1)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(2)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(3)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(4)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(5)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(6)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(7)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(8)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(9)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
-        <button ng-click="beerRating(10)" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+        <button ng-repeat="number in ratingArray" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
     </div>
 
     <span class="pull-right" ng-if="beerData.status === 'update_pending'"><img src="/images/updatePending64.png"></span>
     <span class="pull-right" ng-if="beerData.status === 'verified'"><img src="/images/thumbUp64.png"></span>
     <span class="pull-right" ng-if="activeUser && hasConsumed"><img src="/images/beerIconConsumed64.png"></span>
     <span class="pull-right" ng-if="activeUser && !hasConsumed"><img src="/images/beerIconNoConsumed64.png" ></span>
-    <div class="row">
-        <div class="col-sm-1 col-sm-offset-2">
-            <button  style="background-color: #272100; box-shadow: 10px 10px 5px #888888;" class="btn btn-default btn-fab">Submit</button>
-        </div>
+    <div ng-if="activeUser && hasConsumed" class="row">
+            <div class="form-group">
+                <div class="col-sm-1">
+                    <label for="select111" class="control-label">Rate this beer:</label>
+                    <select id="select111" ng-model="rating" ng-change="beerRating(rating)" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
     </div>
 </div>
 
