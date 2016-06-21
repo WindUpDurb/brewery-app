@@ -89,6 +89,32 @@ app.service("BeerServices", function ($http, localStorageService) {
         }
         return false;
     };
+    
+    this.inToDrink = function (beerId, activeUser) {
+        for (let i = 0; i < activeUser.toDrink.length; i++) {
+            if (activeUser.toDrink[i].beerId === beerId) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.addToToDrink = function (activeUser, beerData, breweryData) {
+        let beerImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+        if (beerData.labels) {
+            beerImage = beerData.labels.medium || beerData.labels.large || beerData.labels.icon;
+        }
+        let toSend = {
+            _id: activeUser._id,
+            newToDrink: {
+                breweryName: breweryData.name,
+                beerName: beerData.name,
+                beerId: beerData.id,
+                image: beerImage
+            }
+        };
+        return $http.post("/api/users/addToToDrink", toSend);
+    };
 
     this.changeIfConsumed = function (consumed, beerId, beerName, activeUser) {
         let beerSeen = activeUser.beerSeen;

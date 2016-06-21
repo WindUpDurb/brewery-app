@@ -13,9 +13,19 @@ let userSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: {type: String },
     password: { type: String, required: true },
+    toDrink: [{
+        beerName: { type: String },
+        beerId: { type: String },
+        image: { type: String },
+        breweryName: { type: String },
+        //maybe include later a notes section that the user
+        //can fill with notes on where to get the beer, who introduced it to him, etc.
+        //it'll be an array of objects
+        finallyDrank: { type: Boolean, default: false }
+    }],
     sampledBeers: [{
-        beerName: String,
-        beerId: String,
+        beerName: { type: String },
+        beerId: { type: String },
         comments: [{ type: String }],
         beerRating: { type: Number, default: 0 },
         beerMemories: [{
@@ -33,6 +43,16 @@ let userSchema = new mongoose.Schema({
 
 });
 
+
+userSchema.statics.addToToDrink = function (toUpdateWith, callback) {
+    User.findById(toUpdateWith._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user" });
+        databaseUser.toDrink.push(toUpdateWith.newToDrink);
+        databaseUser.save(function (error, savedUser) {
+            callback(error, savedUser);
+        });
+    });
+};
 
 userSchema.statics.saveBeerRating = function (dataToSave, callback) {
     User.findById(dataToSave._id, function (error, databaseUser) {

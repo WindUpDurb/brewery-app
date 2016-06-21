@@ -30,6 +30,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
 
     if ($scope.activeUser) {
         $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+        $scope.inToDrink = BeerServices.inToDrink(beerId, $scope.activeUser);
 
         for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
             if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
@@ -48,6 +49,17 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
                 .then(function (response) {
                     console.log("Response: ", response);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        };
+
+        $scope.addToToDrink = function () {
+            BeerServices.addToToDrink($scope.activeUser, $scope.beerData, $scope.breweryData)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                    $scope.inToDrink = true;
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);

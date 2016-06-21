@@ -15,7 +15,7 @@ function beerController(BeerServices, AuthServices, $state, $scope) {
                     if ($scope.beerData && $scope.beerData.breweries) {
                         $scope.breweryData = $scope.beerData.breweries[0];
                     }
-                    console.log("Responese: ", response.data.data)
+                    console.log("Response: ", response.data.data)
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);

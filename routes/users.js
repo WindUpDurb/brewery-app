@@ -59,6 +59,13 @@ router.post("/login", function (request, response) {
     });
 });
 
+router.post("/addToToDrink", function (request, response) {
+   User.addToToDrink(request.body, function (error, savedUser) {
+       if (error) return response.status(400).send(error);
+       response.send("To-Drink has been updated");
+   });
+});
+
 router.post("/saveBeerRating", function (request, response) {
     User.saveBeerRating(request.body, function (error, updatedUser) {
         if (error) return response.status(400).send(error);

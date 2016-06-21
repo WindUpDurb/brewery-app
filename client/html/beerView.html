@@ -1,5 +1,7 @@
 <div style="margin-top: 15px; margin-bottom: 50px;" class="row">
-    <!--Gold if the star is active; white if it is inactive-->
+    <div ng-if="activeUser && !hasConsumed && !inToDrink" style="display: inline-block">
+        <button ng-click="addToToDrink()" type="button" class="btn btn-raised">Add to your To-Drink List</button>
+    </div>
     <div ng-if="activeUser && hasConsumed" style="display: inline-block">
         <button ng-repeat="number in ratingArray" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
     </div>
@@ -73,7 +75,7 @@
         </div>
             <div>
                 <p class="paragarphFormat">{{breweryData.description}}</p>
-                <p><a ng-href="{{breweryData.website}}">{{breweryData.name}}</a></p>
+                <p style="margin-top: 50px"><a ng-href="{{breweryData.website}}">{{breweryData.name}}</a></p>
             </div>
     </div>
 

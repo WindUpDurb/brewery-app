@@ -80,12 +80,11 @@
             <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-1" style="margin-top: 35px">
                 <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
                     <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
-                        <i ng-if="!activeUser" class="fa fa-bars fa-2x" aria-hidden="true"></i>
-                        <i ng-if="activeUser" style="color: #daa520" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        <i ng-class="{ 'activeUserDropDown': activeUser}" class="fa fa-bars fa-2x" aria-hidden="true"></i>
                     </button>
                     <ul ng-if="activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
                         <li ui-sref="beerLog"><a>My Beer Log <3</a></li>
-                        <li ui-sref="beerMeRandom"><a>Drink </a></li>
+                        <li ui-sref="toDrink"><a>Drink </a></li>
                         <li ui-sref="drank-beersConsumed"><a href="#">Drank</a></li>
                         <li ui-sref="drunk-personalGallery"><a href="#">Drunk</a></li>
                         <li class="divider"></li>
