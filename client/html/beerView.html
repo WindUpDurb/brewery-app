@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-<div class="row">
-    <span class="pull-right" ng-if="beerData.status === 'update_pending'">
-        <img src="/images/updatePending64.png">
-        <span><p>Update Pending</p></span>
-    </span>
-    <span class="pull-right" ng-if="beerData.status === 'verified'">
-        <img src="/images/thumbUp64.png">
-        <span><p>Beer Data Verified</p></span>
-    </span>
-    <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed64.png"></span>
-    <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed64.png" ></span>
-=======
 <div style="margin-top: 15px; margin-bottom: 50px;" class="row">
     <div ng-if="activeUser && !hasConsumed && !inToDrink" style="display: inline-block">
         <button ng-click="addToToDrink()" type="button" class="btn btn-raised">Add to your To-Drink List</button>
@@ -42,7 +29,6 @@
                 </div>
             </div>
     </div>
->>>>>>> experimenting-with-beerView
 </div>
 
 <h1 class="text-center">{{beerData.name}}</h1>
