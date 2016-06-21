@@ -6,18 +6,7 @@ angular
 
 function beerBrowserController($scope, $state, BeerServices) {
     console.log("Beer Browser Controller");
-    $scope.beerBrowseMenu = BeerServices.getFromLocalStorage("/api/breweryAPI/beerBrowseMenu");
-    if (!$scope.beerBrowseMenu) {
-        BeerServices.getBeerBrowseMenu()
-            .then(function (response) {
-                $scope.beerBrowseMenu = response.data.data;
-                BeerServices.submitToLocalStorage("/api/breweryAPI/beerBrowseMenu", response.data.data);
-                console.log($scope.beerBrowseMenu);
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    }
+    console.log("Params: ", $state.params);
     if ($state.params.category && $state.params.pageNumber) {
         let category = $state.params.category;
         let pageNumber = $state.params.pageNumber;
@@ -39,7 +28,6 @@ function beerBrowserController($scope, $state, BeerServices) {
                         console.log("Error: ", error);
                     });
             }
-
         }());
     }
 }

@@ -12,7 +12,8 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             url : "/",
             views: {
                 "body": {
-                    templateUrl: "/html/home.html"
+                    templateUrl: "/html/home.html",
+                    controller: "beerBrowserController"
                 }
             }
         })
@@ -32,30 +33,19 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                 }
             }
         })
-        .state("beerBrowse", {
-            url: "/beerBrowser",
+        .state("beerBrowseContents", {
+            url: "/beerBrowser/:category/:pageNumber",
             views: {
                 "body": {
-                    templateUrl: "/html/beerBrowse.html",
-                    controller: "beerBrowserController"
-                }
-            }
-        })
-        .state("beerBrowseContents", {
-            parent: "beerBrowse",
-            url: "/contents/:category/:pageNumber",
-            views: {
-                "contents": {
                     templateUrl: "/html/beerBrowseContents.html",
                     controller: "beerBrowserController"
                 }
             }
         })
         .state("beerSearchResults", {
-            parent: "beerBrowse",
             url: "/search/:query",
             views: {
-                "contents": {
+                "body": {
                     templateUrl: "/html/beerSearchResults.html",
                     controller: "beerSearchController"
                 }
@@ -135,18 +125,7 @@ angular
 
 function beerBrowserController($scope, $state, BeerServices) {
     console.log("Beer Browser Controller");
-    $scope.beerBrowseMenu = BeerServices.getFromLocalStorage("/api/breweryAPI/beerBrowseMenu");
-    if (!$scope.beerBrowseMenu) {
-        BeerServices.getBeerBrowseMenu()
-            .then(function (response) {
-                $scope.beerBrowseMenu = response.data.data;
-                BeerServices.submitToLocalStorage("/api/breweryAPI/beerBrowseMenu", response.data.data);
-                console.log($scope.beerBrowseMenu);
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    }
+    console.log("Params: ", $state.params);
     if ($state.params.category && $state.params.pageNumber) {
         let category = $state.params.category;
         let pageNumber = $state.params.pageNumber;
@@ -168,7 +147,6 @@ function beerBrowserController($scope, $state, BeerServices) {
                         console.log("Error: ", error);
                     });
             }
-
         }());
     }
 }

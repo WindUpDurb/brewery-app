@@ -22,6 +22,11 @@ body {
   text-indent: 50px;
   text-align: justify; }
 
+.footerStyle {
+  border-top: 1px solid black;
+  height: 100px;
+  margin-top: 100px; }
+
 #header {
   background-color: white;
   margin-bottom: 0px;

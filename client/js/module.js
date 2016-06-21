@@ -12,7 +12,8 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             url : "/",
             views: {
                 "body": {
-                    templateUrl: "/html/home.html"
+                    templateUrl: "/html/home.html",
+                    controller: "beerBrowserController"
                 }
             }
         })
@@ -32,30 +33,19 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                 }
             }
         })
-        .state("beerBrowse", {
-            url: "/beerBrowser",
+        .state("beerBrowseContents", {
+            url: "/beerBrowser/:category/:pageNumber",
             views: {
                 "body": {
-                    templateUrl: "/html/beerBrowse.html",
-                    controller: "beerBrowserController"
-                }
-            }
-        })
-        .state("beerBrowseContents", {
-            parent: "beerBrowse",
-            url: "/contents/:category/:pageNumber",
-            views: {
-                "contents": {
                     templateUrl: "/html/beerBrowseContents.html",
                     controller: "beerBrowserController"
                 }
             }
         })
         .state("beerSearchResults", {
-            parent: "beerBrowse",
             url: "/search/:query",
             views: {
-                "contents": {
+                "body": {
                     templateUrl: "/html/beerSearchResults.html",
                     controller: "beerSearchController"
                 }
