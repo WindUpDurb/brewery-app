@@ -42,6 +42,23 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                 }
             }
         })
+        .state("toDrink", {
+            url: "/toDrink",
+            views: {
+                "body": {
+                    templateUrl: "/html/toDrink.html",
+                    controller: "beerController"
+                }
+            },
+            resolve: {
+                activeUserProfile: function (AuthServices, $state) {
+                    return AuthServices.isLoggedIn()
+                        .catch(function () {
+                            $state.go("home");
+                        })
+                }
+            }
+        })
         .state("beerSearchResults", {
             url: "/search/:query",
             views: {

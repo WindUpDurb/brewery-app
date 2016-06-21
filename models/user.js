@@ -13,17 +13,21 @@ let userSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: {type: String },
     password: { type: String, required: true },
+    toDrink: [{
+        beerName: { type: String },
+        beerId: { type: String },
+        image: { type: String },
+        breweryName: { type: String },
+        //maybe include later a notes section that the user
+        //can fill with notes on where to get the beer, who introduced it to him, etc.
+        //it'll be an array of objects
+        finallyDrank: { type: Boolean, default: false }
+    }],
     sampledBeers: [{
-        beerName: String,
-        beerId: String,
+        beerName: { type: String },
+        beerId: { type: String },
         comments: [{ type: String }],
-        //personal rating can be:
-        //1) Would Buy
-        //2) Would Consider if available
-        //3) Would Drink Only if Someone Bought if for Me
-        //4) Would Drink if Drunk
-        //5) Fuck this beer
-        personalRatings: [{ type: String }],
+        beerRating: { type: Number, default: 0 },
         beerMemories: [{
             beerPhotoCaption: { type: String },
             beerPhotoUrl: { type: String }
@@ -39,6 +43,30 @@ let userSchema = new mongoose.Schema({
 
 });
 
+
+userSchema.statics.addToToDrink = function (toUpdateWith, callback) {
+    User.findById(toUpdateWith._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user" });
+        databaseUser.toDrink.push(toUpdateWith.newToDrink);
+        databaseUser.save(function (error, savedUser) {
+            callback(error, savedUser);
+        });
+    });
+};
+
+userSchema.statics.saveBeerRating = function (dataToSave, callback) {
+    User.findById(dataToSave._id, function (error, databaseUser) {
+        if (error || !databaseUser) return callback(error || { error: "There is no user" }); 
+        for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+            if (dataToSave.beerId === databaseUser.sampledBeers[i].beerId) {
+                databaseUser.sampledBeers[i].beerRating = dataToSave.newBeerRating;
+            }
+        }
+        databaseUser.save(function (error, savedUser) {
+            callback(error, savedUser);
+        });
+    });  
+};
 
 userSchema.statics.addBeerMemory = function (beerMemory, callback) {
     User.findById(beerMemory._id, function (error, databaseUser) {

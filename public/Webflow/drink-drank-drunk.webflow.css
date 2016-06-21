@@ -9,6 +9,26 @@
   box-shadow: 1px 1px 3px -20px #000, 1px 1px 3px 0 #000;
 }
 
+.todrinkbeername {
+  position: static;
+  left: 24px;
+  top: -58px;
+  bottom: -33px;
+  display: inline-block;
+  font-size: 34px;
+}
+
+.todrinkbeerdetails {
+  position: relative;
+  top: -30px;
+  right: -35px;
+  display: inline-block;
+}
+
+.todrinkbeerbrewery {
+  font-size: 23px;
+}
+
 .beerstylesslider {
   height: 350px;
   background-color: transparent;

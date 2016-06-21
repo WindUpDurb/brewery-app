@@ -1,0 +1,14 @@
+<div class="div text-center">
+    <h1 class="drankheading">To-Drink</h1>
+</div>
+
+
+<div ng-repeat="beer in activeUser.toDrink" class="w-section toDrinkEntry">
+    <div class="w-container"><img ng-src="{{beer.image}}">
+        <div class="todrinkbeerdetails">
+            <a href="/#/beer/{{beer.beerId}}"><p class="todrinkbeername">{{beer.beerName}}</p></a>
+            <p class="todrinkbeerbrewery">{{beer.breweryName}}</p>
+        </div>
+    </div>
+    <div class="subjectBreak container-fluid"></div>
+</div>

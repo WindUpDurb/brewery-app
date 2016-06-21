@@ -40,7 +40,15 @@ app.service("AuthServices", function ($http) {
 
 app.service("BeerServices", function ($http, localStorageService) {
 
-
+    this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
+        let toSend = {
+            beerId: beerId,
+            newBeerRating: newBeerRating,
+            _id: activeUser._id
+        };
+        return $http.post("/api/users/saveBeerRating", toSend);
+    };
+    
     this.getFromLocalStorage = function (key) {
         return localStorageService.get(key);
     };
@@ -67,15 +75,7 @@ app.service("BeerServices", function ($http, localStorageService) {
             method: "GET"
         });
     };
-
-    this.getBeerBrowseMenu = function () {
-        return $http({
-            url: "/api/breweryAPI/beerBrowseMenu",
-            method: "GET"
-           // cache: true
-        });
-    };
-
+    
     this.checkIfConsumed = function (beerId, activeUser) {
         for (let i = 0; i < activeUser.beerSeen.length; i++) {
             if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {
@@ -88,6 +88,32 @@ app.service("BeerServices", function ($http, localStorageService) {
             }
         }
         return false;
+    };
+    
+    this.inToDrink = function (beerId, activeUser) {
+        for (let i = 0; i < activeUser.toDrink.length; i++) {
+            if (activeUser.toDrink[i].beerId === beerId) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.addToToDrink = function (activeUser, beerData, breweryData) {
+        let beerImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+        if (beerData.labels) {
+            beerImage = beerData.labels.medium || beerData.labels.large || beerData.labels.icon;
+        }
+        let toSend = {
+            _id: activeUser._id,
+            newToDrink: {
+                breweryName: breweryData.name,
+                beerName: beerData.name,
+                beerId: beerData.id,
+                image: beerImage
+            }
+        };
+        return $http.post("/api/users/addToToDrink", toSend);
     };
 
     this.changeIfConsumed = function (consumed, beerId, beerName, activeUser) {

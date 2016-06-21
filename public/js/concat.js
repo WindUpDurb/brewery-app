@@ -42,6 +42,23 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                 }
             }
         })
+        .state("toDrink", {
+            url: "/toDrink",
+            views: {
+                "body": {
+                    templateUrl: "/html/toDrink.html",
+                    controller: "beerController"
+                }
+            },
+            resolve: {
+                activeUserProfile: function (AuthServices, $state) {
+                    return AuthServices.isLoggedIn()
+                        .catch(function () {
+                            $state.go("home");
+                        })
+                }
+            }
+        })
         .state("beerSearchResults", {
             url: "/search/:query",
             views: {
@@ -167,7 +184,7 @@ function beerController(BeerServices, AuthServices, $state, $scope) {
                     if ($scope.beerData && $scope.beerData.breweries) {
                         $scope.breweryData = $scope.beerData.breweries[0];
                     }
-                    console.log("Responese: ", response.data.data)
+                    console.log("Response: ", response.data.data)
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
@@ -245,15 +262,47 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
     }());
 
     if ($scope.activeUser) {
-
         $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+        $scope.inToDrink = BeerServices.inToDrink(beerId, $scope.activeUser);
 
         for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
             if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
+                $scope.currentBeer = $scope.activeUser.sampledBeers[i];
                 $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
                 console.log("Memories: ", $scope.beerMemories)
             }
         }
+
+        $scope.beerRating = function (rating) {
+            $scope.currentRating = rating;
+            $scope.ratingArray = [];
+            for (let i = 1; i <= rating; i++) {
+                $scope.ratingArray.push(i);
+            }
+            BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        };
+
+        $scope.addToToDrink = function () {
+            BeerServices.addToToDrink($scope.activeUser, $scope.beerData, $scope.breweryData)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                    $scope.inToDrink = true;
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        };
+
+        if ($scope.hasConsumed) {
+            $scope.beerRating($scope.currentBeer.beerRating);
+        }
+
 
         $scope.changeIfConsumed = function (consumed) {
             BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
@@ -277,6 +326,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
                     console.log("Error: ", error);
                 })
         };
+
 
         $scope.currentIndex = 0;
 
@@ -354,6 +404,7 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
     $scope.beerSearch = function (query) {
         let queryString = query.replace(/\s/gi, "%20");
         $state.go("beerSearchResults", { query: queryString });
+        $scope.beerSearchInput = null;
     };
     
 });
@@ -430,7 +481,15 @@ app.service("AuthServices", function ($http) {
 
 app.service("BeerServices", function ($http, localStorageService) {
 
-
+    this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
+        let toSend = {
+            beerId: beerId,
+            newBeerRating: newBeerRating,
+            _id: activeUser._id
+        };
+        return $http.post("/api/users/saveBeerRating", toSend);
+    };
+    
     this.getFromLocalStorage = function (key) {
         return localStorageService.get(key);
     };
@@ -457,15 +516,7 @@ app.service("BeerServices", function ($http, localStorageService) {
             method: "GET"
         });
     };
-
-    this.getBeerBrowseMenu = function () {
-        return $http({
-            url: "/api/breweryAPI/beerBrowseMenu",
-            method: "GET"
-           // cache: true
-        });
-    };
-
+    
     this.checkIfConsumed = function (beerId, activeUser) {
         for (let i = 0; i < activeUser.beerSeen.length; i++) {
             if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {
@@ -478,6 +529,32 @@ app.service("BeerServices", function ($http, localStorageService) {
             }
         }
         return false;
+    };
+    
+    this.inToDrink = function (beerId, activeUser) {
+        for (let i = 0; i < activeUser.toDrink.length; i++) {
+            if (activeUser.toDrink[i].beerId === beerId) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.addToToDrink = function (activeUser, beerData, breweryData) {
+        let beerImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+        if (beerData.labels) {
+            beerImage = beerData.labels.medium || beerData.labels.large || beerData.labels.icon;
+        }
+        let toSend = {
+            _id: activeUser._id,
+            newToDrink: {
+                breweryName: breweryData.name,
+                beerName: beerData.name,
+                beerId: beerData.id,
+                image: beerImage
+            }
+        };
+        return $http.post("/api/users/addToToDrink", toSend);
     };
 
     this.changeIfConsumed = function (consumed, beerId, beerName, activeUser) {

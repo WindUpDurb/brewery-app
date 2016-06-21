@@ -29,15 +29,47 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
     }());
 
     if ($scope.activeUser) {
-
         $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
+        $scope.inToDrink = BeerServices.inToDrink(beerId, $scope.activeUser);
 
         for (let i = 0; i < $scope.activeUser.sampledBeers.length; i++) {
             if ($scope.activeUser.sampledBeers[i].beerId === beerId) {
+                $scope.currentBeer = $scope.activeUser.sampledBeers[i];
                 $scope.beerMemories = $scope.activeUser.sampledBeers[i].beerMemories;
                 console.log("Memories: ", $scope.beerMemories)
             }
         }
+
+        $scope.beerRating = function (rating) {
+            $scope.currentRating = rating;
+            $scope.ratingArray = [];
+            for (let i = 1; i <= rating; i++) {
+                $scope.ratingArray.push(i);
+            }
+            BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        };
+
+        $scope.addToToDrink = function () {
+            BeerServices.addToToDrink($scope.activeUser, $scope.beerData, $scope.breweryData)
+                .then(function (response) {
+                    console.log("Response: ", response);
+                    $scope.inToDrink = true;
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        };
+
+        if ($scope.hasConsumed) {
+            $scope.beerRating($scope.currentBeer.beerRating);
+        }
+
 
         $scope.changeIfConsumed = function (consumed) {
             BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
@@ -61,6 +93,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
                     console.log("Error: ", error);
                 })
         };
+
 
         $scope.currentIndex = 0;
 
