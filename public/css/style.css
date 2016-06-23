@@ -2,6 +2,11 @@ body {
   background-color: white;
   padding-top: 135px; }
 
+.todrinkstatisticssection {
+  position: fixed;
+  left: 5px;
+  width: 15%; }
+
 .subjectBreak {
   margin-top: 100px;
   margin-bottom: 70px;

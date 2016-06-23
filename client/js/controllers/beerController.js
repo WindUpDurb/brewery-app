@@ -33,6 +33,8 @@ function beerController(BeerServices, AuthServices, $state, $scope) {
         }
     }
 
+    $scope.toDrinkStatistics = BeerServices.countDrankInToDrink($scope.activeUser.toDrink);
+    
     $scope.beerMe = function () {
         BeerServices.beerMe()
             .then(function (response) {

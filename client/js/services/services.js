@@ -141,6 +141,24 @@ app.service("BeerServices", function ($http, localStorageService) {
         });
     };
 
+    this.countDrankInToDrink = function (toDrinkArray) {
+        let toReturn = {
+            drank: 0,
+            haveNotDrank: 0,
+            totalInToDrink: 0
+        };
+        for (let i = 0; i < toDrinkArray.length; i++) {
+            if (toDrinkArray[i].finallyDrank) {
+                toReturn.drank++;
+                toReturn.totalInToDrink++;
+            } else {
+                toReturn.haveNotDrank++;
+                toReturn.totalInToDrink++;
+            }
+        }
+        return toReturn;
+    };
+
     this.craftNextPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) + 1).toString();
         return `/#/beerBrowser/contents/${category}/${pageNumber}`
@@ -150,7 +168,7 @@ app.service("BeerServices", function ($http, localStorageService) {
         let pageNumber = (parseInt(currentPage) - 1).toString();
         return `/#/beerBrowser/contents/${category}/${pageNumber}`
     };
-
+/*
     this.checkIfBeerCached = function (beerId) {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
         let toReturn = {};
@@ -166,11 +184,11 @@ app.service("BeerServices", function ($http, localStorageService) {
     this.getCurrentBeerData = function (beerId) {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
         let toReturn = {};
-        /* toReturn.beerData = _this.getFromLocalStorage(key);
+        /!* toReturn.beerData = _this.getFromLocalStorage(key);
          if (toReturn.beerData) {
              toReturn.breweryData = toReturn.beerData.breweries[0];
              return toReturn;
-         }*/
+         }*!/
         _this.getSingleBeer(beerId)
             .then(function (response) {
                 toReturn.beerData = response.data.data;
@@ -182,8 +200,7 @@ app.service("BeerServices", function ($http, localStorageService) {
             .catch(function (error) {
                 console.log("Error: ", error);
             })
-
-    };
+    };*/
 
 });
 

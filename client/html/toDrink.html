@@ -2,12 +2,39 @@
     <h1 class="drankheading">To-Drink</h1>
 </div>
 
+<div class="todrinkstatisticssection">
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>
+                Beers in To-Drink:
+            </th>
+            <td>{{toDrinkStatistics.totalInToDrink}}</td>
+        </tr>
+        <tr>
+            <th>
+                Beers I've checked off and drank:
+            </th>
+            <td>{{toDrinkStatistics.drank}}</td>
+        </tr>
+        <tr>
+            <th>Beers I've yet to drink:</th>
+            <td>{{toDrinkStatistics.haveNotDrank}}</td>
+        </tr>
+    </table>
+</div>
+<!--Maybe a fixed div on the left side with details-->
 
 <div ng-repeat="beer in activeUser.toDrink" class="w-section toDrinkEntry">
     <div class="w-container"><img ng-src="{{beer.image}}">
         <div class="todrinkbeerdetails">
             <a href="/#/beer/{{beer.beerId}}"><p class="todrinkbeername">{{beer.beerName}}</p></a>
             <p class="todrinkbeerbrewery">{{beer.breweryName}}</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-9">
+                <i ng-if="beer.finallyDrank" class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>
+                <i ng-if="!beer.finallyDrank" class="fa fa-square-o fa-3x" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
     <div class="subjectBreak container-fluid"></div>

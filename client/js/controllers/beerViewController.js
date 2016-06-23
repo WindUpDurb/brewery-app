@@ -7,7 +7,27 @@ angular
 function beerViewController($scope, $stateParams, BeerServices, Upload) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
-    let currentBeerData = BeerServices.checkIfBeerCached(beerId);
+    (function () {
+        let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
+        $scope.beerData = BeerServices.getFromLocalStorage(key);
+        if ($scope.beerData) {
+            $scope.breweryData = $scope.beerData.breweries[0];
+        }
+        console.log("Beer Data: ", $scope.beerData);
+        console.log("Brewery Data: ", $scope.breweryData);
+        if (!$scope.beerData) {
+            BeerServices.getSingleBeer(beerId)
+                .then(function (response) {
+                    $scope.beerData = response.data.data;
+                    $scope.breweryData = response.data.data.breweries[0];
+                    BeerServices.submitToLocalStorage(key, response.data.data);
+                })
+                .catch(function (error) {
+                    console.log("Error: ", error);
+                })
+        }
+    }());
+    /*let currentBeerData = BeerServices.checkIfBeerCached(beerId);
     if (currentBeerData) {
         $scope.beerData = currentBeerData.beerData;
         $scope.breweryData = currentBeerData.breweryData;
@@ -17,7 +37,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
         $scope.beerData = currentBeerData.beerData;
         $scope.breweryData = currentBeerData.breweryData;
     }
-   /* if (!currentBeerData) {
+   /!* if (!currentBeerData) {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
         BeerServices.getCurrentBeerData(beerId)
             .then(function (response) {
@@ -28,11 +48,10 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             })
             .catch(function (error) {
                 console.log("Error: ", error);
-            })*/
+            })*!/*/
         
 
 
-    console.log("CurrentBeerData Resolve: ", currentBeerData);
 
     if ($scope.activeUser) {
         $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
