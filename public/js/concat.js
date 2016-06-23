@@ -93,6 +93,32 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                     controller: "beerViewController"
                 }
             }
+
+            /*,
+            resolve: {
+                currentBeerData: function ($stateParams, BeerServices) {
+                    let beerId = $stateParams.beerId;
+                    if (BeerServices.checkIfBeerCached(beerId)) {
+                        console.log("HEre")
+                        return BeerServices.checkIfBeerCached(beerId);
+                    } else {
+                        BeerServices.getCurrentBeerData(beerId)
+                            .then(function (response) {
+                                let toReturn = {};
+                                toReturn.beerData = response.data.data;
+                                toReturn.breweryData = response.data.data.breweries[0];
+                                console.log("To return: ", toReturn)
+                                BeerServices.submitToLocalStorage(key, response.data.data);
+                                return toReturn;
+                            })
+                            .catch(function (error) {
+                                console.log("Error: ", error);
+                            })
+
+                    }
+
+                }
+            }*/
         })
         .state("beerMeRandom", {
             url: "/beerMe",
@@ -240,26 +266,32 @@ angular
 function beerViewController($scope, $stateParams, BeerServices, Upload) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
-    (function () {
+    let currentBeerData = BeerServices.checkIfBeerCached(beerId);
+    if (currentBeerData) {
+        $scope.beerData = currentBeerData.beerData;
+        $scope.breweryData = currentBeerData.breweryData;
+    }
+    if (!currentBeerData) {
+        currentBeerData = BeerServices.getCurrentBeerData(beerId)
+        $scope.beerData = currentBeerData.beerData;
+        $scope.breweryData = currentBeerData.breweryData;
+    }
+   /* if (!currentBeerData) {
         let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
-        $scope.beerData = BeerServices.getFromLocalStorage(key);
-        if ($scope.beerData) {
-            $scope.breweryData = $scope.beerData.breweries[0];
-        }
-        console.log("Beer Data: ", $scope.beerData);
-        console.log("Brewery Data: ", $scope.breweryData);
-        if (!$scope.beerData) {
-            BeerServices.getSingleBeer(beerId)
-                .then(function (response) {
-                    $scope.beerData = response.data.data;
-                    $scope.breweryData = response.data.data.breweries[0];
-                    BeerServices.submitToLocalStorage(key, response.data.data);
-                })
-                .catch(function (error) {
-                    console.log("Error: ", error);
-                })
-        }
-    }());
+        BeerServices.getCurrentBeerData(beerId)
+            .then(function (response) {
+                $scope.beerData = response.data.data;
+                $scope.breweryData = response.data.data.breweries[0];
+                BeerServices.submitToLocalStorage(key, response.data.data);
+                console.log("To return: ", toReturn)
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })*/
+        
+
+
+    console.log("CurrentBeerData Resolve: ", currentBeerData);
 
     if ($scope.activeUser) {
         $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, $scope.activeUser);
@@ -466,20 +498,11 @@ app.service("AuthServices", function ($http) {
         return $http.get("/api/users/activeUser");
     };
 
-/*    this.isLoggedIn = function () {
-        $http.get("/api/users/activeUser")
-            .then(function (response) {
-                console.log("response: ", response);
-                activeUser = response.data;
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    }();*/
 
 });
 
 app.service("BeerServices", function ($http, localStorageService) {
+    var _this = this;
 
     this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
         let toSend = {
@@ -599,6 +622,40 @@ app.service("BeerServices", function ($http, localStorageService) {
     this.craftPreviousPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) - 1).toString();
         return `/#/beerBrowser/contents/${category}/${pageNumber}`
+    };
+
+    this.checkIfBeerCached = function (beerId) {
+        let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
+        let toReturn = {};
+        toReturn.beerData = _this.getFromLocalStorage(key);
+        if (toReturn.beerData) {
+            toReturn.breweryData = toReturn.beerData.breweries[0];
+            return toReturn;
+        } else {
+            return false;
+        }
+    };
+    
+    this.getCurrentBeerData = function (beerId) {
+        let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
+        let toReturn = {};
+        /* toReturn.beerData = _this.getFromLocalStorage(key);
+         if (toReturn.beerData) {
+             toReturn.breweryData = toReturn.beerData.breweries[0];
+             return toReturn;
+         }*/
+        _this.getSingleBeer(beerId)
+            .then(function (response) {
+                toReturn.beerData = response.data.data;
+                toReturn.breweryData = response.data.data.breweries[0];
+                _this.submitToLocalStorage(key, response.data.data);
+                console.log("To Retrun: ", toReturn);
+                return toReturn;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+
     };
 
 });

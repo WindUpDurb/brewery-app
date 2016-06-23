@@ -25,20 +25,11 @@ app.service("AuthServices", function ($http) {
         return $http.get("/api/users/activeUser");
     };
 
-/*    this.isLoggedIn = function () {
-        $http.get("/api/users/activeUser")
-            .then(function (response) {
-                console.log("response: ", response);
-                activeUser = response.data;
-            })
-            .catch(function (error) {
-                console.log("Error: ", error);
-            });
-    }();*/
 
 });
 
 app.service("BeerServices", function ($http, localStorageService) {
+    var _this = this;
 
     this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
         let toSend = {
@@ -158,6 +149,40 @@ app.service("BeerServices", function ($http, localStorageService) {
     this.craftPreviousPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) - 1).toString();
         return `/#/beerBrowser/contents/${category}/${pageNumber}`
+    };
+
+    this.checkIfBeerCached = function (beerId) {
+        let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
+        let toReturn = {};
+        toReturn.beerData = _this.getFromLocalStorage(key);
+        if (toReturn.beerData) {
+            toReturn.breweryData = toReturn.beerData.breweries[0];
+            return toReturn;
+        } else {
+            return false;
+        }
+    };
+    
+    this.getCurrentBeerData = function (beerId) {
+        let key = `/api/breweryAPI/beerMeSingle/${beerId}`;
+        let toReturn = {};
+        /* toReturn.beerData = _this.getFromLocalStorage(key);
+         if (toReturn.beerData) {
+             toReturn.breweryData = toReturn.beerData.breweries[0];
+             return toReturn;
+         }*/
+        _this.getSingleBeer(beerId)
+            .then(function (response) {
+                toReturn.beerData = response.data.data;
+                toReturn.breweryData = response.data.data.breweries[0];
+                _this.submitToLocalStorage(key, response.data.data);
+                console.log("To Retrun: ", toReturn);
+                return toReturn;
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+
     };
 
 });

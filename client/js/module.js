@@ -93,6 +93,32 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                     controller: "beerViewController"
                 }
             }
+
+            /*,
+            resolve: {
+                currentBeerData: function ($stateParams, BeerServices) {
+                    let beerId = $stateParams.beerId;
+                    if (BeerServices.checkIfBeerCached(beerId)) {
+                        console.log("HEre")
+                        return BeerServices.checkIfBeerCached(beerId);
+                    } else {
+                        BeerServices.getCurrentBeerData(beerId)
+                            .then(function (response) {
+                                let toReturn = {};
+                                toReturn.beerData = response.data.data;
+                                toReturn.breweryData = response.data.data.breweries[0];
+                                console.log("To return: ", toReturn)
+                                BeerServices.submitToLocalStorage(key, response.data.data);
+                                return toReturn;
+                            })
+                            .catch(function (error) {
+                                console.log("Error: ", error);
+                            })
+
+                    }
+
+                }
+            }*/
         })
         .state("beerMeRandom", {
             url: "/beerMe",
