@@ -612,7 +612,6 @@ app.service("BeerServices", function ($http, localStorageService) {
             }
             index = -1;
         }());
-
         if (index === -1) {
             activeUser.nonBeerMeBeer = {
                 beerId: beerId,

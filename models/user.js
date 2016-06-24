@@ -33,7 +33,6 @@ let userSchema = new mongoose.Schema({
             beerPhotoUrl: { type: String }
         }]
     }],
-    //will contain a collection of beer IDs
     beerSeen: [{
         beerName: { type: String},
         beerId: { type: String},
@@ -141,9 +140,35 @@ userSchema.statics.deleteUserAccount = function (userId, callback) {
     });
 };
 
+
+userSchema.statics.updateToDrink = function (beerId, consumed, additionalDataToSave, callback) {
+    if (additionalDataToSave) {
+        // let currentBeer = additionalDataToSave.nonBeerMeBeer || additionalDataToSave.beerModifying;
+        for (let i = 0; i < additionalDataToSave.toDrink.length; i++) {
+            if (additionalDataToSave.toDrink[i].beerId === beerId) {
+                additionalDataToSave.toDrink[i].finallyDrank = consumed;
+                return additionalDataToSave;
+            }
+        }
+        return additionalDataToSave;
+    } else if (!additionalDataToSave) {
+        User.findById(beerId, function (error, databaseUser) {
+            if (error || !databaseUser) return callback(error || {error: "There is no user"});
+            for (let i = 0; i < databaseUser.toDrink.length; i++) {
+                if (databaseUser.toDrink[i].beerId === beerId) {
+                    databaseUser.toDrink[i].finallyDrank = consumed;
+                    return callback(null, databaseUser);
+                }
+            }
+        })
+    }
+};
+
 userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
     User.findById(toUpdateWith._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no such user." });
+        let currentBeerId;
+        let currentBeerConsumed;
         //If the beer to modify is not in the BeerLogs
         if (toUpdateWith.nonBeerMeBeer) {
             if (toUpdateWith.nonBeerMeBeer.consumed) {
@@ -155,6 +180,8 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
                     }
                 }
             }
+            currentBeerId = toUpdateWith.nonBeerMeBeer.beerId;
+            currentBeerConsumed = toUpdateWith.nonBeerMeBeer.consumed;
         } else {
         //If the beer to modify is from the BeerLogs
             databaseUser.beerSeen = toUpdateWith.beerSeen;
@@ -168,7 +195,10 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
                     }
                 }
             }
+            currentBeerId = toUpdateWith.beerModifying.beerId;
+            currentBeerConsumed = toUpdateWith.beerModifying.consumed;
         }
+        databaseUser = User.updateToDrink(currentBeerId, currentBeerConsumed, databaseUser, null);
         databaseUser.save(function (error, savedUser) {
             savedUser.password = null;
             callback(error, savedUser);
