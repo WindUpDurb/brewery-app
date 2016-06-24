@@ -160,12 +160,12 @@ app.service("BeerServices", function ($http, localStorageService) {
 
     this.craftNextPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) + 1).toString();
-        return `/#/beerBrowser/contents/${category}/${pageNumber}`
+        return `/#/beerBrowser/${category}/${pageNumber}`
     };
 
     this.craftPreviousPageURL = function (category, currentPage) {
         let pageNumber = (parseInt(currentPage) - 1).toString();
-        return `/#/beerBrowser/contents/${category}/${pageNumber}`
+        return `/#/beerBrowser/${category}/${pageNumber}`
     };
 /*
     this.checkIfBeerCached = function (beerId) {
