@@ -57,18 +57,22 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-header">
-                <a class="pull-left" style="color : #daa520" ng-href="/"><b>Drink, Drank, Drunk</b></a>
+                <!--<a class="pull-left" style="color : #daa520" ng-href="/"><b>Drink, Drank, Drunk</b></a>-->
             </div>
         </div>
 
         <div class="row" style="color: black">
+            <div style="margin-top: 45px; color: white" class="col-sm-1 col-sm-offset-3">
+                <span>Cheers! For a random beer.</span>
+            </div>
             <div class="col-sm-1" style="margin-top: 15px">
                 <button type="button" class="btn"><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
             </div>
             <div style="margin-top: 45px" class="col-sm-1">
-                <span>Cheers! For a random beer.</span>
+                <a ui-sref="home" style="color: white">Home</a>
             </div>
-            <div class="col-sm-3 col-sm-offset-3">
+
+            <div class="col-sm-3">
                 <div class="form-group label-floating">
                     <form ng-submit="beerSearch(beerSearchInput)">
                         <label class="control-label" for="beerSearchInput">C'mon. Search for a beer here.</label>
@@ -78,10 +82,10 @@
                 </div>
             </div>
 
-            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-1" style="margin-top: 35px">
+            <div ng-controller="dropdownController" class="col-sm-1" style="margin-top: 35px">
                 <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
                     <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
-                        <i ng-class="{ 'activeUserDropDown': activeUser}" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        <i ng-class="{ 'activeUserDropDown': activeUser}" class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
                     </button>
                     <ul ng-if="activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
                         <li ui-sref="beerLog"><a>My Beer Log <3</a></li>
@@ -161,7 +165,7 @@
 </div>-->
 
 </div>
-<div id="content"  ui-view="body"></div>
+<div id="content"  ui-view="body" autoscroll="true"></div>
 <!--<div class="w-section footersection"></div>-->
 
 
@@ -240,7 +244,15 @@ End of Header
         </div>
     </div>
     <div class="container text-center">
-        <p>Maybe include Info to link to Personal Webiste and Blog Here</p>
+        <div style="margin-top: 100px;" class="row">
+            <div class="col-sm-1 col-sm-offset-5">
+                <a href="http://www.windupdurb.com/#!/">Blog</a>
+            </div>
+            <div class="col-sm-1">
+                <a> Home</a>
+            </div>
+        </div>
+        <div style="background-color: #f6f6f6" class="subjectBreak container-fluid"></div>
     </div>
 </footer>
 </body>

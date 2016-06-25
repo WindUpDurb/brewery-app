@@ -167,8 +167,8 @@ userSchema.statics.updateToDrink = function (beerId, consumed, additionalDataToS
 userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
     User.findById(toUpdateWith._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no such user." });
-        let currentBeerId;
-        let currentBeerConsumed;
+        // let currentBeerId;
+        // let currentBeerConsumed;
         //If the beer to modify is not in the BeerLogs
         if (toUpdateWith.nonBeerMeBeer) {
             if (toUpdateWith.nonBeerMeBeer.consumed) {
@@ -180,8 +180,8 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
                     }
                 }
             }
-            currentBeerId = toUpdateWith.nonBeerMeBeer.beerId;
-            currentBeerConsumed = toUpdateWith.nonBeerMeBeer.consumed;
+            var currentBeerId = toUpdateWith.nonBeerMeBeer.beerId;
+            var currentBeerConsumed = toUpdateWith.nonBeerMeBeer.consumed;
         } else {
         //If the beer to modify is from the BeerLogs
             databaseUser.beerSeen = toUpdateWith.beerSeen;
@@ -195,8 +195,8 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
                     }
                 }
             }
-            currentBeerId = toUpdateWith.beerModifying.beerId;
-            currentBeerConsumed = toUpdateWith.beerModifying.consumed;
+            var currentBeerId = toUpdateWith.beerModifying.beerId;
+            var currentBeerConsumed = toUpdateWith.beerModifying.consumed;
         }
         databaseUser = User.updateToDrink(currentBeerId, currentBeerConsumed, databaseUser, null);
         databaseUser.save(function (error, savedUser) {

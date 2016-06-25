@@ -2,7 +2,9 @@
 
 var app = angular.module("beerApp", ["ui.router", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
 
-app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider, $uiViewScrollProvider) {
+
+    $uiViewScrollProvider.useAnchorScroll();
 
     localStorageServiceProvider
         .setPrefix("drink-drink");
@@ -30,6 +32,14 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             views: {
                 "body": {
                     templateUrl: "/html/register.html"
+                }
+            }
+        })
+        .state("accountManagement", {
+            url: "/accountManagement",
+            views: {
+                "body": {
+                    templateUrl: "/html/accountManagement.html"
                 }
             }
         })
