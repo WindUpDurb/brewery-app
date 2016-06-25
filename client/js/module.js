@@ -39,7 +39,16 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             url: "/accountManagement",
             views: {
                 "body": {
-                    templateUrl: "/html/accountManagement.html"
+                    templateUrl: "/html/register.html",
+                    controller: "profileController"
+                }
+            },
+            resolve: {
+                activeUserProfile: function (AuthServices, $state) {
+                    return AuthServices.isLoggedIn()
+                        .catch(function () {
+                            $state.go("home");
+                        })
                 }
             }
         })

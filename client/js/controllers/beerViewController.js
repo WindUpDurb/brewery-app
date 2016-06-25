@@ -26,6 +26,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
                     console.log("Error: ", error);
                 })
         }
+        $scope.beerViewHeading = BeerServices.generateBeerViewHeading($scope.beerData.name);
     }());
     /*let currentBeerData = BeerServices.checkIfBeerCached(beerId);
     if (currentBeerData) {

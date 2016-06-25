@@ -39,7 +39,16 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             url: "/accountManagement",
             views: {
                 "body": {
-                    templateUrl: "/html/accountManagement.html"
+                    templateUrl: "/html/register.html",
+                    controller: "profileController"
+                }
+            },
+            resolve: {
+                activeUserProfile: function (AuthServices, $state) {
+                    return AuthServices.isLoggedIn()
+                        .catch(function () {
+                            $state.go("home");
+                        })
                 }
             }
         })
@@ -297,6 +306,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
                     console.log("Error: ", error);
                 })
         }
+        $scope.beerViewHeading = BeerServices.generateBeerViewHeading($scope.beerData.name);
     }());
     /*let currentBeerData = BeerServices.checkIfBeerCached(beerId);
     if (currentBeerData) {
@@ -496,6 +506,7 @@ app.controller("drankGalleryController", function ($scope, Upload) {
 app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
     console.log("Profile Controller");
     $scope.activeUser = activeUserProfile.data;
+    $scope.accountDetails = angular.copy($scope.activeUser);
     $scope.beerLog = $scope.activeUser.beerSeen;
 });
 
@@ -534,6 +545,11 @@ app.service("AuthServices", function ($http) {
 
 app.service("BeerServices", function ($http, localStorageService) {
     var _this = this;
+
+    this.generateBeerViewHeading = function (beerName) {
+        let headingList = [`Here's a single serving of ${beerName}.`, `Let's see. Here's a ${beerName}.`, `Drink up. Here's a ${beerName}.`, `You looked parched. How about a ${beerName}.`, `Catch this ${beerName}.`, `Quick. Shotgun this ${beerName}. Now.`, `No, this? It's just a ${beerName}.`];
+        return headingList[Math.floor(Math.random() * headingList.length)];
+    };
 
     this.saveBeerRating = function (beerId, activeUser, newBeerRating) {
         let toSend = {

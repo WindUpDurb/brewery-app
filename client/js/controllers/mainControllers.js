@@ -82,6 +82,7 @@ app.controller("drankGalleryController", function ($scope, Upload) {
 app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
     console.log("Profile Controller");
     $scope.activeUser = activeUserProfile.data;
+    $scope.accountDetails = angular.copy($scope.activeUser);
     $scope.beerLog = $scope.activeUser.beerSeen;
 });
 
