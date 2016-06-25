@@ -1,3 +1,5 @@
+
+<div class="container">
 <div class="div text-center">
     <h1 class="drankheading">To-Drink</h1>
 </div>
@@ -22,7 +24,11 @@
         </tr>
     </table>
 </div>
-<!--Maybe a fixed div on the left side with details-->
+
+<div style="margin-top: 100px; margin-bottom: 100px" class="text-center" ng-if="activeUser.toDrink.length === 0">
+    <h2> You have no beers in your To-Drink list</h2>
+    <h3>Go ahead and add some when browsing a specific beer</h3>
+</div>
 
 <div ng-repeat="beer in activeUser.toDrink" class="w-section toDrinkEntry">
     <div class="w-container"><img ng-src="{{beer.image}}">
@@ -38,4 +44,5 @@
         </div>
     </div>
     <div class="subjectBreak container-fluid"></div>
+</div>
 </div>

@@ -1,29 +1,36 @@
-<div ng-if="!categoryContents"><h1>There were no search results.</h1></div>
-<div ng-if="categoryContents">
-   <!-- <div class="row">
-        <a ng-href="{{previousPage}}"><i class="fa fa-chevron-left pull-left" aria-hidden="true"></i></a>
-        <a ng-href="{{nextPage}}"><i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></a>
+<div class="directoryHeader w-section">
+    <div>
+        <h1 class="text-center">Beer Search Results</h1>
+    </div>
+</div>
+<div class="container">
+    <div ng-if="!categoryContents"><h1>There were no search results.</h1></div>
+    <div ng-if="categoryContents">
+        <!-- <div class="row">
+             <a ng-href="{{previousPage}}"><i class="fa fa-chevron-left pull-left" aria-hidden="true"></i></a>
+             <a ng-href="{{nextPage}}"><i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></a>
 
-    </div>-->
-    <div class="row" ng-repeat="beer in  categoryContents">
-        <div class="col-sm-8 col-sm-offset-3">
-            <div style="margin-top: 75px" class="list-group">
-                <div class="list-group-item">
-                    <div class="row-picture">
-                        <img class="rounded" ng-src="{{beer.labels.medium || beer.labels.large || beer.labels.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
-                    </div>
-                    <div class="row-content">
-                        <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
-                        <h5>{{beer.breweries[0].name}}</h5>
-                        <div class="row">
-                            <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
-                            <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
-                            <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed32.png"></span>
-                            <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed32.png" ></span>
+         </div>-->
+        <div class="row" ng-repeat="beer in  categoryContents">
+            <div class="col-sm-8 col-sm-offset-3">
+                <div style="margin-top: 75px" class="list-group">
+                    <div class="list-group-item">
+                        <div class="row-picture">
+                            <img class="rounded" ng-src="{{beer.labels.medium || beer.labels.large || beer.labels.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
+                            <h5>{{beer.breweries[0].name}}</h5>
+                            <div class="row">
+                                <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
+                                <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
+                                <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed32.png"></span>
+                                <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed32.png" ></span>
+                            </div>
                         </div>
                     </div>
+                    <div class="list-group-separator"></div>
                 </div>
-                <div class="list-group-separator"></div>
             </div>
         </div>
     </div>
