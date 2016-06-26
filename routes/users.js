@@ -26,6 +26,7 @@ router.route("/")
     })
     .put(function (request, response) {
         let userToUpdate = request.body;
+        console.log("Request.body: ", request.body)
         User.updateUserAccount(userToUpdate, function (error, updatedUser) {
             if (error) response.status(400).send(error);
             response.send(updatedUser);

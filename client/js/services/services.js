@@ -20,7 +20,15 @@ app.service("AuthServices", function ($http) {
     this.retrieveActiveUser = function () {
         return activeUser;
     };
-    
+
+    this.updateUser = function (toUpdateWith) {
+        return $http({
+            method: "PUT",
+            data: toUpdateWith,
+            url: "/api/users"
+        });
+    };
+
     this.isLoggedIn = function () {
         return $http.get("/api/users/activeUser");
     };
@@ -112,8 +120,10 @@ app.service("BeerServices", function ($http, localStorageService) {
         return $http.post("/api/users/addToToDrink", toSend);
     };
 
-    this.changeIfConsumed = function (consumed, beerId, beerName, activeUser) {
+    this.changeIfConsumed = function (consumed, beerData, breweryData, activeUser) {
         let beerSeen = activeUser.beerSeen;
+        let beerId = beerData.id;
+        console.log("beerData: ", beerData)
         let index;
         (function () {
             for (let i = 0; i < beerSeen.length; i++) {
@@ -125,8 +135,10 @@ app.service("BeerServices", function ($http, localStorageService) {
         }());
         if (index === -1) {
             activeUser.nonBeerMeBeer = {
-                beerId: beerId,
-                beerName: beerName,
+                beerId: beerData.id,
+                breweryName: breweryData.name,
+                beerImage: beerData.labels.medium || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
+                beerName: beerData.name,
                 consumed: consumed
             }
         } else {
@@ -161,6 +173,30 @@ app.service("BeerServices", function ($http, localStorageService) {
             }
         }
         return toReturn;
+    };
+
+    this.generateDrankStatistics = function (drinkData) {
+        // Look into saving more data, such as the type of Beer drank
+        // so that we can offer statistics on the commonly consumed beer,
+        // most and least favorite by type and so on
+        let drankStatistics = {
+            beersDrank: drinkData.length,
+            highestRatedBeer: 0,
+            lowestRatedBeer: 10,
+            averageRatedBeer: 0
+        };
+        let sumOfAllBeers = 0;
+        for (let i = 0; i < drinkData.length; i++) {
+            if (drinkData[i].beerRating < drankStatistics.lowestRatedBeer) {
+                drankStatistics.lowestRatedBeer = drinkData[i].beerRating;
+            }
+            if (drinkData[i].beerRating > drankStatistics.highestRatedBeer) {
+                drankStatistics.highestRatedBeer = drinkData[i].beerRating;
+            }
+            sumOfAllBeers += drinkData[i].beerRating;
+        }
+        drankStatistics.averageRatedBeer = Math.floor(sumOfAllBeers /= drinkData.length);
+        return drankStatistics;
     };
 
     this.craftNextPageURL = function (category, currentPage) {

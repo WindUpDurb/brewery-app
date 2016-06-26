@@ -12,6 +12,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
         $scope.beerData = BeerServices.getFromLocalStorage(key);
         if ($scope.beerData) {
             $scope.breweryData = $scope.beerData.breweries[0];
+            $scope.beerViewHeading = BeerServices.generateBeerViewHeading($scope.beerData.name);
         }
         console.log("Beer Data: ", $scope.beerData);
         console.log("Brewery Data: ", $scope.breweryData);
@@ -20,13 +21,13 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
                 .then(function (response) {
                     $scope.beerData = response.data.data;
                     $scope.breweryData = response.data.data.breweries[0];
+                    $scope.beerViewHeading = BeerServices.generateBeerViewHeading($scope.beerData.name);
                     BeerServices.submitToLocalStorage(key, response.data.data);
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
                 })
         }
-        $scope.beerViewHeading = BeerServices.generateBeerViewHeading($scope.beerData.name);
     }());
     /*let currentBeerData = BeerServices.checkIfBeerCached(beerId);
     if (currentBeerData) {
@@ -98,7 +99,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
 
 
         $scope.changeIfConsumed = function (consumed) {
-            BeerServices.changeIfConsumed(consumed, beerId, $scope.beerData.name, $scope.activeUser)
+            BeerServices.changeIfConsumed(consumed, $scope.beerData, $scope.breweryData, $scope.activeUser)
                 .then(function (response) {
                     $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
                 })

@@ -1,6 +1,6 @@
 <div class="directoryHeader w-section">
     <div>
-        <h1 style="margin-top: 65px" class="text-center">{{beerViewHeading}}</h1>
+        <h2 class="text-center directoryHeadingText">{{beerViewHeading}}</h2>
     </div>
 </div>
 <div class="container">
@@ -12,6 +12,7 @@
         <button ng-repeat="number in ratingArray" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
     </div>
 
+    <button uib-tooltip="stutff">farttts</button>
     <span class="pull-right" ng-if="beerData.status === 'update_pending'"><img src="/images/updatePending64.png"></span>
     <span class="pull-right" ng-if="beerData.status === 'verified'"><img src="/images/thumbUp64.png"></span>
     <span class="pull-right" ng-if="activeUser && hasConsumed"><img src="/images/beerIconConsumed64.png"></span>

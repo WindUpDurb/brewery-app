@@ -5,13 +5,13 @@
 </div>
 
 <div class="container">
-    <div class="container well col-sm-4 col-sm-offset-4">
-        <p>Dear Beer Log:</p>
-        <p>Please find enclosed the beers that I've discovered in the random BeerMe searches.</p>
-        <p>Beers that I have consumed will be marked with a <i style="color: green" class="fa fa-beer" aria-hidden="true"></i>.</p>
-        <p>And beers that I have not consumed will be marked with a <i style="color: red" class="fa fa-beer" aria-hidden="true"></i>.</p>
-        <p>Love,</p>
-        <p>{{activeUser.firstName}}</p>
+    <div class="container well col-sm-7 col-sm-offset-3">
+        <h3>Dear Beer Log:</h3>
+        <p class="beerlogFont">Please find enclosed the beers that I've discovered in the random BeerMe searches.</p>
+        <p class="beerlogFont">Beers that I have consumed will be marked with a <img src="/images/beerIconConsumed32.png">.</p>
+        <p class="beerlogFont">And beers that I have not consumed will be marked with a <img src="/images/beerIconNoConsumed32.png">.</p>
+        <p class="beerlogFont">Love,</p>
+        <p class="beerlogFont">{{activeUser.firstName}}</p>
     </div>
 
     <div class="row" ng-repeat="beer in  beerLog">

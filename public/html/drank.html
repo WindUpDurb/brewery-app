@@ -1,6 +1,6 @@
-<div class="container text-center">
+<!--<div class="container text-center">
     <h1>Drank</h1>
-
+    <p>Include ratings of each beer, statistics, maybe a way of organizing</p>
 
    <table class="table table-striped" ng-if="activeUser.sampledBeers">
        <tr ng-repeat="beer in activeUser.sampledBeers">
@@ -11,4 +11,58 @@
    </table>
 
 
+</div>-->
+
+<div class="directoryHeader w-section">
+    <div>
+        <h2 class="text-center directoryHeadingText">Drank</h2>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="well todrinkstatisticssection">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>
+                    Total Different Beers Drank:
+                </th>
+                <td>{{drankStatistics.beersDrank}}</td>
+            </tr>
+            <tr>
+                <th>
+                    My Highest Rated Beer:
+                </th>
+                <td>{{drankStatistics.highestRatedBeer}}</td>
+            </tr>
+            <tr>
+                <th>My Lowest Rated Beer: </th>
+                <td>{{drankStatistics.lowestRatedBeer}}</td>
+            </tr>
+            <tr>
+                <th>My Average Rated Beer: </th>
+                <td>{{drankStatistics.averageRatedBeer}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 100px; margin-bottom: 100px" class="text-center" ng-if="beersDrank.length === 0">
+        <h2>I remember when I had my first beer, noob.</h2>
+        <h3>Go ahead and add one. Or Three.</h3>
+    </div>
+
+    <div ng-repeat="beer in beersDrank" class="w-section toDrinkEntry">
+        <div class="w-container"><img ng-src="{{beer.image}}">
+            <div class="todrinkbeerdetails">
+                <a href="/#/beer/{{beer.beerId}}"><p class="todrinkbeername">{{beer.beerName}}</p></a>
+                <p class="todrinkbeerbrewery">{{beer.breweryName}}</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <button ng-repeat="number in createRatingStars(beer.beerRating) track by $index" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+                </div>
+            </div>
+        </div>
+        <div class="subjectBreak container-fluid"></div>
+    </div>
 </div>

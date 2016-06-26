@@ -26,6 +26,8 @@ let userSchema = new mongoose.Schema({
     sampledBeers: [{
         beerName: { type: String },
         beerId: { type: String },
+        beerImage: { type: String },
+        breweryName: { type: String },
         comments: [{ type: String }],
         beerRating: { type: Number, default: 0 },
         beerMemories: [{
@@ -37,6 +39,7 @@ let userSchema = new mongoose.Schema({
         beerName: { type: String},
         beerId: { type: String},
         image: {type: String},
+        breweryName: {type: String },
         consumed: {type: Boolean, default: false }
     }]
 
@@ -93,13 +96,15 @@ userSchema.statics.addBeerMemory = function (beerMemory, callback) {
 userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
     User.findById(userId, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no user." });
-        console.log("beerData: ", beerData)
+        console.log("beerData: ", beerData);
         let beerId = beerData.data.id;
         if (databaseUser.beerSeen.indexOf(beerId) === -1 ) {
             let beerToAdd = {
                 beerName: beerData.data.name,
                 beerId: beerData.data.id,
-                image: beerData.labels || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                breweryName: beerData.data.breweries[0].name,
+                image: beerData.labels || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",
+
             };
             databaseUser.beerSeen.push(beerToAdd);
             databaseUser.save(function (error) {
@@ -167,8 +172,8 @@ userSchema.statics.updateToDrink = function (beerId, consumed, additionalDataToS
 userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
     User.findById(toUpdateWith._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no such user." });
-        // let currentBeerId;
-        // let currentBeerConsumed;
+        var currentBeerId;
+        var currentBeerConsumed;
         //If the beer to modify is not in the BeerLogs
         if (toUpdateWith.nonBeerMeBeer) {
             if (toUpdateWith.nonBeerMeBeer.consumed) {
@@ -180,8 +185,8 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
                     }
                 }
             }
-            var currentBeerId = toUpdateWith.nonBeerMeBeer.beerId;
-            var currentBeerConsumed = toUpdateWith.nonBeerMeBeer.consumed;
+            currentBeerId = toUpdateWith.nonBeerMeBeer.beerId;
+            currentBeerConsumed = toUpdateWith.nonBeerMeBeer.consumed;
         } else {
         //If the beer to modify is from the BeerLogs
             databaseUser.beerSeen = toUpdateWith.beerSeen;
@@ -195,8 +200,8 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
                     }
                 }
             }
-            var currentBeerId = toUpdateWith.beerModifying.beerId;
-            var currentBeerConsumed = toUpdateWith.beerModifying.consumed;
+            currentBeerId = toUpdateWith.beerModifying.beerId;
+            currentBeerConsumed = toUpdateWith.beerModifying.consumed;
         }
         databaseUser = User.updateToDrink(currentBeerId, currentBeerConsumed, databaseUser, null);
         databaseUser.save(function (error, savedUser) {
@@ -253,6 +258,7 @@ userSchema.statics.authorization = function () {
             if (error) return response.status(401).send({ error: "Authentication failed." });
             User.findById(payload._id, function (error, user) {
                 if (error) return response.status(401).send({ error : "User not found." });
+                user.password = null;
                 request.user = user;
                 next();
             });

@@ -1,10 +1,13 @@
 body {
   background-color: white;
-  padding-top: 63px; }
+  padding-top: 55px; }
 
 .findmesection {
   background-color: #f6f6f6;
   height: 200px; }
+
+.beerlogFont {
+  font-size: 1.5em; }
 
 .slideheading {
   margin-top: 160px; }
@@ -51,6 +54,9 @@ body {
   border-top: 1px #FFFFFF solid;
   background-color: #111118;
   color: white; }
+
+.directoryHeadingText {
+  margin-top: 65px; }
 
 #header {
   background-color: #111118;

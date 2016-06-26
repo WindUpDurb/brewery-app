@@ -79,11 +79,25 @@ app.controller("drankGalleryController", function ($scope, Upload) {
 
 });
 
-app.controller("profileController", function ($scope, AuthServices, activeUserProfile) {
+app.controller("profileController", function ($scope, AuthServices, activeUserProfile, BeerServices) {
     console.log("Profile Controller");
     $scope.activeUser = activeUserProfile.data;
     $scope.accountDetails = angular.copy($scope.activeUser);
+    $scope.updateUser = function () {
+        AuthServices.updateUser($scope.accountDetails)
+            .then(function (response) {
+                console.log("Response: ", response);
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            });
+    };
     $scope.beerLog = $scope.activeUser.beerSeen;
+    $scope.beersDrank = $scope.activeUser.sampledBeers;
+    $scope.drankStatistics = BeerServices.generateDrankStatistics($scope.activeUser.sampledBeers);
+    $scope.createRatingStars = function (rating) {
+        return new Array(rating);
+    };
 });
 
 //needed for dropdown
