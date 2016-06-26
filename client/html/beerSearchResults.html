@@ -1,10 +1,10 @@
 <div class="directoryHeader w-section">
     <div>
-        <h1 class="text-center">Beer Search Results</h1>
+        <h1 class="text-center directoryHeadingText">Beer Search Results for {{query}}:</h1>
     </div>
 </div>
 <div class="container">
-    <div ng-if="!categoryContents"><h1>There were no search results.</h1></div>
+    <div ng-if="!categoryContents" class="text-center"><h1>The Page is either loading, as indicated by the loading bar and loading cycle at the top of the screen. Or. There were no search results.</h1></div>
     <div ng-if="categoryContents">
         <!-- <div class="row">
              <a ng-href="{{previousPage}}"><i class="fa fa-chevron-left pull-left" aria-hidden="true"></i></a>

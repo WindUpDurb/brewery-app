@@ -5,8 +5,8 @@ angular
     .controller("beerSearchController", beerSearchController);
 
 function beerSearchController($scope, $state, BeerServices) {
-    let query = $state.params.query;
-    let queryString = query.replace(/\s/gi, "%20");
+    $scope.query = $state.params.query;
+    let queryString = $scope.query.replace(/\s/gi, "%20");
     BeerServices.beerSearch(queryString)
         .then(function (response) {
             $scope.categoryContents = response.data.data;

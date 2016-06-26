@@ -94,8 +94,8 @@
                         <i ng-class="{ 'activeUserDropDown': activeUser}" class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
                     </button>
                     <ul ng-if="activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                        <li ui-sref="beerLog"><a>My Beer Log <3</a></li>
-                        <li ui-sref="toDrink"><a>Drink </a></li>
+                        <li ui-sref="beerLog" ui-sref-opts="{reload: true}"><a>My Beer Log <3</a></li>
+                        <li ui-sref="toDrink" ui-sref-opts="{reload: true}"><a>Drink </a></li>
                         <li ui-sref="drank-beersConsumed"><a href="#">Drank</a></li>
                         <li ui-sref="drunk-personalGallery"><a href="#">Drunk</a></li>
                         <li class="divider"></li>

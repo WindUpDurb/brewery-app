@@ -59,10 +59,8 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
 });
 
 app.controller("drankGalleryController", function ($scope, Upload) {
-
     $scope.submit = function () {
         console.log("Submit");
-
         console.log("$scope.file: ", $scope.beerPhoto);
 /*
         Upload.upload({
