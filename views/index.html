@@ -30,6 +30,10 @@
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
+    <!--Toastr-->
+    <link rel="stylesheet" href="/bower_components/AngularJS-Toaster/toaster.min.css">
+    <script src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
+
     <!--Angular Loading Bar-->
     <link rel='stylesheet' href='/bower_components/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
     <script type='text/javascript' src='/bower_components/angular-loading-bar/build/loading-bar.min.js'></script>
@@ -58,7 +62,8 @@
 
 </head>
 <body ng-app="beerApp" ng-controller="mainController">
-
+<!--Toaster Div-->
+<toaster-container toaster-options="{'animation-class': 'toast-top-left'}"></toaster-container>
 <div class=" w-section headersection navbar navbar-fixed-top" id="header">
     <div class="container-fluid">
         <div class="row">

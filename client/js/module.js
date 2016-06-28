@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router", "angular-loading-bar", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
+var app = angular.module("beerApp", ["ui.router", "toaster", "angular-loading-bar", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
 
 app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider, $uiViewScrollProvider) {
 

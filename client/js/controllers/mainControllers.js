@@ -2,7 +2,7 @@
 
 var app = angular.module("beerApp");
 
-app.controller("mainController", function ($scope, $state, AuthServices, BeerServices) {
+app.controller("mainController", function ($scope, $state, AuthServices, BeerServices, toaster) {
     console.log("Main Controller");
 
     AuthServices.isLoggedIn()
@@ -34,9 +34,11 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
             .then(function (response) {
                 $scope.activeUser = response.data;
                 $state.go("home");
+                toaster.pop("success", "Welcome.", "Now, onward to beer.");
             })
             .catch(function (error) {
                 console.log("Error: ", error);
+                toaster.pop("error", "Login Failed", "Username and or Password is Incorrect.");
             });
     };
     

@@ -4,7 +4,7 @@ angular
     .module("beerApp")
     .controller("beerViewController", beerViewController);
 
-function beerViewController($scope, $stateParams, BeerServices, Upload) {
+function beerViewController($scope, $stateParams, BeerServices, Upload, toaster) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
     (function () {
@@ -67,7 +67,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             }
         }
 
-        $scope.beerRating = function (rating) {
+        $scope.beerRating = function (rating, settingData) {
             $scope.currentRating = rating;
             $scope.ratingArray = [];
             for (let i = 1; i <= rating; i++) {
@@ -76,6 +76,9 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
                 .then(function (response) {
                     console.log("Response: ", response);
+                    if (!settingData) {
+                        BeerServices.ratingMessage($scope.currentRating, $scope.currentBeer.beerName);
+                    }
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
@@ -94,7 +97,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
         };
 
         if ($scope.hasConsumed) {
-            $scope.beerRating($scope.currentBeer.beerRating);
+            $scope.beerRating($scope.currentBeer.beerRating, true);
         }
 
 
@@ -102,6 +105,11 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             BeerServices.changeIfConsumed(consumed, $scope.beerData, $scope.breweryData, $scope.activeUser)
                 .then(function (response) {
                     $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
+                    if (consumed) {
+                        toaster.pop("info", "One beer down.", "Now rate it at the top of the page, or scroll down to add photos.");
+                    } else {
+                        toaster.pop("info", "I See.", "Looks like you never drank that beer.");
+                    }
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);

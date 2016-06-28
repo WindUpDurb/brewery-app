@@ -36,7 +36,7 @@ app.service("AuthServices", function ($http) {
 
 });
 
-app.service("BeerServices", function ($http, localStorageService) {
+app.service("BeerServices", function ($http, localStorageService, toaster) {
     var _this = this;
 
     this.generateBeerViewHeading = function (beerName) {
@@ -173,6 +173,21 @@ app.service("BeerServices", function ($http, localStorageService) {
             }
         }
         return toReturn;
+    };
+
+    this.ratingMessage = function (rating, beer) {
+        console.log("Rating: ", rating)
+        if (rating <= 3 ) {
+            toaster.pop("info", "Meh.", `And they call this ${beer} a beer, right? A ${rating} is barely a beer in our book.`);
+        } else if (rating <= 6) {
+            toaster.pop("info", "A beer is a beer.", `And we'll take this ${beer} to drink. Most of the time.`);
+        } else if (rating <= 8 ) {
+            toaster.pop("info", `Give us some of that ${beer}`, `It's deserving of these ${rating} golden beers.`);
+        } else if (rating == 9) {
+            toaster.pop("info", `Oh, snaps.`, `This here ${beer} is a damn ${rating}.`);
+        } else if (rating == 10) {
+            toaster.pop("info", `F***ing S**t. We got ourselves a ${rating}`, `This--this here ${beer}--is thee beer.`);
+        }
     };
 
     this.generateDrankStatistics = function (drinkData) {

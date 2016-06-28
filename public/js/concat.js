@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("beerApp", ["ui.router", "angular-loading-bar", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
+var app = angular.module("beerApp", ["ui.router", "toaster", "angular-loading-bar", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
 
 app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider, $uiViewScrollProvider) {
 
@@ -267,7 +267,7 @@ angular
     .module("beerApp")
     .controller("beerViewController", beerViewController);
 
-function beerViewController($scope, $stateParams, BeerServices, Upload) {
+function beerViewController($scope, $stateParams, BeerServices, Upload, toaster) {
     console.log("Beer View");
     let beerId = $stateParams.beerId;
     (function () {
@@ -330,7 +330,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             }
         }
 
-        $scope.beerRating = function (rating) {
+        $scope.beerRating = function (rating, settingData) {
             $scope.currentRating = rating;
             $scope.ratingArray = [];
             for (let i = 1; i <= rating; i++) {
@@ -339,6 +339,9 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             BeerServices.saveBeerRating(beerId, $scope.activeUser, $scope.currentRating)
                 .then(function (response) {
                     console.log("Response: ", response);
+                    if (!settingData) {
+                        BeerServices.ratingMessage($scope.currentRating, $scope.currentBeer.beerName);
+                    }
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
@@ -357,7 +360,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
         };
 
         if ($scope.hasConsumed) {
-            $scope.beerRating($scope.currentBeer.beerRating);
+            $scope.beerRating($scope.currentBeer.beerRating, true);
         }
 
 
@@ -365,6 +368,11 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
             BeerServices.changeIfConsumed(consumed, $scope.beerData, $scope.breweryData, $scope.activeUser)
                 .then(function (response) {
                     $scope.hasConsumed = BeerServices.checkIfConsumed(beerId, response.data);
+                    if (consumed) {
+                        toaster.pop("info", "One beer down.", "Now rate it at the top of the page, or scroll down to add photos.");
+                    } else {
+                        toaster.pop("info", "I See.", "Looks like you never drank that beer.");
+                    }
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
@@ -410,7 +418,7 @@ function beerViewController($scope, $stateParams, BeerServices, Upload) {
 
 var app = angular.module("beerApp");
 
-app.controller("mainController", function ($scope, $state, AuthServices, BeerServices) {
+app.controller("mainController", function ($scope, $state, AuthServices, BeerServices, toaster) {
     console.log("Main Controller");
 
     AuthServices.isLoggedIn()
@@ -442,9 +450,11 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
             .then(function (response) {
                 $scope.activeUser = response.data;
                 $state.go("home");
+                toaster.pop("success", "Welcome.", "Now, onward to beer.");
             })
             .catch(function (error) {
                 console.log("Error: ", error);
+                toaster.pop("error", "Login Failed", "Username and or Password is Incorrect.");
             });
     };
     
@@ -547,7 +557,7 @@ app.service("AuthServices", function ($http) {
 
 });
 
-app.service("BeerServices", function ($http, localStorageService) {
+app.service("BeerServices", function ($http, localStorageService, toaster) {
     var _this = this;
 
     this.generateBeerViewHeading = function (beerName) {
@@ -684,6 +694,21 @@ app.service("BeerServices", function ($http, localStorageService) {
             }
         }
         return toReturn;
+    };
+
+    this.ratingMessage = function (rating, beer) {
+        console.log("Rating: ", rating)
+        if (rating <= 3 ) {
+            toaster.pop("info", "Meh.", `And they call this ${beer} a beer, right? A ${rating} is barely a beer in our book.`);
+        } else if (rating <= 6) {
+            toaster.pop("info", "A beer is a beer.", `And we'll take this ${beer} to drink. Most of the time.`);
+        } else if (rating <= 8 ) {
+            toaster.pop("info", `Give us some of that ${beer}`, `It's deserving of these ${rating} golden beers.`);
+        } else if (rating == 9) {
+            toaster.pop("info", `Oh, snaps.`, `This here ${beer} is a damn ${rating}.`);
+        } else if (rating == 10) {
+            toaster.pop("info", `F***ing S**t. We got ourselves a ${rating}`, `This--this here ${beer}--is thee beer.`);
+        }
     };
 
     this.generateDrankStatistics = function (drinkData) {
