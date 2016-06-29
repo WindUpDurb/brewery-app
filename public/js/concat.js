@@ -2,13 +2,12 @@
 
 var app = angular.module("beerApp", ["ui.router", "toaster", "angular-loading-bar", "ngAnimate", "ui.bootstrap", "ngFileUpload", "LocalStorageModule"]);
 
+
 app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider, $uiViewScrollProvider) {
-
+    //for returning to the top of the page when changing states
     $uiViewScrollProvider.useAnchorScroll();
-
     localStorageServiceProvider
         .setPrefix("drink-drink");
-
     $stateProvider
         .state("home", {
             url : "/",
