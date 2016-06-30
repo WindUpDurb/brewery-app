@@ -123,9 +123,12 @@ function beerViewController($scope, $stateParams, BeerServices, Upload, toaster)
                 })
                 .then(function (response) {
                     console.log("Response: ", response);
+                    toaster.pop("success", "Upload successful.", "Your beer memory has been stored.");
+
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
+                    toaster.pop("error", "Uh-oh.", "Your beer memory was unable to be saved.");
                 })
         };
 

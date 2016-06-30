@@ -20,12 +20,15 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
             AuthServices.registerNewUser(newUserData)
                 .then(function (response) {
                     $state.go("home");
+                    toaster.pop("success", "Sweet! Registration was successful.", "Login, and onward to beer.");
                 })
                 .catch(function (error) {
                     console.log("Error: ", error);
+                    toaster.pop("error", "Registration Failed", error.data.error);
                 });
         } else {
-            alert("Passwords must match.");
+            toaster.pop("error", "Passwords must match.", "Please confirm your password.");
+
         }
     };
 
@@ -87,9 +90,11 @@ app.controller("profileController", function ($scope, AuthServices, activeUserPr
         AuthServices.updateUser($scope.accountDetails)
             .then(function (response) {
                 console.log("Response: ", response);
+                toaster.pop("success", "Update Successful.", "Now, onward to beer.");
             })
             .catch(function (error) {
                 console.log("Error: ", error);
+                toaster.pop("error", "There was an issue with the update.", "Your password may be incorrect.");
             });
     };
     $scope.beerLog = $scope.activeUser.beerSeen;

@@ -19,7 +19,7 @@ const S3Tasks = {
             Body: photoObject.buffer
         };
 
-        console.log("Params: ", params)
+        console.log("Params: ", params);
 
         s3.putObject(params, function (error, result) {
             if (error) return callback(error);
