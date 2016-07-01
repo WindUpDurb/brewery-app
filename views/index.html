@@ -44,7 +44,6 @@
     <meta name="generator" content="Webflow">
     <link rel="stylesheet" type="text/css" href="Webflow/normalize.css">
     <link rel="stylesheet" type="text/css" href="Webflow/webflow.css">
-    <link rel="stylesheet" type="text/css" href="Webflow/drink-drank-drunk.webflow.css">
     <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
     <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
     <script type="text/javascript" src="/Webflow/modernizr.js"></script>
@@ -52,7 +51,6 @@
 
     <!--Personal CSS-->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/simple-sidebar.css">
 
     <!--Personal Angular-->
     <script src="/js/concat.js"></script>
@@ -65,20 +63,13 @@
 
 <!--Toaster Div-->
 <toaster-container toaster-options="{'animation-class': 'toast-top-left'}"></toaster-container>
-<div class=" w-section headersection navbar navbar-fixed-top" id="header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="navbar-header">
-                <!--<a class="pull-left" style="color : #daa520" ng-href="/"><b>Drink, Drank, Drunk</b></a>-->
-            </div>
-        </div>
 
-        <div class="row" style="color: black">
+<!--
+<div class="header-container w-section" id="header">
+    <div class="container-fluid">
+        &lt;!&ndash;<div class="row" style="color: black">
             <div style="margin-top: 45px; color: white" class="col-sm-1 col-sm-offset-3">
                 <span>Cheers! For a random beer.</span>
-            </div>
-            <div class="col-sm-1" style="margin-top: 15px">
-                <button type="button" class="btn"><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
             </div>
             <div style="margin-top: 45px" class="col-sm-1">
                 <a ui-sref="home" style="color: white">Home</a>
@@ -115,22 +106,26 @@
                 </div>
             </div>
 
-        </div>
-
+        </div>&ndash;&gt;
     </div>
-</div>
+</div>-->
 
-<!--<div class="navbar navbar-fixed-top" id="header">
-
+<div class="navbar-container">
     <div class="container-fluid">
         <div class="row">
-            <div class="navbar-header">
-                <a class="pull-left" style="color : #daa520" ng-href="/"><b>Drink, Drank, Drunk</b></a>
+            <div class="col-sm-1 col-sm-offset-3">
+                <a ui-sref="home" style="font-size: 15px;">Home</a>
             </div>
-        </div>
-
-        <div class="row" style="color: black">
-            <div class="col-sm-3 col-sm-offset-7">
+            <div class="col-sm-1">
+                <a>Browse Beers</a>
+            </div>
+            <div class="col-sm-1">
+                <a ui-sref="beerLog">Beer Log <3</a>
+            </div>
+            <div class="col-sm-1">
+                <a ui-sref="beerLog">Beer Gallery</a>
+            </div>
+            <div class="col-sm-3">
                 <div class="form-group label-floating">
                     <form ng-submit="beerSearch(beerSearchInput)">
                         <label class="control-label" for="beerSearchInput">C'mon. Search for a beer here.</label>
@@ -139,18 +134,8 @@
                     </form>
                 </div>
             </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-sm-1" style="margin-top: 15px">
-                <button type="button" class="btn "><a ui-sref="beerMeRandom"><img src="/images/beerCheers.png"></a></button>
-            </div>
-            <div class="col-sm-1">
-                <p id="cheersText">Cheers for a random beer</p>
-            </div>
-
-            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-6" style="margin-top: 35px">
+<!--
+            <div ng-controller="dropdownController" class="col-sm-1 col-sm-offset-1" style="margin-top: 35px">
                 <div uib-dropdown is-open="status.isopen" class="btn-group text-center">
                     <button uib-dropdown-toggle ng-disabled="disabled" id="single-button" type="button" class="btn btn-primary">
                         <i ng-if="!activeUser" class="fa fa-bars fa-2x" aria-hidden="true"></i>
@@ -165,18 +150,17 @@
                         <li ui-sref="accountManagement"><a>Account Management</a></li>
                         <li ng-click="logout()"  role="menuitem"><a>Logout</a></li>
                     </ul>
-                    <ul ng-if="!activeUser" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                        <li ui-sref="login"><a>Login</a></li>
-                        <li ui-sref="register"><a>Register</a></li>
-                    </ul>
                 </div>
+            </div>-->
+            <div class="col-sm-1 col-sm-offset-1">
+                <span ng-if="!activeUser" ui-sref="login"><a>Login</a></span>
+                <span ng-click="logout()" ng-if="activeUser"><a>Logout</a></span>
             </div>
 
         </div>
     </div>
-</div>-->
-
 </div>
+
 <div id="content"  ui-view="body" autoscroll="true"></div>
 <!--<div class="w-section footersection"></div>-->
 
