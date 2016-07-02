@@ -5,29 +5,34 @@
         <img src="/images/beer-tap.png" class="img-responsive">
     </div>
 </div>
-<div style="margin-top: 10px;" class="row">
+<div style="margin-top: 10px; margin-right: 0; margin-left: 0"" class="row">
     <div class="col-sm-3 col-sm-offset-2">
         <h2 class="greyText">{{currentStyle.currentDirectory.name}}</h2>
     </div>
+    <div class="col-sm-3 col-sm-offset-1">
+        <h2 class="greyText">Characteristics</h2>
+    </div>
 </div>
-<div style="margin-top: 10px;" class="row">
+<div style="margin-top: 10px; margin-right: 0; margin-left: 0"" class="row">
     <div class="col-sm-3 col-sm-offset-3">
         <p class="styleDescriptionText">{{currentStyle.currentDirectory.description}}</p>
     </div>
+    <div class="col-sm-3 col-sm-offset-2">
+        <p class="styleDescriptionText">ABV: <span style="margin-left: 35px">{{currentStyle.currentDirectory.abvMin}}% - {{currentStyle.currentDirectory.abvMax}}%</span></p>
+        <p class="styleDescriptionText">SRM: <span style="margin-left: 35px">{{currentStyle.currentDirectory.srmMin}} - {{currentStyle.currentDirectory.srmMax}}</span></p>
+        <p class="styleDescriptionText">IBU: <span style="margin-left: 35px">{{currentStyle.currentDirectory.ibuMin}} - {{currentStyle.currentDirectory.ibuMax}}</span></p>
+    </div>
 </div>
 
-<div class="w-section" ng-if="categoryContents">
+<div style="margin-top: 50px;" class="w-section" ng-if="categoryContents">
     <div class="w-container">
-
-
-
         <div class="row">
             <a ng-if="pageNumber != 1" ng-href="{{previousPage}}"><i class="fa fa-chevron-left fa-2x pull-left" aria-hidden="true"></i></a>
             <a  ng-href="{{nextPage}}"><i class="fa fa-chevron-right fa-2x pull-right" aria-hidden="true"></i></a>
 
         </div>
         <div class="row" ng-repeat="beer in  categoryContents">
-            <div class="col-sm-8 col-sm-offset-1">
+            <div class="col-sm-6 col-sm-offset-2">
                 <div style="margin-top: 75px" class="list-group">
                     <div class="list-group-item">
                         <div class="row-picture">
