@@ -14,6 +14,13 @@ router.get("/beerMe", function (request, response) {
     })
 });
 
+router.get("/beerDirectories", function (request, response) {
+    BeerAPI.getDirectories(function (error, body) {
+        if (error) response.send(400).send(error);
+        response.send(body);
+    });
+});
+
 router.put("/beerMeUser", function (request, response) {
     let userId = request.body._id;
     BeerAPI.beerMe(function (error, data) {

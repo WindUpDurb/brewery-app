@@ -51,6 +51,15 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                 }
             }
         })
+        .state("beerDirectory", {
+            url: "/beerBrowser",
+            views: {
+                "body": {
+                    templateUrl: "/html/beerDirectory.html",
+                    controller: "beerBrowserController"
+                }
+            }
+        })
         .state("beerBrowseContents", {
             url: "/beerBrowser/:category/:pageNumber",
             views: {

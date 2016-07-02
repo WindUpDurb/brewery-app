@@ -1,0 +1,79 @@
+<div class="directoryHeader w-section"></div>
+
+<div class="w-section">
+    <div class="w-container">
+
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-2">
+                <h5>British Origin Ales</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[1]">{{beer.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>Irisih Origin Ales</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[2]">{{beer.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>North American Origin Ales</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[3]">{{beer.name}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-2">
+                <h5>German Origin Ales</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[4]">{{beer.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>Belgian and French Origin Ales</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[5]">{{beer.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>International Origin Ales</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[6]">{{beer.name}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-2">
+                <h5>European-germanic Lager</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[7]">{{beer.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>North American Lager</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[8]">{{beer.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h5>Other Lager</h5>
+                <br>
+                <ul>
+                    <li ng-repeat="beer in beerDirectories[9]">{{beer.name}}</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
