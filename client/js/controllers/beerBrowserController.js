@@ -6,13 +6,12 @@ angular
 
 function beerBrowserController($scope, $state, BeerServices) {
     console.log("Beer Browser Controller");
-    console.log("State: ", $state.current)
-    console.log("Params: ", $state.params);
 
     if ($state.current.name === "beerDirectory") {
         (function() {
             let key = "beerDirectories";
            $scope.beerDirectories = BeerServices.getFromLocalStorage(key);
+            console.log("Beer directories: ", $scope.beerDirectories)
             if (!$scope.beerDirectories) {
                 BeerServices.getBeerDirectories()
                     .then(function (response) {
@@ -37,11 +36,22 @@ function beerBrowserController($scope, $state, BeerServices) {
         }());
     }
 
+    $scope.takeMeToStyle = function (beer) {
+        BeerServices.saveStyleDescription({currentDirectory: beer});
+        $state.go("beerBrowseContents", {category: beer.name, pageNumber: 1});
+    };
+
     if ($state.params.category && $state.params.pageNumber) {
-         $scope.category = $state.params.category;
+        $scope.category = $state.params.category;
         $scope.pageNumber = $state.params.pageNumber;
         (function () {
             let key = `/api/breweryAPI/beerCategoryContents/${$scope.category}/${$scope.pageNumber}`;
+            $scope.currentStyle = BeerServices.getFromLocalStorage($scope.category);
+            if (!$scope.currentStyle) {
+                BeerServices.submitToLocalStorage($scope.category, BeerServices.getSavedStyleDescription());
+                $scope.currentStyle = BeerServices.getSavedStyleDescription();
+            }
+            console.log("This it: ", $scope.currentStyle);
             $scope.nextPage = BeerServices.craftNextPageURL($scope.category, $scope.pageNumber);
             $scope.previousPage = BeerServices.craftPreviousPageURL($scope.category, $scope.pageNumber);
             $scope.categoryContents = BeerServices.getFromLocalStorage(key);

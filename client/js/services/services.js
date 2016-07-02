@@ -38,6 +38,15 @@ app.service("AuthServices", function ($http) {
 
 app.service("BeerServices", function ($http, localStorageService, toaster) {
     var _this = this;
+    var nextBeerStyle;
+    
+    this.saveStyleDescription = function (style) {
+        nextBeerStyle = style;  
+    };
+    
+    this.getSavedStyleDescription = function () {
+        return nextBeerStyle;  
+    };
 
     this.getBeerDirectories = function () {
         return $http.get("/api/breweryAPI/beerDirectories");
