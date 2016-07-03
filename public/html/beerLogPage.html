@@ -1,7 +1,93 @@
-<div ng-if="currentPage === 'Drank'">
-    drank
+<div style="margin-top: 155px" ng-if="currentPage === 'Drank'">
+    <div style="margin-left: 0; margin-right: 0;" class="row">
+        <div class="col-sm-5 col-sm-offset-2">
+            <p class="greyText toDrinkHeading">Look, here, at all you've drank.</p>
+        </div>
+    </div>
+    <div style="margin-top: 50px;" class="row">
+        <div class="col-sm-4 col-sm-offset-2">
+            <p class="text-center toDrinkSubHeading">Oh, there will be more. There will be more.</p>
+
+        </div>
+    </div>
+    <div style="margin-top: 50px;" class="row">
+        <div class="greyText col-sm-5 col-sm-offset-3">
+            <p class="toDrinkStatText">Let's see all that has crossed your path.</p>
+            <br>
+            <p class="toDrinkStatText">You've drank a total of <span class="colorStat">{{beersDrankStatistics.beersDrank}}</span> different beers.</p>
+            <p class="toDrinkStatText">The highest rated beer, based on your just evaluation, is a <span class="colorStat">{{beersDrankStatistics.highestRatedBeer}}</span>.</p>
+            <p class="toDrinkStatText">The lowest rated beer earned a well-deserved <span class="colorStat">{{beersDrankStatistics.lowestRatedBeer}}</span>.</p>
+            <p class="toDrinkStatText">Your average rating for beers is <span class="colorStat">{{beersDrankStatistics.averageRatedBeer}}</span>.</p>
+        </div>
+    </div>
+    <div class="subjectBreak container-fluid"></div>
+    <div class="w-section">
+        <div class="w-container">
+            <div ng-repeat="beer in beersDrank" class="w-section toDrinkEntry">
+                <div class="w-container"><img ng-src="{{beer.beerImage}}">
+                    <div class="beerLogDetails">
+                        <a href="/#/beer/{{beer.beerId}}"><p class="beerLogDetailsBeer">{{beer.beerName}}</p></a>
+                        <p class="beerLogDetailsBrewery">{{beer.breweryName}}</p>
+                    </div>
+                    <div class="col-sm-2 col-sm-offset-9">
+                        <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending64.png"></span>
+                        <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp64.png"></span>
+                        <span class="pull-right" ng-if="activeUser && beersDrank.includes(beer)"><img src="/images/beerIconConsumed64.png"></span>
+                        <span class="pull-right" ng-if="activeUser && !beersDrank.includes(beer)"><img src="/images/beerIconNoConsumed64.png" ></span>
+                    </div>
+                    <div style="margin-top: 75px; margin-left: 0; margin-right: 0;" class="row">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <button ng-repeat="number in createRatingStars(beer.beerRating) track by $index" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="subjectBreak container-fluid"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div ng-if="currentPage === 'To-Drink'">
-    to drink
+<div style="margin-top: 155px" ng-if="currentPage === 'To-Drink'">
+    <div class="row">
+        <div class="col-sm-5 col-sm-offset-2">
+            <p class="greyText toDrinkHeading">Ah. Your To-Drinks.</p>
+        </div>
+    </div>
+    <div style="margin-top: 50px;" class="row">
+        <div class="col-sm-5 col-sm-offset-2">
+            <p class="text-center toDrinkSubHeading">Aspire for grand beer ambitions and construct an extensive list.</p>
+        </div>
+    </div>
+    <div style="margin-top: 50px;" class="row">
+        <div class="greyText col-sm-5 col-sm-offset-3">
+            <p class="toDrinkStatText">Let's tally up your aspirations.</p>
+            <br>
+            <p class="toDrinkStatText">There are <span class="colorStat">{{toDrinkStatistics.totalInToDrink}}</span> beers in your To-Drink list.</p>
+            <p class="toDrinkStatText">You've crossed <span class="colorStat">{{toDrinkStatistics.drank}}</span> off your list.</p>
+            <p class="toDrinkStatText">And there are a total of <span class="colorStat">{{toDrinkStatistics.haveNotDrank}}</span> beers left unconquered.</p>
+        </div>
+    </div>
+    <div class="subjectBreak container-fluid"></div>
+    <div class="w-section">
+        <div class="w-container">
+            <div ng-repeat="beer in activeUser.toDrink" class="w-section toDrinkEntry">
+                <div class="w-container">
+                    <img style="display: inline-block" ng-src="{{beer.image}}">
+                    <div class="beerLogDetails">
+                        <a href="/#/beer/{{beer.beerId}}"><p class="beerLogDetailsBeer">{{beer.beerName}}</p></a>
+                        <p class="beerLogDetailsBrewery">{{beer.breweryName}}</p>
+                    </div>
+                    <div style="margin-left: 0; margin-right: 0;" class="row">
+                        <div class="col-sm-2 col-sm-offset-9">
+                            <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
+                            <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
+                            <span class="pull-right" ng-if="activeUser && beer.finallyDrank"><img src="/images/beerIconConsumed64.png"></span>
+                            <span class="pull-right" ng-if="activeUser && !beer.finallyDrank"><img src="/images/beerIconNoConsumed64.png" ></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="subjectBreak container-fluid"></div>
+            </div>
+        </div>
+    </div>
 </div>

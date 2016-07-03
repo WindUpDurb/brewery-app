@@ -99,6 +99,9 @@ app.controller("profileController", function ($scope, $state, AuthServices, acti
             });
     };
     $scope.beersDrank = $scope.activeUser.sampledBeers;
+    $scope.beersDrankStatistics = BeerServices.generateDrankStatistics($scope.beersDrank);
+    $scope.toDrinkBeers = $scope.activeUser.toDrink;
+    $scope.toDrinkStatistics = BeerServices.countDrankInToDrink($scope.toDrinkBeers);
     $scope.goToPage = function (page) {
         $state.go("beerLogPage", {page: page});
         $scope.currentPage = page;
