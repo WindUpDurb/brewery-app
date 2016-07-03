@@ -34,14 +34,15 @@ let userSchema = new mongoose.Schema({
             beerPhotoCaption: { type: String },
             beerPhotoUrl: { type: String }
         }]
-    }],
+    }]
+ /*   ,
     beerSeen: [{
         beerName: { type: String},
         beerId: { type: String},
         image: {type: String},
         breweryName: {type: String },
         consumed: {type: Boolean, default: false }
-    }]
+    }]*/
 
 });
 
@@ -93,7 +94,7 @@ userSchema.statics.addBeerMemory = function (beerMemory, callback) {
 };
 
 
-userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
+/*userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
     User.findById(userId, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no user." });
         console.log("beerData: ", beerData);
@@ -103,8 +104,7 @@ userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
                 beerName: beerData.data.name,
                 beerId: beerData.data.id,
                 breweryName: beerData.data.breweries[0].name,
-                image: beerData.labels || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",
-
+                image: beerData.labels || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
             };
             databaseUser.beerSeen.push(beerToAdd);
             databaseUser.save(function (error) {
@@ -114,7 +114,7 @@ userSchema.statics.checkIfSeenBeer = function (userId, beerData, callback) {
             return callback(null, false);
         }
     })
-};
+};*/
 
 userSchema.statics.obtainUsers = function (callback) {
     User.find({}, function (error, userList) {

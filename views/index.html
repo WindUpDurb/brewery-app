@@ -153,7 +153,9 @@
                 </div>
             </div>-->
             <div class="col-sm-1 col-sm-offset-1">
-                <span ng-if="!activeUser" ui-sref="login"><a>Login</a></span>
+                <span style="margin-right: 15px" ng-if="!activeUser" ui-sref="login"><a>Login</a></span>
+                <span ng-if="!activeUser" ui-sref="register"><a>Register</a></span>
+
                 <span ng-click="logout()" ng-if="activeUser"><a>Logout</a></span>
             </div>
 

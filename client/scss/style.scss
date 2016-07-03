@@ -1,7 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:700,900);
 
-body { background-color: #0e83cd }
-
 h2 {
     margin: 0 auto;
     width: 400px;
@@ -426,17 +424,15 @@ h2 {
 /////////////////Beer animation above
 .header-container {
     height: 500px;
-    //background-image: url('../images/concrete_seamless.png');
-    //background-position: 0px 0px;
-    //background-size: auto;
-    background-color: #1A2242;
+    background-color: #1a2242;
+    background-image: url("http://www.transparenttextures.com/patterns/ag-square.png");
+    //background-color: #1A2242;
 }
 
 .navbar-container {
-    background-color: #171A22;
-    //background-color: rgba(0, 0, 0, .11);
-    //border-bottom: 1px solid #3949AB;
-    //background-image: url('../images/concrete_seamless.png');
+    //background-color: #171A22;
+    background-color: #1a2242;
+    background-image: url("http://www.transparenttextures.com/patterns/assault.png");
 }
 
 .drink-drank-drunk-header-text {
@@ -579,10 +575,10 @@ body {
 }
 
 .directoryHeader {
-    //margin-bottom: 50px;
     height: 50px;
-    //border-top: 1px #FFFFFF solid;
-    background-color : #1A2242;
+    //background-color : #1A2242;
+    background-color: #1a2242;
+    background-image: url("http://www.transparenttextures.com/patterns/ag-square.png");
     color: white;
 }
 /*

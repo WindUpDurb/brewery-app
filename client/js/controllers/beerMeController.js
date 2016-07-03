@@ -7,7 +7,7 @@ angular
 function beerMeController ($scope, BeerServices) {
     console.log("Beer Me Controller");
     console.log("Active User: ", $scope.activeUser);
-    if ($scope.activeUser) {
+ /*   if ($scope.activeUser) {
         BeerServices.beerMeUser({ _id: $scope.activeUser._id})
             .then(function (response) {
                 $scope.beerData = response.data.data;
@@ -20,7 +20,7 @@ function beerMeController ($scope, BeerServices) {
                 console.log("Error: ", error);
             });
 
-    } else {
+    } else {*/
         BeerServices.beerMe()
             .then(function (response) {
                 $scope.beerData = response.data.data;
@@ -29,5 +29,5 @@ function beerMeController ($scope, BeerServices) {
             .catch(function (error) {
                 console.log("Error: ", error);
             });
-    }
+    
 }

@@ -1,7 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:700,900);
-body {
-  background-color: #0e83cd; }
-
 h2 {
   margin: 0 auto;
   width: 400px;
@@ -340,10 +337,12 @@ h2 {
 
 .header-container {
   height: 500px;
-  background-color: #1A2242; }
+  background-color: #1a2242;
+  background-image: url("http://www.transparenttextures.com/patterns/ag-square.png"); }
 
 .navbar-container {
-  background-color: #171A22; }
+  background-color: #1a2242;
+  background-image: url("http://www.transparenttextures.com/patterns/assault.png"); }
 
 .drink-drank-drunk-header-text {
   position: relative;
@@ -456,7 +455,8 @@ body {
 
 .directoryHeader {
   height: 50px;
-  background-color: #1A2242;
+  background-color: #1a2242;
+  background-image: url("http://www.transparenttextures.com/patterns/ag-square.png");
   color: white; }
 
 /*

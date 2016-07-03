@@ -1,20 +1,44 @@
 <div class="directoryHeader w-section"></div>
 
-<div class="container-fluid">
 
 
+<div style="margin-top: 50px; margin-left: 0; margin-right: 0;" class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+        <img style="display: inline-block"  src="/images/pint.png" class="img-responsive">
+        <img style="display: inline-block" src="/images/log.png" class="img-responsive">
+    </div>
+</div>
+<div style="margin-top: 50px; margin-left: 0; margin-right: 0;" class="row">
+    <div class="col-sm-3 col-sm-offset-3">
+        <h2 class="greyText">Dear Beer Log <3 : </h2>
+    </div>
+</div>
+<div style="margin-top: 50px; margin-left: 0; margin-right: 0;" class="row">
+    <div class="col-sm-5 col-sm-offset-4">
+        <p class="styleDescriptionText">Please find enclosed the beers that I've come across.</p>
+        <p class="styleDescriptionText">Beers that I have consumed will be marked with a <img src="/images/beerIconConsumed32.png">.</p>
+        <p class="styleDescriptionText">And beers that I have not consumed will be marked with a <img src="/images/beerIconNoConsumed32.png">.</p>
+        <p class="styleDescriptionText">Love, </p>
+        <p class="styleDescriptionText">{{activeUser.firstName}}</p>
+    </div>
 </div>
 
-<div class="container">
-    <div class="container well col-sm-7 col-sm-offset-3">
-        <h3>Dear Beer Log:</h3>
-        <p class="beerlogFont">Please find enclosed the beers that I've discovered in the random BeerMe searches.</p>
-        <p class="beerlogFont">Beers that I have consumed will be marked with a <img src="/images/beerIconConsumed32.png">.</p>
-        <p class="beerlogFont">And beers that I have not consumed will be marked with a <img src="/images/beerIconNoConsumed32.png">.</p>
-        <p class="beerlogFont">Love,</p>
-        <p class="beerlogFont">{{activeUser.firstName}}</p>
+<div style="margin-top: 75px" class="row">
+    <div class="col-sm-2 col-sm-offset-4">
+        <div class="form-group">
+            <label for="s1">Which page would you like to see?</label>
+            <select id="s1" class="form-control" ng-model="page" ng-change="goToPage(page)">
+                <option value="To-Drink">To-Drink</option>
+                <option value="Drank">Drank</option>
+            </select>
+        </div>
     </div>
+</div>
 
+<div ui-view="beerLogPage"></div>
+<!--
+
+<div class="container">
     <div class="row" ng-repeat="beer in  beerLog">
         <div class="col-sm-6 col-sm-offset-3">
             <div style="margin-top: 75px" class="list-group">
@@ -37,3 +61,4 @@
         </div>
     </div>
 </div>
+-->

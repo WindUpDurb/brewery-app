@@ -82,9 +82,9 @@ app.service("BeerServices", function ($http, localStorageService, toaster) {
         return $http.get(`/api/breweryAPI/beerSearch/${queryString}`);
     };
 
-    this.beerMeUser = function (userId) {
+   /* this.beerMeUser = function (userId) {
         return $http.put("/api/breweryAPI/beerMeUser", userId);
-    };
+    };*/
 
     this.getSingleBeer = function (beerId) {
         return $http({
@@ -94,11 +94,11 @@ app.service("BeerServices", function ($http, localStorageService, toaster) {
     };
     
     this.checkIfConsumed = function (beerId, activeUser) {
-        for (let i = 0; i < activeUser.beerSeen.length; i++) {
+       /* for (let i = 0; i < activeUser.beerSeen.length; i++) {
             if (activeUser.beerSeen[i].beerId === beerId && activeUser.beerSeen[i].consumed) {
                 return true;
             }
-        }
+        }*/
         for (let i = 0; i < activeUser.sampledBeers.length; i++) {
             if (activeUser.sampledBeers[i].beerId === beerId) {
                 return true;
@@ -134,10 +134,9 @@ app.service("BeerServices", function ($http, localStorageService, toaster) {
     };
 
     this.changeIfConsumed = function (consumed, beerData, breweryData, activeUser) {
-        let beerSeen = activeUser.beerSeen;
-        let beerId = beerData.id;
-        console.log("beerData: ", beerData)
-        let index;
+        // let beerSeen = activeUser.beerSeen;
+        // let beerId = beerData.id;
+       /* let index;
         (function () {
             for (let i = 0; i < beerSeen.length; i++) {
                 if (beerSeen[i].beerId === beerId) {
@@ -146,19 +145,19 @@ app.service("BeerServices", function ($http, localStorageService, toaster) {
             }
             index = -1;
         }());
-        if (index === -1) {
+        if (index === -1) {*/
             activeUser.nonBeerMeBeer = {
                 beerId: beerData.id,
                 breweryName: breweryData.name,
                 beerImage: beerData.labels.medium || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
                 beerName: beerData.name,
                 consumed: consumed
-            }
-        } else {
+            };
+        /*} else {
             activeUser.beerSeen[index].consumed = consumed;
             activeUser.beerModifying = activeUser.beerSeen[index];
-        }
-        console.log("modifying: ", activeUser)
+        }*/
+        console.log("modifying: ", activeUser);
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
 

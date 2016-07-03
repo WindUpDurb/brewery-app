@@ -112,6 +112,15 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
                }
             }
         })
+        .state("beerLogPage", {
+            parent: "beerLog",
+            url: "/:page",
+            views: {
+                "beerLogPage": {
+                    templateUrl: "/html/beerLogPage.html"
+                }
+            }
+        })
         .state("beerView", {
             url: "/beer/:beerId",
             views: {

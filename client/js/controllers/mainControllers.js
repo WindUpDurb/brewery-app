@@ -83,7 +83,7 @@ app.controller("drankGalleryController", function ($scope, Upload) {
 
 });
 
-app.controller("profileController", function ($scope, AuthServices, activeUserProfile, BeerServices) {
+app.controller("profileController", function ($scope, $state, AuthServices, activeUserProfile, BeerServices) {
     console.log("Profile Controller");
     $scope.activeUser = activeUserProfile.data;
     $scope.accountDetails = angular.copy($scope.activeUser);
@@ -98,8 +98,11 @@ app.controller("profileController", function ($scope, AuthServices, activeUserPr
                 toaster.pop("error", "There was an issue with the update.", "Your password may be incorrect.");
             });
     };
-    $scope.beerLog = $scope.activeUser.beerSeen;
     $scope.beersDrank = $scope.activeUser.sampledBeers;
+    $scope.goToPage = function (page) {
+        $state.go("beerLogPage", {page: page});
+        $scope.currentPage = page;
+    };
     $scope.drankStatistics = BeerServices.generateDrankStatistics($scope.activeUser.sampledBeers);
     $scope.createRatingStars = function (rating) {
         return new Array(rating);

@@ -21,7 +21,7 @@ router.get("/beerDirectories", function (request, response) {
     });
 });
 
-router.put("/beerMeUser", function (request, response) {
+/*router.put("/beerMeUser", function (request, response) {
     let userId = request.body._id;
     BeerAPI.beerMe(function (error, data) {
         if (error) response.status(400).send(error);
@@ -37,7 +37,7 @@ router.put("/beerMeUser", function (request, response) {
             }
         })
     })
-});
+});*/
 
 router.get("/beerSearch/:query", function (request, response) {
    BeerAPI.beerSearch(request.params.query, function (error, data) {
