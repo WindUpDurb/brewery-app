@@ -135,7 +135,7 @@ app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProv
             views: {
                 "body": {
                     templateUrl: "/html/randomBeer.html",
-                    controller: "beerMeController"
+                    controller: "beerViewController"
                 }
             }
         })

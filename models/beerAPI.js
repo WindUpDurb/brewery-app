@@ -6,7 +6,7 @@ let User = require("./user");
 let BeerAPI = {
 
     beerSearch: function (query, callback) {
-        requestNPM(`http://api.brewerydb.com/v2/search/?key=852f05c67350a731492d69cf272223e2&q=${query}`, function (error, response, body) {
+        requestNPM(`http://api.brewerydb.com/v2/search/?key=852f05c67350a731492d69cf272223e2&q=${query}&withBreweries=Y`, function (error, response, body) {
             callback(error, body);    
         })
     },

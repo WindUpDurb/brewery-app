@@ -24,36 +24,36 @@
     </div>
 </div>
 
-<div style="margin-top: 50px;" class="w-section" ng-if="categoryContents">
+<div style="margin-top: 125px;" class="w-section" ng-if="categoryContents">
     <div class="w-container">
         <div class="row">
             <a ng-if="pageNumber != 1" ng-href="{{previousPage}}"><i class="fa fa-chevron-left fa-2x pull-left" aria-hidden="true"></i></a>
             <a  ng-href="{{nextPage}}"><i class="fa fa-chevron-right fa-2x pull-right" aria-hidden="true"></i></a>
 
         </div>
-        <div class="row" ng-repeat="beer in  categoryContents">
-            <div class="col-sm-6 col-sm-offset-2">
-                <div style="margin-top: 75px" class="list-group">
-                    <div class="list-group-item">
-                        <div class="row-picture">
-                            <img class="rounded" ng-src="{{beer.labels.medium || beer.labels.large || beer.labels.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}" alt="icon">
-                        </div>
-                        <div class="row-content">
-                            <h4 class="list-group-item-heading"><a ng-href="/#/beer/{{beer.id}}">{{beer.name}}</a></h4>
-                            <h5>{{beer.breweries[0].name}}</h5>
-                            <div class="row">
-                                <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending32.png"></span>
-                                <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp32.png"></span>
-                                <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed32.png"></span>
-                                <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed32.png" ></span>
-                            </div>
-                        </div>
+
+
+        <div ng-repeat="beer in categoryContents" class="w-section toDrinkEntry">
+            <div class="w-container">
+                <img ng-src="{{beer.labels.medium || beer.labels.large || beer.labels.icon || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg' }}">
+                <div class="beerLogDetails">
+                    <a href="/#/beer/{{beer.id}}"><p class="beerLogDetailsBeer">{{beer.name}}</p></a>
+                    <p class="beerLogDetailsBrewery">{{beer.breweries[0].name}}</p>
+                </div>
+                <div class="col-sm-2 col-sm-offset-9">
+                    <span class="pull-right" ng-if="beer.status === 'update_pending'"><img src="/images/updatePending64.png"></span>
+                    <span class="pull-right" ng-if="beer.status === 'verified'"><img src="/images/thumbUp64.png"></span>
+              <!--      <span class="pull-right" ng-if="activeUser && beer.consumed"><img src="/images/beerIconConsumed64.png"></span>
+                    <span class="pull-right" ng-if="activeUser && !beer.consumed"><img src="/images/beerIconNoConsumed64.png" ></span>-->
+                </div>
+                <div style="margin-top: 75px; margin-left: 0; margin-right: 0;" class="row">
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <button ng-repeat="number in createRatingStars(beer.beerRating) track by $index" style="background-color: #272100; box-shadow: 10px 10px 5px #888888" class="btn btn-default btn-fab"><img src="/images/beerRating.png"></button>
                     </div>
-                    <div class="list-group-separator"></div>
                 </div>
             </div>
+            <div class="subjectBreak container-fluid"></div>
         </div>
-
 
     </div>
 </div>

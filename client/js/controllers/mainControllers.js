@@ -49,6 +49,7 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
         AuthServices.logout()
             .then(function (response) {
                 $scope.activeUser = null;
+                $state.go("home");
                 toaster.pop("success", "Until next time.", "Drink up.");
             })
             .catch(function (error) {

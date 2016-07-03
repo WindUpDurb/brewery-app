@@ -134,29 +134,19 @@ app.service("BeerServices", function ($http, localStorageService, toaster) {
     };
 
     this.changeIfConsumed = function (consumed, beerData, breweryData, activeUser) {
-        // let beerSeen = activeUser.beerSeen;
-        // let beerId = beerData.id;
-       /* let index;
-        (function () {
-            for (let i = 0; i < beerSeen.length; i++) {
-                if (beerSeen[i].beerId === beerId) {
-                    return index = i;
-                }
-            }
-            index = -1;
-        }());
-        if (index === -1) {*/
-            activeUser.nonBeerMeBeer = {
-                beerId: beerData.id,
-                breweryName: breweryData.name,
-                beerImage: beerData.labels.medium || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
-                beerName: beerData.name,
-                consumed: consumed
-            };
-        /*} else {
-            activeUser.beerSeen[index].consumed = consumed;
-            activeUser.beerModifying = activeUser.beerSeen[index];
-        }*/
+        //I was getting an error if I had beerData.labels.medium || `the link`
+        //as the value in the object property below
+        //look into why
+        if (beerData.labels && beerData.labels.medium) {
+            var beerLabel = beerData.labels.medium;
+        }
+        activeUser.nonBeerMeBeer = {
+            beerId: beerData.id,
+            breweryName: breweryData.name,
+            beerImage: beerLabel || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
+            beerName: beerData.name,
+            consumed: consumed
+        };
         console.log("modifying: ", activeUser);
         return $http.put("/api/breweryAPI/updateHasConsumed", activeUser)
     };
