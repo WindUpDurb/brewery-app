@@ -53,6 +53,8 @@
 
     <div class="container">
         <div class="row center">
+            <a type="button" ng-if="!activeUser" ui-sref="register" class="btn btn-raised btn-primary">Register to Rate and Save Beers</a>
+
             <div ng-if="activeUser && !hasConsumed && !inToDrink" style="display: inline-block">
                 <button ng-click="addToToDrink()" type="button" class="btn btn-raised">Add to your To-Drink List</button>
             </div>

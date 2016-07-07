@@ -340,9 +340,10 @@ h2 {
   background-color: #1a2242;
   background-image: url("http://www.transparenttextures.com/patterns/ag-square.png"); }
 
-.navbar-container {
+#navbar-container {
   background-color: #1a2242;
-  background-image: url("http://www.transparenttextures.com/patterns/assault.png"); }
+  background-image: url("http://www.transparenttextures.com/patterns/assault.png");
+  margin-bottom: 0px; }
 
 .drink-drank-drunk-header-text {
   position: relative;
@@ -371,15 +372,11 @@ h2 {
   font-weight: 400; }
 
 .site-text.dark-text {
-  position: relative;
-  left: 266px;
   width: 50%;
   color: rgba(51, 51, 51, 0.83);
   text-align: center; }
 
 .site-text.descriptive-text {
-  position: relative;
-  bottom: -129px;
   width: 64%;
   color: rgba(51, 51, 51, 0.83);
   font-size: 33px;
@@ -428,7 +425,7 @@ h2 {
   font-size: 1.5em; }
 
 .styleDescriptionText {
-  font-size: 1.25em; }
+  font-size: 1.50em; }
 
 body {
   background-color: white;
@@ -467,8 +464,8 @@ body {
   border-radius: 2px; }
 
 .toDrinkEntry {
-  margin-top: 50px;
-  margin-bottom: 50px; }
+  margin-top: 10px;
+  margin-bottom: 10px; }
 
 .activeUserDropDown {
   color: #daa520; }
@@ -487,18 +484,6 @@ body {
   background-image: url("http://www.transparenttextures.com/patterns/ag-square.png");
   color: white; }
 
-/*
-.directoryHeadingText {
-    margin-top: 65px;
-}*/
-/*
-#header {
-    background-color : #111118;
-    color: white;
-    margin-bottom : 0px;
-    border-bottom: black 1px solid;
-}
-*/
 #footer {
   margin-top: 50px;
   background-color: white;
@@ -559,64 +544,3 @@ body {
 .arrow.next:hover {
   opacity: 1;
   background-image: url(/images/paddle_next_fff.png); }
-
-/*---------------------------------------------------------
-NAV
----------------------------------------------------------*/
-.nav {
-  text-align: center;
-  display: block;
-  position: absolute;
-  z-index: 1002;
-  left: 0;
-  bottom: -4px;
-  right: 0;
-  height: 48px; }
-
-.nonDraggableImage {
-  -webkit-user-drag: none; }
-
-.nav .wrapper {
-  margin: 0 auto;
-  width: 100%;
-  padding: 1em 0 .8em; }
-
-.nav ul {
-  margin: 0;
-  width: 100%; }
-
-.nav .dot, .nav .dot a {
-  display: inline-block;
-  zoom: 1; }
-
-.dots .dot {
-  position: relative;
-  margin: 0 8px;
-  width: 12px;
-  height: 12px; }
-
-.dots .dot a {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 6px;
-  height: 6px;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  background: #FFF;
-  border: 1px solid transparent;
-  outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  -webkit-transition: background-color 0.25s, border-color 0.25s;
-  -moz-transition: background-color 0.25s, border-color 0.25s;
-  transition: background-color 0.25s, border-color 0.25s; }
-
-.dots .dot a.active {
-  border-color: #FFF;
-  background-color: transparent; }

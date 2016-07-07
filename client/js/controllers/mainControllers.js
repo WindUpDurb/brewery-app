@@ -32,6 +32,10 @@ app.controller("mainController", function ($scope, $state, AuthServices, BeerSer
         }
     };
 
+    $scope.promptToRegister = function () {
+        toaster.pop("info", "Beer Log is only for Users", "Register by clicking Register below this pop-up.");
+    };
+
     $scope.login = function (loginData) {
         AuthServices.login(loginData)
             .then(function (response) {
